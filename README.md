@@ -1,2 +1,2 @@
 # eaamc
-Repositorio orientado al desarrollo de pluguins de EAA.H-L_MC
+Repositorio orientado al desarrollo de pluguins de EVAA.H-L_MC
