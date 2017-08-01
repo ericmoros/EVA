@@ -1,2 +1,2 @@
 # EVA
-Repositorio orientado al desarrollo de pluguins de EVA.H-L_MC
+Repositorio orientado al desarrollo de plugins de EVA.H-L_MC
