@@ -1,6 +1,6 @@
-name: EVAA.Multismarts
+name: ${project.name}
 author: AdriiGamerYT, Alejandronds, ViC y Elferic
-version: 0.3
+version: ${project.version}
 main: com.evaa.multismarts.Main
 description: ${project.description}
 commands:
