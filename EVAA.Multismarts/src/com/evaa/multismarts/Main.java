@@ -1,5 +1,5 @@
 package com.evaa.multismarts;
-
+//test
 import java.io.File;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
