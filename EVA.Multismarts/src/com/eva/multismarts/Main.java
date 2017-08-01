@@ -1,4 +1,4 @@
-package com.evaa.multismarts;
+package com.eva.multismarts;
 //test
 import java.io.File;
 import org.bukkit.ChatColor;

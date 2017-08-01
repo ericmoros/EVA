@@ -1,4 +1,4 @@
-package com.evaa.multismarts;
+package com.eva.multismarts;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;

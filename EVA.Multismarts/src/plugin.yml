@@ -1,7 +1,7 @@
 name: ${project.name}
-author: AdriiGamerYT, Alejandronds, ViC y Elferic
+author: AdriiGamerYT, ViC y Elferic
 version: ${project.version}
-main: com.evaa.multismarts.Main
+main: com.eva.multismarts.Main
 description: ${project.description}
 commands:
     Hola:

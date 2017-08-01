@@ -1,4 +1,4 @@
-package com.evaa.multismarts;
+package com.eva.multismarts;
 
 import java.util.Arrays;
 import org.bukkit.command.Command;

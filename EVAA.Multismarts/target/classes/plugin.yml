@@ -1,9 +1,0 @@
-name: EVAA.Multismarts
-author: AdriiGamerYT, Alejandronds, ViC y Elferic
-version: 0.3
-main: com.evaa.multismarts.Main
-description: ${project.description}
-commands:
-    Hola:
-        description: Este comando dará los buenos días.
-        usage: /hola
