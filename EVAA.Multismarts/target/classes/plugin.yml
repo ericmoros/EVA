@@ -1,0 +1,9 @@
+name: ${project.name}
+author: AdriiGamerYT, Alejandronds, ViC y Elferic
+version: ${project.version}
+main: com.eaamc.eric.multismarts.Main
+description: ${project.description}
+commands:
+    Hola:
+        description: Este comando dará los buenos días.
+        usage: /hola
