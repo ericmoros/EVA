@@ -1,3 +1,4 @@
+/*
 package com.eva.multismarts;
 // klk bro
 import java.util.Arrays;
@@ -7,9 +8,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-public class Hola implements CommandExecutor {
-    private final Main plugin;
-    public Hola(Main instance)  {
+public class Ejemplo_hola implements CommandExecutor {
+    private final Ejemplo_Main plugin;
+    public Ejemplo_hola(Ejemplo_Main instance)  {
         plugin = instance;
     }
     @Override
@@ -36,3 +37,4 @@ public class Hola implements CommandExecutor {
         return true;
     }
 }
+*/

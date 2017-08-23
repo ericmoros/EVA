@@ -1,3 +1,4 @@
+/*
 package com.eva.multismarts;
 
 import org.bukkit.configuration.file.FileConfiguration;
@@ -8,9 +9,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-public class OyenteJugador implements Listener{
-    private final Main plugin;
-    public OyenteJugador (Main instance) {
+public class Ejemplo_oyenteJugador implements Listener{
+    private final Ejemplo_Main plugin;
+    public Ejemplo_oyenteJugador (Ejemplo_Main instance) {
         plugin = instance;
     }
     @EventHandler (priority = EventPriority.LOWEST)
@@ -34,3 +35,4 @@ public class OyenteJugador implements Listener{
         }
     }
 }
+*/

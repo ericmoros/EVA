@@ -1,40 +1,32 @@
+//PAQUETES________________________________
 package com.eva.multismarts;
+//________________________________________
 
-import java.io.File;
-import org.bukkit.ChatColor;
+//DEPENDECIAS_____________________________
 import org.bukkit.plugin.java.JavaPlugin;
-//Test AdriiGamerYT
-public class Main extends JavaPlugin {
-    
-    public static Main instance;
+//________________________________________
 
-    static void getBoolean(String activadoEstado) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+//MAIN___________________________________________________________________________________________________________________________
+public class Main extends JavaPlugin {
+    public static Main instance;
+    //HABILITADO__________________________________________________________________________________
     @Override
     public void onEnable() {
         instance = this;
-        File config = new File(getDataFolder()+File.separator+"config.yml");
-        if (!config.exists()) {
-            getConfig().options().copyDefaults(true);
-            saveConfig();
-        }
-        this.getServer().getPluginManager().registerEvents(new OyenteJugador(instance), instance);
-        this.getCommand("hola").setExecutor(new Hola (this));
-        boolean Activado_Estado = (boolean) getConfig().getBoolean("Activado.Estado");
-        if (Activado_Estado == true) {
-            this.getLogger().info(getConfig().getString("Activado.Mensaje"));
-        }
+        //MENSAJE ARRANQUE CONSOLA_________
+        this.getLogger().info("Activado");
+        //_________________________________
     }
+    //____________________________________________________________________________________________
+
+
+    //DESHABILITADO_______________________________________________________________________________
     @Override
     public void onDisable(){
-        boolean Desctivado_Estado = getConfig().getBoolean("Desactivado.Estado");
-        if (Desctivado_Estado == true) {
-            this.getLogger().info(getConfig().getString("Desactivado.Mensaje"));
-        }
+        //MENSAJE APAGADO CONSOLA____________
+        this.getLogger().info("Desactivado");
+        //___________________________________
     }
-    
-    public String Formatear_texto(String str) {
-        return ChatColor.translateAlternateColorCodes('&', str);
-    }
+    //____________________________________________________________________________________________
 }
+//_______________________________________________________________________________________________________________________________
