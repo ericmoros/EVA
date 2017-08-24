@@ -1,11 +1,14 @@
 name: ${project.name}
 author: AdriiGamerYT, ViC y Elferic
 version: ${project.version}
-main: com.eva.multismarts.Main
+main: com.eva.multismarts.vconomy.main
 description: ${project.description}
 commands:
+    vreceive:
+        description: Este comando te proporcionará la cantidad de dinero que solicites.
+        usage: /vreceive
     
-    #Ejemplo registrar comando
     Hola:
         description: Este comando dará los buenos días.
-        usage: /hola
+        usage: /hola    
+depends: Vault
