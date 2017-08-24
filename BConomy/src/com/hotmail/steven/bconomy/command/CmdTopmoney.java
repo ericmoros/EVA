@@ -44,7 +44,7 @@ public class CmdTopmoney extends BConomyCommand implements CommandExecutor {
 			
 		}
 			
-		String message = "&c&l-= Top 10 balances =-\n";
+		String message = "&c&l-= Los más ricos =-\n";
 		
 		for(Account account : accounts) {
 			
