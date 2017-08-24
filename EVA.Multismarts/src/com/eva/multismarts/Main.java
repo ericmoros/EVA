@@ -3,6 +3,7 @@ package com.eva.multismarts;
 //________________________________________
 
 //DEPENDECIAS_____________________________
+import java.io.File;
 import org.bukkit.plugin.java.JavaPlugin;
 //________________________________________
 
@@ -13,6 +14,17 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+        
+        //ARCHIVO CONFIGURACIÓN MODULOS_____________________________________________
+        File config = new File(getDataFolder()+File.separator+"config.yml");
+        
+        if (!config.exists()) {
+            getConfig().options().copyDefaults(true);
+            saveConfig();
+        }
+        //__________________________________________________________________________
+        
+        
         //MENSAJE ARRANQUE CONSOLA_________
         this.getLogger().info("Activado");
         //_________________________________
