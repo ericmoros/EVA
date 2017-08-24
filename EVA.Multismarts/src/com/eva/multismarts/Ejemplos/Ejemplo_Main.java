@@ -1,5 +1,4 @@
-/*
-package com.eva.multismarts;
+package com.eva.multismarts.Ejemplos;
 
 import java.io.File;
 import org.bukkit.ChatColor;
@@ -39,4 +38,3 @@ public class Ejemplo_Main extends JavaPlugin {
         return ChatColor.translateAlternateColorCodes('&', str);
     }
 }
-*/

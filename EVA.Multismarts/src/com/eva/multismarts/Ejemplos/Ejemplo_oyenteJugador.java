@@ -1,5 +1,4 @@
-/*
-package com.eva.multismarts;
+package com.eva.multismarts.Ejemplos;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -35,4 +34,3 @@ public class Ejemplo_oyenteJugador implements Listener{
         }
     }
 }
-*/

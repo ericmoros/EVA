@@ -1,5 +1,4 @@
-/*
-package com.eva.multismarts;
+package com.eva.multismarts.Ejemplos;
 // klk bro
 import java.util.Arrays;
 import org.bukkit.command.Command;
@@ -37,4 +36,3 @@ public class Ejemplo_hola implements CommandExecutor {
         return true;
     }
 }
-*/
