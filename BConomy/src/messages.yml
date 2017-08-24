@@ -1,0 +1,15 @@
+playerOnly: &cThis command can only be run by players
+
+accountExists: &cThis account already exists!
+
+accountNotExists: &cThis account does not exist!
+
+notNumber: &cYou need to supply a valid number!
+
+notEnoughMoney: &cYou need more money to do this!
+
+fullInventory: &cYour inventory is full!
+
+inventoryDoesntHave: &cYou don't have enough of this item!
+
+signSuccess: &aSign has been created!

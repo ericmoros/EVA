@@ -1,0 +1,87 @@
+############################################################
+# +------------------------------------------------------+ #
+# |                   BConomy Settings                   | #
+# +------------------------------------------------------+ #
+############################################################
+
+#The currency name formatting, used when displayed on signs, chat and plugins
+#Single is used for when there is only 1 of the currency, e.g 1 coin
+Currency:
+    Single: Coin
+    Multiple: Coins
+    
+#Account defaults for newly created accounts
+Account:
+    Name: default
+    Balance: 30
+    Min-Balance: 0
+    
+#Enable multiworld support if you want players balances to be seperated
+#based on the multiworld groups configured in this section
+Multiworld:
+    Enabled: false
+    Groups:
+        Group1:
+            Worlds:
+              - world
+              - world_nether
+              - world_the_end
+        mygroup:
+            Worlds:
+              - test_world
+              - world_name
+    
+#Enable logging such as accounts created and deleted and holdings changes
+Logging:
+    Enabled: false
+   
+#Automatically purge accounts with the default balance
+#Note: Interval is in days 
+Purging:
+    Enabled: false
+    Interval: 30
+    
+#Enable or disable the interest system. Cutoff is the maximum amount of
+#money a player can have before interest stops being paid to them.
+#
+#Players are given a random amount of money between the min and max settings.
+#Interest interval is done in seconds...
+#   1 minute = 60 seconds
+#   1 hour = 1 minute * 60 = 3600 seconds
+#   1 day = 1 hour * 24 = 86400 seconds
+#   1 week = 1 day * 7 = 604800 seconds
+Interest:
+    Enabled: false
+    Online: true
+    Amount:
+        Cutoff: 0
+        Min: 5
+        Max: 10
+    Interval:
+        Seconds: 60
+    Announce:
+        Enabled: true
+
+#Formatting changes the way currency is displayed in chat
+#Using fullnames will display the full currency name on signs
+#Setting before to true will display the currency name before the value and vice versa       
+Formatting:
+    Fullnames: true
+    Before: false
+
+############################################################
+# +------------------------------------------------------+ #
+# |                  Database Settings                   | #
+# +------------------------------------------------------+ #
+############################################################
+
+#Enable mysql if you are planning on hosting a large amount of 
+#Sqllite is used if enabled is false
+Database:
+    Mysql:
+        Enabled: false
+        Host: localhost
+        User: root
+        Pass: ''
+        Table: _bcon
+####################### END OF FILE ########################

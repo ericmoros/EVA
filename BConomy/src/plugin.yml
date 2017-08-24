@@ -1,0 +1,60 @@
+name: BConomy
+version: 1.1
+main: com.hotmail.steven.bconomy.BConomy
+description: An economy and economy api plugin
+softdepend: [Vault]
+commands:
+  money:
+    usage: /money <player>
+    description: Check your own or a players balance
+    aliases: [bal, balance]
+    permission: bconomy.user.money
+  topmoney:
+    usage: /topmoney
+    description: Display the top balances in the server
+    aliases: [baltop, balancetop]
+    permission: bconomy.user.topmoney
+  sendmoney:
+    usage: /sendmoney <player> <amount>
+    description: Give a player some money
+    aliases: [paymoney, pay]
+    permission: bconomy.user.sendmoney
+  bconomy:
+    usage: /bconomy
+    description: View all the commands relating to our economy
+    aliases: [bcon, helpmoney]
+    permission: bconomy.user.help
+  givemoney:
+    usage: /givemoney <player> <amount>
+    description: Give some money to a player (doesn't take from your own balance)
+    aliases: [givemon, gmoney]
+    permission: bconomy.admin.givemoney
+  setmoney:
+    usage: /setmoney <player> <amount>
+    description: Set a players balance
+    permission: bconomy.admin.setmoney
+  takemoney:
+    usage: /takemoney <player> <amount>
+    description: take some money from a player
+    permission: bconomy.admin.takemoney
+  purgemoney:
+    usage: /purgemoney
+    description: purge all accounts with default balance
+    permission: bconomy.admin.purgemoney
+permissions:
+  bconomy.user:
+    description: Gives access to all bconomy user commands
+    children:
+      bconomy.user.money: true
+      bconomy.user.topmoney: true
+      bconomy.user.sendmoney: true
+      bconomy.user.help: true
+  bconomy.admin:
+    description: Gives access to all bconomy admin commands
+    children:
+      bconomy.admin.givemoney: false
+      bconomy.admin.setmoney: false
+      bconomy.admin.takemoney: false
+      bconomy.admin.purgemoney: false
+      bconomy.sign.place: false
+      bconomy.sign.break: false
