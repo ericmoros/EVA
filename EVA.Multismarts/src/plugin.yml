@@ -4,7 +4,9 @@ version: ${project.version}
 main: com.eva.multismarts.Main
 description: ${project.description}
 commands:
-    
+    Vago:
+        description: No hace nada...
+        usage: /vago
     #Ejemplo registrar comando
     Hola:
         description: Este comando dará los buenos días.

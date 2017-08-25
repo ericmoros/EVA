@@ -1,8 +1,9 @@
-#_ENCENDIDO Y APAGADO____________________________
+#_EVA.MULTISMARTS________________________________
   Multismarts:
       Estado: true
-      Modulos:
+      Módulos:
           Vago: true
           Vconomy: true
+          #NUEVOMODULO: true
           
 #________________________________________________
