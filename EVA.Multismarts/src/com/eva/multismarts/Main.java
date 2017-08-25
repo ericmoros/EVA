@@ -8,10 +8,11 @@ import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.RegisteredServiceProvider;
+
+
 //________________________________________________________
 //DEPENDECIAS MODULOS_____________________________________
-import com.eva.multismarts.Test_area.Vago;
-//import com.eva.multismarts.vconomy.vreceive;
+import com.eva.multismarts.vconomy.CmdVreceive;
 //________________________________________________________
 
 //MAIN___________________________________________________________________________________________________________________________
@@ -19,7 +20,7 @@ public class Main extends JavaPlugin {
     public static Main instance;
     private static final Logger log = Logger.getLogger("Minecraft");
     private static Economy econ = null;
-
+    
     private boolean setupEconomy() {
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) {
@@ -30,10 +31,10 @@ public class Main extends JavaPlugin {
     }
     
     
+    
     @Override
     public void onEnable() {
         instance = this;
-        
         //CONFIGURACIÓN MODULOS_______________________________________________________________
         File config = new File(getDataFolder()+File.separator+"config.yml");
         
@@ -49,13 +50,13 @@ public class Main extends JavaPlugin {
         
         //MODULOS_____________________________________________________________________________
             //VAGO
-            if (Vago_estado == true) {
-                this.getCommand("vago").setExecutor(new Vago (this));
-            }
+//            if (Vago_estado == true) {
+//                this.getCommand("vago").setExecutor(new Vago (this));
+//            }
             //VCONOMY
             if (Vconomy_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
                 setupEconomy();
-                //this.getCommand("vreceive").setExecutor(new vreceive (this));
+                this.getCommand("vreceive").setExecutor(new CmdVreceive (this));
             }
             //NUEVOMODULO
             //if (NUEVOMODULO_estado == true) {
@@ -81,4 +82,5 @@ public class Main extends JavaPlugin {
     }
 
 }
+
 //_______________________________________________________________________________________________________________________________

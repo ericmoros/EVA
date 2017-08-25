@@ -2,6 +2,7 @@
 package com.eva.multismarts.vconomy;
 
 // IMPORTACIONES    
+import com.eva.multismarts.Main;
 import java.text.DecimalFormat;
 import java.util.logging.Logger;
 
@@ -12,12 +13,22 @@ import net.milkbowl.vault.permission.Permission;
 import org.bukkit.ChatColor;
 
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.RegisteredServiceProvider;
-import org.bukkit.plugin.java.JavaPlugin;
+//import org.bukkit.plugin.RegisteredServiceProvider;
+//import org.bukkit.plugin.java.JavaPlugin;
 
-public class main extends JavaPlugin {
+
+public class CmdVreceive extends Main implements CommandExecutor {
+//public class CmdVreceive implements CommandExecutor {
+    private Main plugin;
+    public CmdVreceive(Main instance) {
+        this.plugin = instance;
+        
+    }
+    
+    
     
     private static final Logger log = Logger.getLogger("Minecraft");
     private static Economy econ = null;
@@ -30,7 +41,7 @@ public class main extends JavaPlugin {
     public String formateartext(String str) {
         return ChatColor.translateAlternateColorCodes('&', str);
     }
-    
+    /*
     @Override
     public void onDisable() {
         log.info(String.format("[%s] Disabled Version %s", getDescription().getName(), getDescription().getVersion()));
@@ -44,8 +55,8 @@ public class main extends JavaPlugin {
              this.getServer().getPluginManager().disablePlugin(this);
          }
     }
-    
-    private boolean setupEconomy() {
+    */
+    /* private boolean setupEconomy() {
        
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) {
@@ -54,7 +65,7 @@ public class main extends JavaPlugin {
         econ = rsp.getProvider();
         return econ != null;
     }
-    
+    */
    // COMANDO VRECEIVE
     @Override
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
@@ -124,6 +135,5 @@ public class main extends JavaPlugin {
     public static Economy getEcononomy() {
         return econ;
     }
-    
     
 }
