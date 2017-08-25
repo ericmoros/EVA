@@ -1,15 +1,18 @@
-//PAQUETE_______________________ HEIL HITLER_________
+//PAQUETE_________________________________________________
 package com.eva.multismarts;
-//________________________________________
+//________________________________________________________
 
-//DEPENDECIAS_____________________________
-import com.eva.multismarts.Test_area.Vago;
+//DEPENDECIAS_____________________________________________
 import java.io.File;
 import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.RegisteredServiceProvider;
-//________________________________________
+//________________________________________________________
+//DEPENDECIAS MODULOS_____________________________________
+import com.eva.multismarts.Test_area.Vago;
+//import com.eva.multismarts.vconomy.vreceive;
+//________________________________________________________
 
 //MAIN___________________________________________________________________________________________________________________________
 public class Main extends JavaPlugin {
@@ -40,7 +43,7 @@ public class Main extends JavaPlugin {
         }
         
         boolean Vago_estado = (boolean) getConfig().getBoolean("Multismarts.Módulos.Vago");
-        //boolean Vconomy_estado = (boolean) getConfig().getBoolean("Multismarts.Módulos.Vconomy");
+        boolean Vconomy_estado = (boolean) getConfig().getBoolean("Multismarts.Módulos.Vconomy");
         //boolean NUEVOMODULO_estado = (boolean) getConfig().getBoolean("Multismarts.Módulos.NUEVOMODULO");
         //____________________________________________________________________________________
         
@@ -50,10 +53,10 @@ public class Main extends JavaPlugin {
                 this.getCommand("vago").setExecutor(new Vago (this));
             }
             //VCONOMY
-            //if (Vconomy_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
-            //    setupEconomy();
-            //    this.getCommand("vreceive").setExecutor(new vreceive (this));
-            //}
+            if (Vconomy_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
+                setupEconomy();
+                //this.getCommand("vreceive").setExecutor(new vreceive (this));
+            }
             //NUEVOMODULO
             //if (NUEVOMODULO_estado == true) {
             //    this.getCommand("COMANDO").setExecutor(new COMANDO (this));
