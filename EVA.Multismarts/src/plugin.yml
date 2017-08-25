@@ -13,6 +13,7 @@ commands:
         usage: /vago
     #Ejemplo registrar comando
     #Testingouh
+    #Testingyep
     Hola:
         description: Este comando dará los buenos días.
         usage: /hola
