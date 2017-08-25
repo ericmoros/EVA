@@ -3,12 +3,15 @@ author: AdriiGamerYT, ViC y Elferic
 version: ${project.version}
 main: com.eva.multismarts.vconomy.main
 description: ${project.description}
+depends: Vault
 commands:
     vreceive:
         description: Este comando te proporcionará la cantidad de dinero que solicites.
         usage: /vreceive
-    
+    Vago:
+        description: No hace nada...
+        usage: /vago
+    #Ejemplo registrar comando
     Hola:
         description: Este comando dará los buenos días.
-        usage: /hola    
-depends: Vault
+        usage: /hola

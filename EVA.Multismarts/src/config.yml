@@ -1,23 +1,9 @@
-##_ENCENDIDO Y APAGADO____________________________
-#  Activado:
-#      Estado: true
-#      Mensaje: "Activado"
-#  Desactivado:
-#      Estado: true
-#      Mensaje: "Desactivado"
-##________________________________________________
-#
-##_COMANDOS_______________________________________
-#  Hola:
-#      Estado: true
-#      Mensaje: "&3Buenos días Jugador_nombre"
-##________________________________________________
-#
-##_FUNCIONALIDADES________________________________
-#  Jugador_acceso:
-#      Estado: true
-#      Mensaje: "&9Yieeee que pasa Jugador_nombre"
-#  Jugador_movimiento:
-#      Estado: false
-#      Experiencia: 100000
-##________________________________________________
+#_EVA.MULTISMARTS________________________________
+  Multismarts:
+      Estado: true
+      Módulos:
+          Vago: true
+          Vconomy: true
+          #NUEVOMODULO: true
+          
+#________________________________________________
