@@ -25,7 +25,7 @@ public class CmdVreceive implements CommandExecutor {
     }
   
     // EDITOR DEL FORMATO DE NÚMEROS DÉCIMALES
-    DecimalFormat formateardec = new DecimalFormat("############################################.##"); 
+    DecimalFormat formateardec = new DecimalFormat("###,###,###,###,###,###,###,###,###,###,###,###,###,###,###.##"); 
     // EDITOR DEL FORMATO DE TEXTO
     public String formateartext(String str) {
         return ChatColor.translateAlternateColorCodes('&', str);

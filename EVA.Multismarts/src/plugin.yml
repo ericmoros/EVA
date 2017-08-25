@@ -5,6 +5,9 @@ main: com.eva.multismarts.Main
 description: ${project.description}
 depends: Vault
 commands:
+    vmoney:
+        description: Este comando te mostrará la cantidad de dinero que tienes.
+        usage: /vmoney
     vreceive:
         description: Este comando te proporcionará la cantidad de dinero que solicites.
         usage: /vreceive

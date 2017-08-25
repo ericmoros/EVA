@@ -13,6 +13,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 //________________________________________________________
 //DEPENDECIAS MODULOS_____________________________________
 import com.eva.multismarts.vconomy.CmdVreceive;
+import com.eva.multismarts.vconomy.CmdVmoney;
 //________________________________________________________
 
 //MAIN___________________________________________________________________________________________________________________________
@@ -57,6 +58,7 @@ public class Main extends JavaPlugin {
             if (Vconomy_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
                 setupEconomy();
                 this.getCommand("vreceive").setExecutor(new CmdVreceive (this));
+                this.getCommand("vmoney").setExecutor(new CmdVmoney (this));
             }
             //NUEVOMODULO
             //if (NUEVOMODULO_estado == true) {
