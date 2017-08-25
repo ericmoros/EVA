@@ -1,5 +1,8 @@
+// PAQUETES
 package com.eva.multismarts.vconomy;
-        
+
+// IMPORTACIONES    
+import java.text.DecimalFormat;
 import java.util.logging.Logger;
 
 import net.milkbowl.vault.chat.Chat;
@@ -19,6 +22,9 @@ public class main extends JavaPlugin {
     private static Economy econ = null;
     private static Permission perms = null;
     private static Chat chat = null;
+    
+    // EDITOR DEL FORMATO DE NÚMEROS DÉCIMALES
+    DecimalFormat formateardec = new DecimalFormat("############################################.##"); 
 
     @Override
     public void onDisable() {
@@ -44,35 +50,40 @@ public class main extends JavaPlugin {
         return econ != null;
     }
     
-   
+   // COMANDO VRECEIVE
     @Override
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
         
+        // SI EL NÚMERO DE ARGUMENTOS NO ES 1, SE LE MOSTRARÁ AL EMISOR(PERSONA QUE INTRODUCE EL COMANDO) LOS SIGUIENTES MENSAJES
         if(args.length != 1) {
              sender.sendMessage("La sintaxis del comando que has introducido es incorrecta.");
              sender.sendMessage("Sintaxis correcta: /vreceive <cantidad>");
              return true;
          }
           
+        // AL INTRODUCIR EL COMANDO VRECEIVE
         if (commandLabel.equalsIgnoreCase("vreceive")) {
             
+            // SE CREA LA VARIABLE CANTIDAD LA CUAL CORRESPONDE A LA CANTIDAD DE DINERO QUE EL EMISOR QUERRÁ RECIBIR
             double cantidad = 0;
         
          try 
          {
-			
+			// SE FUERZA A QUE LOS NÚMEROS QUE INTRODUZCA EL EMISOR SE CONVIERTAN A UNA VARIABLE DOUBLE(PARA PODER TRABAJAR CON DECIMALES)
 			cantidad = Double.parseDouble(args[0]);
 			
-	 } catch(Exception e) 
+	 } catch(Exception e) // TIPO DE ERROR, EL CUAL ACTÚA SI EL EMISOR INTRODUCE UN VALOR QUE NO ES UN NÚMERO
           {
 			
                     sender.sendMessage("Debes introducir un número válido");
 			return true;
 			
 	  }
+         // EL VALOR(VALOR DADO POR EL EMISOR) QUE TIENE LA VARIABLE CANTIDAD, LA RECIBIRA EN SU CUENTA DE DINERO EL EMISOR
             EconomyResponse er = econ.depositPlayer((Player) sender, cantidad);
+            // SI LA OPERACIÓN SE REALIZÓ CON ÉXITO, SE MOSTRARÁ EL SIGUIENTE MENSAJE AL EMISOR
             if (er.transactionSuccess()) {
-                sender.sendMessage("Has recibido 10 créditos");
+                sender.sendMessage("Has recibido " +formateardec.format(cantidad)+" créditos.");
             } else {
                 sender.sendMessage("Eres un usuario de mierda, ponte a trabajar vago");
             }
