@@ -47,8 +47,30 @@ public class main extends JavaPlugin {
    
     @Override
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
+        
+        if(args.length != 1) {
+             sender.sendMessage("La sintaxis del comando que has introducido es incorrecta.");
+             sender.sendMessage("Sintaxis correcta: /vreceive <cantidad>");
+             return true;
+         }
+          
         if (commandLabel.equalsIgnoreCase("vreceive")) {
-            EconomyResponse er = econ.depositPlayer((Player) sender, 10.0);
+            
+            double cantidad = 0;
+        
+         try 
+         {
+			
+			cantidad = Double.parseDouble(args[0]);
+			
+	 } catch(Exception e) 
+          {
+			
+                    sender.sendMessage("Debes introducir un número válido");
+			return true;
+			
+	  }
+            EconomyResponse er = econ.depositPlayer((Player) sender, cantidad);
             if (er.transactionSuccess()) {
                 sender.sendMessage("Has recibido 10 créditos");
             } else {
