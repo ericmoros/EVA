@@ -9,6 +9,7 @@ import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
 import net.milkbowl.vault.permission.Permission;
+import org.bukkit.ChatColor;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -25,7 +26,11 @@ public class main extends JavaPlugin {
     
     // EDITOR DEL FORMATO DE NÚMEROS DÉCIMALES
     DecimalFormat formateardec = new DecimalFormat("############################################.##"); 
-
+    // EDITOR DEL FORMATO DE TEXTO
+    public String formateartext(String str) {
+        return ChatColor.translateAlternateColorCodes('&', str);
+    }
+    
     @Override
     public void onDisable() {
         log.info(String.format("[%s] Disabled Version %s", getDescription().getName(), getDescription().getVersion()));
@@ -56,8 +61,8 @@ public class main extends JavaPlugin {
         
         // SI EL NÚMERO DE ARGUMENTOS NO ES 1, SE LE MOSTRARÁ AL EMISOR(PERSONA QUE INTRODUCE EL COMANDO) LOS SIGUIENTES MENSAJES
         if(args.length != 1) {
-             sender.sendMessage("La sintaxis del comando que has introducido es incorrecta.");
-             sender.sendMessage("Sintaxis correcta: /vreceive <cantidad>");
+             sender.sendMessage(formateartext("&cLa sintaxis del comando que has introducido es incorrecta."));
+             sender.sendMessage(formateartext("&2Sintaxis correcta:&f /vreceive <cantidad>"));
              return true;
          }
           
@@ -75,7 +80,7 @@ public class main extends JavaPlugin {
 	 } catch(Exception e) // TIPO DE ERROR, EL CUAL ACTÚA SI EL EMISOR INTRODUCE UN VALOR QUE NO ES UN NÚMERO
           {
 			
-                    sender.sendMessage("Debes introducir un número válido");
+                    sender.sendMessage(formateartext("&cDebes introducir un número válido."));
 			return true;
 			
 	  }
@@ -83,9 +88,9 @@ public class main extends JavaPlugin {
             EconomyResponse er = econ.depositPlayer((Player) sender, cantidad);
             // SI LA OPERACIÓN SE REALIZÓ CON ÉXITO, SE MOSTRARÁ EL SIGUIENTE MENSAJE AL EMISOR
             if (er.transactionSuccess()) {
-                sender.sendMessage("Has recibido " +formateardec.format(cantidad)+" créditos.");
+                sender.sendMessage(formateartext("&2Has recibido &f" +formateardec.format(cantidad)+" &fcréditos."));
             } else {
-                sender.sendMessage("Eres un usuario de mierda, ponte a trabajar vago");
+                sender.sendMessage(formateartext("&cEl valor debe ser superior a 0."));
             }
         }
         
