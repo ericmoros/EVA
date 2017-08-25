@@ -1,7 +1,7 @@
-// PAQUETES
+// PAQUETE
 package com.eva.multismarts.vconomy;
 
-// IMPORTACIONES    
+// DEPENDENCIAS    
 import com.eva.multismarts.Main;
 import java.text.DecimalFormat;
 
@@ -16,8 +16,9 @@ import org.bukkit.entity.Player;
 
 
 public class CmdVreceive implements CommandExecutor {
-//public class CmdVreceive implements CommandExecutor {
+   
     private final Main plugin;
+    
     public CmdVreceive(Main instance) {
         this.plugin = instance;
         
@@ -47,24 +48,30 @@ public class CmdVreceive implements CommandExecutor {
             // SE CREA LA VARIABLE CANTIDAD LA CUAL CORRESPONDE A LA CANTIDAD DE DINERO QUE EL EMISOR QUERRÁ RECIBIR
             double cantidad = 0;
         
-         try 
-         {
+             try 
+                 {
 			// SE FUERZA A QUE LOS NÚMEROS QUE INTRODUZCA EL EMISOR SE CONVIERTAN A UNA VARIABLE DOUBLE(PARA PODER TRABAJAR CON DECIMALES)
 			cantidad = Double.parseDouble(args[0]);
 			
-	 } catch(Exception e) // TIPO DE ERROR, EL CUAL ACTÚA SI EL EMISOR INTRODUCE UN VALOR QUE NO ES UN NÚMERO
-          {
+                 }      catch(Exception e) // TIPO DE ERROR, EL CUAL ACTÚA SI EL EMISOR INTRODUCE UN VALOR QUE NO ES UN NÚMERO
+                          {
 			
-                    sender.sendMessage(formateartext("&cDebes introducir un número válido."));
-			return true;
+                         sender.sendMessage(formateartext("&cDebes introducir un número válido."));
+                            return true;
 			
-	  }
+                          }
+         // TRAE EL MÉTODO GETECONOMY DE LA CLASE MAIN (IMPRESCINDIBLE PARA USAR MÉTODOS DE VAULT)
          Economy econ = Main.getEconomy();
-         // EL VALOR(VALOR DADO POR EL EMISOR) QUE TIENE LA VARIABLE CANTIDAD, LA RECIBIRA EN SU CUENTA DE DINERO EL EMISOR
+         // SI SE INTRODUCE UN NÚMERO INFERIOR O IGUAL A 0, SALTARÁ EL SIGUITE MENSAJE, ADEMÁS NO SE REALIZARÁ LA TRANSFERENCIA
+         if (Double.parseDouble(args[0]) <= 0){
+             sender.sendMessage(formateartext("&cEl valor debe ser superior a 0."));
+             return true;
+         }
+         // EL VALOR(VALOR DADO POR EL EMISOR) QUE TIENE LA VARIABLE CANTIDAD, LA RECIBIRÁ EN SU CUENTA DE DINERO EL EMISOR
             EconomyResponse er = econ.depositPlayer((Player) sender, cantidad);
             // SI LA OPERACIÓN SE REALIZÓ CON ÉXITO, SE MOSTRARÁ EL SIGUIENTE MENSAJE AL EMISOR
             if (er.transactionSuccess()) {
-                sender.sendMessage(formateartext("&2Has recibido &f" +formateardec.format(cantidad)+" &fcréditos."));
+                sender.sendMessage(formateartext("&a[&fEconomía&a] &2Has recibido &f" +formateardec.format(cantidad)+" &fcréditos&2."));
                 return true;
             } else {
                 sender.sendMessage(formateartext("&cEl valor debe ser superior a 0."));
