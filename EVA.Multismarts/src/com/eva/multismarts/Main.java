@@ -19,7 +19,7 @@ import com.eva.multismarts.vconomy.CmdVreceive;
 public class Main extends JavaPlugin {
     public static Main instance;
     private static final Logger log = Logger.getLogger("Minecraft");
-    private static Economy econ = null;
+    public static Economy econ = null;
     
     private boolean setupEconomy() {
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
@@ -80,7 +80,10 @@ public class Main extends JavaPlugin {
         log.info(String.format("[%s] Disabled Version %s", getDescription().getName(), getDescription().getVersion()));
         //______________________________________________________________________________________________________________
     }
-
+    
+    public static Economy getEconomy() {
+        return econ;
+    }
 }
 
 //_______________________________________________________________________________________________________________________________

@@ -4,68 +4,32 @@ package com.eva.multismarts.vconomy;
 // IMPORTACIONES    
 import com.eva.multismarts.Main;
 import java.text.DecimalFormat;
-import java.util.logging.Logger;
 
-import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
-import net.milkbowl.vault.permission.Permission;
-import org.bukkit.ChatColor;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-//import org.bukkit.plugin.RegisteredServiceProvider;
-//import org.bukkit.plugin.java.JavaPlugin;
 
 
-public class CmdVreceive extends Main implements CommandExecutor {
+public class CmdVreceive implements CommandExecutor {
 //public class CmdVreceive implements CommandExecutor {
-    private Main plugin;
+    private final Main plugin;
     public CmdVreceive(Main instance) {
         this.plugin = instance;
         
     }
-    
-    
-    
-    private static final Logger log = Logger.getLogger("Minecraft");
-    private static Economy econ = null;
-    private static Permission perms = null;
-    private static Chat chat = null;
-    
+  
     // EDITOR DEL FORMATO DE NÚMEROS DÉCIMALES
     DecimalFormat formateardec = new DecimalFormat("############################################.##"); 
     // EDITOR DEL FORMATO DE TEXTO
     public String formateartext(String str) {
         return ChatColor.translateAlternateColorCodes('&', str);
     }
-    /*
-    @Override
-    public void onDisable() {
-        log.info(String.format("[%s] Disabled Version %s", getDescription().getName(), getDescription().getVersion()));
-    }
-
-    @Override
-    public void onEnable() {
-         if (getServer().getPluginManager().getPlugin("Vault") != null) {
-            setupEconomy();
-        } else {
-             this.getServer().getPluginManager().disablePlugin(this);
-         }
-    }
-    */
-    /* private boolean setupEconomy() {
-       
-        RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
-        if (rsp == null) {
-            return false;
-        }
-        econ = rsp.getProvider();
-        return econ != null;
-    }
-    */
+    
    // COMANDO VRECEIVE
     @Override
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
@@ -95,6 +59,7 @@ public class CmdVreceive extends Main implements CommandExecutor {
 			return true;
 			
 	  }
+         Economy econ = Main.getEconomy();
          // EL VALOR(VALOR DADO POR EL EMISOR) QUE TIENE LA VARIABLE CANTIDAD, LA RECIBIRA EN SU CUENTA DE DINERO EL EMISOR
             EconomyResponse er = econ.depositPlayer((Player) sender, cantidad);
             // SI LA OPERACIÓN SE REALIZÓ CON ÉXITO, SE MOSTRARÁ EL SIGUIENTE MENSAJE AL EMISOR
@@ -106,34 +71,8 @@ public class CmdVreceive extends Main implements CommandExecutor {
                 return true;
             }
         }
-        
-        Player player = (Player) sender;
-        
-        if(command.getLabel().equals("test-economy")) {
-            // Lets give the player 1.05 currency (note that SOME economic plugins require rounding!)
-            sender.sendMessage(String.format("You have %s", econ.format(econ.getBalance(player.getName()))));
-            EconomyResponse r = econ.depositPlayer(player, 1.05);
-            if(r.transactionSuccess()) {
-                sender.sendMessage(String.format("You were given %s and now have %s", econ.format(r.amount), econ.format(r.balance)));
-            } else {
-                sender.sendMessage(String.format("An error occured: %s", r.errorMessage));
-            }
-            return true;
-        } else if(command.getLabel().equals("test-permission")) {
-            // Lets test if user has the node "example.plugin.awesome" to determine if they are awesome or just suck
-            if(perms.has(player, "example.plugin.awesome")) {
-                sender.sendMessage("You are awesome!");
-            } else {
-                sender.sendMessage("You suck!");
-            }
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    public static Economy getEcononomy() {
-        return econ;
-    }
-    
+        return true;
+    } 
 }
+  
+    
