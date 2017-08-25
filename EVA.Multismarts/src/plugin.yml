@@ -11,7 +11,7 @@ commands:
     Vago:
         description: No hace nada...
         usage: /vago
-    #Ejemplo registrar comandos
+    #Ejemplo registrar comando
     Hola:
         description: Este comando dará los buenos días.
         usage: /hola
