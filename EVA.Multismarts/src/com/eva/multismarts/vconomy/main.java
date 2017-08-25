@@ -89,8 +89,10 @@ public class main extends JavaPlugin {
             // SI LA OPERACIÓN SE REALIZÓ CON ÉXITO, SE MOSTRARÁ EL SIGUIENTE MENSAJE AL EMISOR
             if (er.transactionSuccess()) {
                 sender.sendMessage(formateartext("&2Has recibido &f" +formateardec.format(cantidad)+" &fcréditos."));
+                return true;
             } else {
                 sender.sendMessage(formateartext("&cEl valor debe ser superior a 0."));
+                return true;
             }
         }
         
