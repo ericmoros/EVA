@@ -5,11 +5,14 @@ main: com.eva.multismarts.Main
 description: ${project.description}
 depends: Vault
 commands:
+    vtake:
+        description: Quita la cantidad de dinero que determines a un usuario determinado.
+        usage: /vtake
     vmoney:
-        description: Este comando te mostrará la cantidad de dinero que tienes.
+        description: Muestra la cantidad de dinero que tienes.
         usage: /vmoney
     vreceive:
-        description: Este comando te proporcionará la cantidad de dinero que solicites.
+        description: Proporciona la cantidad de dinero que solicites.
         usage: /vreceive
     Vago:
         description: No hace nada...
