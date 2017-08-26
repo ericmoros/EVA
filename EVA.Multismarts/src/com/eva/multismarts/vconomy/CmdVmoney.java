@@ -19,7 +19,7 @@ public class CmdVmoney implements CommandExecutor {
     public CmdVmoney(Main instance) {
         this.plugin = instance;
     }
-    DecimalFormat formateardec = new DecimalFormat("###,###,###,###,###,###,###,###,###,###.##");
+    DecimalFormat formateardec = new DecimalFormat("###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###,###.##");
     
     public String formateartext(String str) {
         return ChatColor.translateAlternateColorCodes('&', str);
@@ -34,7 +34,7 @@ public class CmdVmoney implements CommandExecutor {
              return true;
          }
        
-       if (commandlabel.equalsIgnoreCase("vmoney"));
+       if (commandlabel.equalsIgnoreCase("vmoney")) {
              Economy econ = Main.getEconomy();
              
         double dinero = econ.getBalance((Player) sender);
@@ -43,10 +43,6 @@ public class CmdVmoney implements CommandExecutor {
         
         return true;
     }
-    
-    
-    
-    
-    
-    
+      return true;
+    }
 }
