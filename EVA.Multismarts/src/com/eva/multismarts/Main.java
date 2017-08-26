@@ -6,6 +6,7 @@ package com.eva.multismarts;
 import com.eva.multismarts.Ejemplos.Ejemplo_hola;
 import com.eva.multismarts.vconomy.CmdVreceive;
 import com.eva.multismarts.vconomy.CmdVmoney;
+import com.eva.multismarts.vconomy.CmdVtake;
 //________________________________________________________
 
 //DEPENDECIAS_____________________________________________
@@ -54,6 +55,7 @@ public class Main extends JavaPlugin {
                 setupEconomy();
                 this.getCommand("vreceive").setExecutor(new CmdVreceive (this));
                 this.getCommand("vmoney").setExecutor(new CmdVmoney (this));
+                this.getCommand("vtake").setExecutor(new CmdVtake(this));
             }
             //Ejemplos
             if (Ejemplos_estado == true) {
