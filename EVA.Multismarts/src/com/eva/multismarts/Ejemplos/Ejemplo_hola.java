@@ -29,7 +29,7 @@ public class Ejemplo_hola implements CommandExecutor {
         if (Etiqueta.equalsIgnoreCase("hola") && Hola_Estado == true) {
             if (Emisor instanceof Player) {
                 Player Jugador = (Player)Emisor;
-                Jugador.sendMessage(EVA.Formatear_texto(Hola_Mensaje).replaceAll("Jugador_nombre", Jugador.getDisplayName()));
+                Jugador.sendMessage(EVA.Text_formater(Hola_Mensaje).replaceAll("Jugador_nombre", Jugador.getDisplayName()));
                 if (Argumentos.length >= 1) {
                     Jugador.sendMessage("No voy a procesar "+Arrays.toString(Argumentos)+"...");
                 }
