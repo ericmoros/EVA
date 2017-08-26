@@ -20,7 +20,7 @@ public class Ejemplo_Main extends JavaPlugin {
             saveConfig();
         }
         this.getServer().getPluginManager().registerEvents(new Ejemplo_oyenteJugador(instance), instance);
-        this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
+        //this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
         boolean Activado_Estado = (boolean) getConfig().getBoolean("Activado.Estado");
         if (Activado_Estado == true) {
             this.getLogger().info(getConfig().getString("Activado.Mensaje"));

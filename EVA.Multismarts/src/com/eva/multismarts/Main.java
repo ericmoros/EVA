@@ -2,18 +2,18 @@
 package com.eva.multismarts;
 //________________________________________________________
 
+//DEPENDECIAS MODULOS_____________________________________
+import com.eva.multismarts.Ejemplos.Ejemplo_hola;
+import com.eva.multismarts.vconomy.CmdVreceive;
+import com.eva.multismarts.vconomy.CmdVmoney;
+//________________________________________________________
+
 //DEPENDECIAS_____________________________________________
 import java.io.File;
 import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.economy.Economy;
 import org.bukkit.plugin.RegisteredServiceProvider;
-
-
-//________________________________________________________
-//DEPENDECIAS MODULOS_____________________________________
-import com.eva.multismarts.vconomy.CmdVreceive;
-import com.eva.multismarts.vconomy.CmdVmoney;
 //________________________________________________________
 
 //MAIN___________________________________________________________________________________________________________________________
@@ -44,26 +44,21 @@ public class Main extends JavaPlugin {
             saveConfig();
         }
         
-        boolean Vago_estado = (boolean) getConfig().getBoolean("Multismarts.Módulos.Vago");
         boolean Vconomy_estado = (boolean) getConfig().getBoolean("Multismarts.Módulos.Vconomy");
-        //boolean NUEVOMODULO_estado = (boolean) getConfig().getBoolean("Multismarts.Módulos.NUEVOMODULO");
+        boolean Ejemplos_estado = (boolean) getConfig().getBoolean("Multismarts.Módulos.Ejemplos");
         //____________________________________________________________________________________
         
         //MODULOS_____________________________________________________________________________
-            //VAGO
-//            if (Vago_estado == true) {
-//                this.getCommand("vago").setExecutor(new Vago (this));
-//            }
             //VCONOMY
             if (Vconomy_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
                 setupEconomy();
                 this.getCommand("vreceive").setExecutor(new CmdVreceive (this));
                 this.getCommand("vmoney").setExecutor(new CmdVmoney (this));
             }
-            //NUEVOMODULO
-            //if (NUEVOMODULO_estado == true) {
-            //    this.getCommand("COMANDO").setExecutor(new COMANDO (this));
-            //}
+            //Ejemplos
+            if (Ejemplos_estado == true) {
+                this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
+            }
         //____________________________________________________________________________________
         
         //MENSAJE ARRANQUE CONSOLA_________
