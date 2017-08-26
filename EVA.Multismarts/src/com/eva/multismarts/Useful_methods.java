@@ -5,9 +5,9 @@ import org.bukkit.ChatColor;
 
 public class Useful_methods {
     
-    public DecimalFormat Decimal_formater = new DecimalFormat("###########################################.##");
+    public DecimalFormat Decimal_formatter = new DecimalFormat("###########################################.##");
     
-    public String Text_formater(String str) {
+    public String Text_formatter(String str) {
         return ChatColor.translateAlternateColorCodes('&', str);
     }
 }
