@@ -1,26 +1,35 @@
 package com.eva.multismarts.Ejemplos;
 // klk bro
+import com.eva.multismarts.Main;
+import com.eva.multismarts.Useful_methods;
+
 import java.util.Arrays;
+//import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
+//import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 public class Ejemplo_hola implements CommandExecutor {
-    private final Ejemplo_Main plugin;
-    public Ejemplo_hola(Ejemplo_Main instance)  {
+    private final Main plugin;
+    Useful_methods EVA = new Useful_methods();
+    public Ejemplo_hola(Main instance) {
         plugin = instance;
     }
+    
     @Override
     public boolean onCommand(CommandSender Emisor, Command Comando, String Etiqueta, String[] Argumentos) {
-        FileConfiguration config = plugin.getConfig();
-        boolean Hola_Estado = config.getBoolean("Hola.Estado");
-        String Hola_Mensaje = config.getString("Hola.Mensaje");
+        //FileConfiguration config = plugin.getConfig();
+        //boolean Hola_Estado = config.getBoolean("Hola.Estado");
+        //String Hola_Mensaje = config.getString("Hola.Mensaje");
+        boolean Hola_Estado = true;
+        String Hola_Mensaje = "&9Ey, bienvenido&9 Jugador_nombre";
+        
         if (Etiqueta.equalsIgnoreCase("hola") && Hola_Estado == true) {
             if (Emisor instanceof Player) {
                 Player Jugador = (Player)Emisor;
-                Jugador.sendMessage(plugin.Formatear_texto(Hola_Mensaje).replaceAll("Jugador_nombre", Jugador.getDisplayName()));
+                Jugador.sendMessage(EVA.Formatear_texto(Hola_Mensaje).replaceAll("Jugador_nombre", Jugador.getDisplayName()));
                 if (Argumentos.length >= 1) {
                     Jugador.sendMessage("No voy a procesar "+Arrays.toString(Argumentos)+"...");
                 }
