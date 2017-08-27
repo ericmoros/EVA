@@ -20,13 +20,13 @@ public class Interaccionar implements Listener{
         Player p = (Player)e.getWhoClicked();
         ItemStack clicked = e.getCurrentItem();
         Inventory inv = e.getInventory();
-        if(inv.getName().equals("&1Menu Troll")) {
+        if(inv.getName().equals("Menu Troll")) {
             if(clicked.getType() == Material.BLAZE_ROD) {
-                p.sendMessage("&1Rayo");
+                p.sendMessage("Rayo");
                 e.setCancelled(true);
                 p.closeInventory();
             } else if(clicked.getType() == Material.DIAMOND_SWORD) {
-                p.sendMessage("&1Kill");
+                p.setHealth(0);
                 e.setCancelled(true);
                 p.closeInventory();
             }

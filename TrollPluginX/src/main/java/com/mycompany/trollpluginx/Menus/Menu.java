@@ -13,15 +13,15 @@ public class Menu {
         
         ItemStack item0 = new ItemStack(Material.BLAZE_ROD);
         ItemMeta meta0 = item0.getItemMeta();
-        meta0.setDisplayName("&6Rayo");
+        meta0.setDisplayName("Rayo");
         item0.setItemMeta(meta0);
         
         ItemStack item1 = new ItemStack(Material.DIAMOND_SWORD);
         ItemMeta meta1 = item1.getItemMeta();
-        meta0.setDisplayName("&cKill");
+        meta0.setDisplayName("Kill");
         item0.setItemMeta(meta1);
         
-        Inventory inventario = Bukkit.createInventory(null, 63, "&1Menu Troll");
+        Inventory inventario = Bukkit.createInventory(null, 63, "Menu Troll");
         
         inventario.setItem(3, item0);
         inventario.setItem(5, item1);

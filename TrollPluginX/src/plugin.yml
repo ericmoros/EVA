@@ -4,4 +4,4 @@ version: 1.0
 commands:
     menu:
         description: Abre el menu troll.
-        usage: /menu
+        usage: /troll

@@ -25,7 +25,7 @@ public class Principal extends JavaPlugin implements Listener{
     }
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-        if(label.equalsIgnoreCase("menu")) {
+        if(label.equalsIgnoreCase("troll")) {
             if(sender instanceof Player) {
                 Player p = (Player)sender;
                 Menu.abrirMenu(p);
