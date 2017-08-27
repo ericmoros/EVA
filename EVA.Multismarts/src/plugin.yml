@@ -5,6 +5,9 @@ main: com.eva.multismarts.Main
 description: ${project.description}
 depends: Vault
 commands:
+    vpay:
+        description: Transfiere dinero de tu cuenta a un usuario determinado.
+        usage: /vpay
     vgive:
         description: Proporciona la cantidad de dinero que determines a un usuario determinado.
         usage: /vgive

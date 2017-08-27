@@ -7,6 +7,7 @@ import com.eva.multismarts.Ejemplos.Ejemplo_hola;
 import com.eva.multismarts.vconomy.CmdVgive;
 import com.eva.multismarts.vconomy.CmdVreceive;
 import com.eva.multismarts.vconomy.CmdVmoney;
+import com.eva.multismarts.vconomy.CmdVpay;
 import com.eva.multismarts.vconomy.CmdVtake;
 //________________________________________________________
 
@@ -58,6 +59,7 @@ public class Main extends JavaPlugin {
                 this.getCommand("vmoney").setExecutor(new CmdVmoney (this));
                 this.getCommand("vtake").setExecutor(new CmdVtake(this));
                 this.getCommand("vgive").setExecutor(new CmdVgive (this));
+                this.getCommand("vpay").setExecutor(new CmdVpay (this));
             }
             //Ejemplos
             if (Ejemplos_estado == true) {

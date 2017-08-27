@@ -36,7 +36,7 @@ public class CmdVgive implements CommandExecutor {
                 amountgiven = Double.parseDouble(args[1]);
             }
             catch(Exception e) {
-                sender.sendMessage(EVA.Text_formatter("&cDebes introducir un número válido"));
+                sender.sendMessage(EVA.Text_formatter("&cDebes introducir un número válido."));
                 return true;
             }
             
