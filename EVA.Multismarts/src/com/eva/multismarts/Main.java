@@ -80,6 +80,9 @@ public class Main extends JavaPlugin {
     
     //INSTALADOR DEL ECONOMY_______________________________________
     public static Economy econ = null;
+    public static Economy getEconomy() {
+        return econ;
+    }
     private boolean setupEconomy() {
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) {
@@ -156,9 +159,6 @@ public class Main extends JavaPlugin {
         //______________________________________________________________________________________________________________
     }
     
-    public static Economy getEconomy() {
-        return econ;
-    }
 }
 
 //_______________________________________________________________________________________________________________________________
