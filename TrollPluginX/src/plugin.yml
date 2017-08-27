@@ -2,6 +2,6 @@ name: TrollPluginX
 main: main.java.com.mycompany.trollpluginx.Principal
 version: 1.0
 commands:
-    menu:
+    troll:
         description: Abre el menu troll.
         usage: /troll
