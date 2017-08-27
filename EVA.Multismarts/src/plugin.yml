@@ -5,6 +5,9 @@ main: com.eva.multismarts.Main
 description: ${project.description}
 depends: Vault
 commands:
+    vgive:
+        description: Proporciona la cantidad de dinero que determines a un usuario determinado.
+        usage: /vgive
     vtake:
         description: Quita la cantidad de dinero que determines a un usuario determinado.
         usage: /vtake
