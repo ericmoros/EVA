@@ -1,0 +1,7 @@
+name: TrollPluginX
+main: com.mycompany.trollpluginx.Principal
+version: 1.0
+commands:
+    menu:
+        description: Abre el menu troll.
+        usage: /<command>
