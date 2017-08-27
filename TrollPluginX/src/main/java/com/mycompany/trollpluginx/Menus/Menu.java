@@ -21,7 +21,7 @@ public class Menu {
         meta0.setDisplayName("Kill");
         item0.setItemMeta(meta1);
         
-        Inventory inventario = Bukkit.createInventory(null, 63, "Menu Troll");
+        Inventory inventario = Bukkit.createInventory(null, 27, "Menu Troll");
         
         inventario.setItem(3, item0);
         inventario.setItem(5, item1);
