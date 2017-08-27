@@ -1,10 +1,9 @@
 package com.eva.multismarts.Ejemplos;
-// klk bro
+
 import com.eva.multismarts.Main;
 import com.eva.multismarts.Useful_methods;
 
 import java.util.Arrays;
-//import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,8 +20,9 @@ public class Ejemplo_hola implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender Emisor, Command Comando, String Etiqueta, String[] Argumentos) {
         //FileConfiguration config = plugin.getConfig();
-        //boolean Hola_Estado = config.getBoolean("Hola.Estado");
-        //String Hola_Mensaje = config.getString("Hola.Mensaje");
+        //boolean Hola_Estado = config.getBoolean("Hola.State");
+        //String Hola_Mensaje = config.getString("Hola.Mensage");
+        
         boolean Hola_Estado = true;
         String Hola_Mensaje = "&9Ey, bienvenido&9 Jugador_nombre";
         
