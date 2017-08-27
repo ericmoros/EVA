@@ -49,9 +49,20 @@ public class CmdVgive implements CommandExecutor {
          OfflinePlayer receiver = Bukkit.getOfflinePlayer(args [0]);
          
          if (econ.hasAccount(receiver)) {
-             EconomyResponse er = econ.depositPlayer(receiver, amountgiven);
-             sender.sendMessage(EVA.Text_formatter("&a[&fEconomía&a] &f"+EVA.Decimal_formatter.format(amountgiven)+ " créditos &2han sido transferidos a la cuenta de &f"+receiver.getName()+"&2."));
-             receiver.getPlayer().sendMessage(EVA.Text_formatter("&a[&fEconomía&a] &2Has recibido &f" +EVA.Decimal_formatter.format(amountgiven)+" &fcréditos&2."));
+             
+             if (sender == receiver) {
+                 sender.sendMessage(EVA.Text_formatter("&cNo puedes darte dinero a ti mismo con este comando."));
+                 sender.sendMessage(EVA.Text_formatter("&2Comando correcto para esa acción: &f/vreceive <cantidad>"));
+                  }
+             else {
+                  EconomyResponse er = econ.depositPlayer(receiver, amountgiven);
+                  sender.sendMessage(EVA.Text_formatter("&a[&fEconomía&a] &f"+EVA.Decimal_formatter.format(amountgiven)+ " créditos &2han sido transferidos a la cuenta de &f"+receiver.getName()+"&2."));
+                  if (receiver.isOnline()) {
+                     receiver.getPlayer().sendMessage(EVA.Text_formatter("&a[&fEconomía&a] &2Has recibido &f" +EVA.Decimal_formatter.format(amountgiven)+" &fcréditos&2."));
+                     return true;
+                     }
+                  return true;
+            }
              return true;
          }
          else {

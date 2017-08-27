@@ -56,6 +56,9 @@ public class CmdVtake implements CommandExecutor {
                 if ((econ.hasAccount(receiver)) && (amounttaken < econ.getBalance(receiver))) {
                      EconomyResponse er = econ.withdrawPlayer(receiver, amounttaken);
                      sender.sendMessage(EVA.Text_formatter("&a[&fEconomía&a] &f"+EVA.Decimal_formatter.format(amounttaken)+ " créditos &2han sido sacados de la cuenta de &f"+receiver.getName()+"&2.")); 
+                     if (receiver.isOnline()) {
+                         receiver.getPlayer().sendMessage(EVA.Text_formatter("&a[&fEconomía&a] &2Has recibido &f" +EVA.Decimal_formatter.format(amounttaken)+" &fcréditos&2."));
+                     }
                      return true;        
                 }
                 else {
