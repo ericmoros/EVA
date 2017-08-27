@@ -23,8 +23,8 @@ public class Menu {
         
         Inventory inventario = Bukkit.createInventory(null, 27, "Menu Troll");
         
-        inventario.setItem(3, item0);
-        inventario.setItem(5, item1);
+        inventario.setItem(12, item0);
+        inventario.setItem(14, item1);
         
         p.openInventory(inventario);
     }
