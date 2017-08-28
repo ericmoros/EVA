@@ -23,7 +23,7 @@ public class CmdVgive implements CommandExecutor {
     
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args) {
-        if (args.length !=2) {
+        if (args.length != 2) {
             sender.sendMessage(EVA.Text_formatter("&cLa sintaxis del comando que has introducido es incorrecta."));
             sender.sendMessage(EVA.Text_formatter("&2Sintaxis correcta:&f /vgive <usuario> <cantidad>"));
             return true;

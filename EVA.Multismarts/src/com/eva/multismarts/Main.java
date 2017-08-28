@@ -8,6 +8,7 @@ import com.eva.multismarts.vconomy.CmdVgive;
 import com.eva.multismarts.vconomy.CmdVreceive;
 import com.eva.multismarts.vconomy.CmdVmoney;
 import com.eva.multismarts.vconomy.CmdVpay;
+import com.eva.multismarts.vconomy.CmdVreset;
 import com.eva.multismarts.vconomy.CmdVtake;
 //________________________________________________________
 
@@ -133,6 +134,7 @@ public class Main extends JavaPlugin {
             //VCONOMY
             if (Vconomy_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
                 setupEconomy();
+                this.getCommand("vreset").setExecutor(new CmdVreset (this));
                 this.getCommand("vreceive").setExecutor(new CmdVreceive (this));
                 this.getCommand("vmoney").setExecutor(new CmdVmoney (this));
                 this.getCommand("vtake").setExecutor(new CmdVtake(this));
