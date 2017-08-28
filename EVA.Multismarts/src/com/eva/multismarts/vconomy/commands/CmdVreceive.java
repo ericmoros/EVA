@@ -1,5 +1,5 @@
 // PAQUETE
-package com.eva.multismarts.vconomy;
+package com.eva.multismarts.vconomy.commands;
 
 // DEPENDENCIAS    
 import com.eva.multismarts.Main;

@@ -4,12 +4,12 @@ package com.eva.multismarts;
 
 //DEPENDECIAS MODULOS_____________________________________
 import com.eva.multismarts.Ejemplos.Ejemplo_hola;
-import com.eva.multismarts.vconomy.CmdVgive;
-import com.eva.multismarts.vconomy.CmdVreceive;
-import com.eva.multismarts.vconomy.CmdVmoney;
-import com.eva.multismarts.vconomy.CmdVpay;
-import com.eva.multismarts.vconomy.CmdVreset;
-import com.eva.multismarts.vconomy.CmdVtake;
+import com.eva.multismarts.vconomy.commands.CmdVgive;
+import com.eva.multismarts.vconomy.commands.CmdVreceive;
+import com.eva.multismarts.vconomy.commands.CmdVmoney;
+import com.eva.multismarts.vconomy.commands.CmdVpay;
+import com.eva.multismarts.vconomy.commands.CmdVreset;
+import com.eva.multismarts.vconomy.commands.CmdVtake;
 //________________________________________________________
 
 //DEPENDECIAS_____________________________________________
