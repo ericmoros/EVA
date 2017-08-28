@@ -1,5 +1,5 @@
 
-package com.eva.multismarts.vconomy;
+package com.eva.multismarts.vconomy.commands;
 
 import com.eva.multismarts.Main;
 import com.eva.multismarts.Useful_methods;
