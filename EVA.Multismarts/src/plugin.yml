@@ -5,6 +5,9 @@ main: com.eva.multismarts.Main
 description: ${project.description}
 depends: Vault
 commands:
+    vreset:
+        description: Resetea el dinero que tiene un usuario determinado.
+        usage: /vreset
     vpay:
         description: Transfiere dinero de tu cuenta a un usuario determinado.
         usage: /vpay
