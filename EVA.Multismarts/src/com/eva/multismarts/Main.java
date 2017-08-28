@@ -37,7 +37,13 @@ public class Main extends JavaPlugin {
     
     //PARA LA CONFIGURACIÓN_________________________________________
     File configFile;
-    FileConfiguration config;
+    File ejsconfigFile;
+    
+    public FileConfiguration config;
+    public FileConfiguration ejsconfig;
+    
+    //boolean Hola_Estado;
+    //String Hola_Mensaje;
     
     private void copy(InputStream in, File file) {
         try {
@@ -56,7 +62,8 @@ public class Main extends JavaPlugin {
     
     public void loadYamls() {
         try {
-            config.load(configFile); //loads the contents of the File to its FileConfiguration
+            config.load(configFile);
+            ejsconfig.load(ejsconfigFile);//loads the contents of the File to its FileConfiguration
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -65,6 +72,7 @@ public class Main extends JavaPlugin {
     public void saveYamls() {
         try {
             config.save(configFile); //saves the FileConfiguration to its File
+            ejsconfig.save(ejsconfigFile);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -74,6 +82,10 @@ public class Main extends JavaPlugin {
         if(!configFile.exists()){
             configFile.getParentFile().mkdirs();
             copy(getResource("config.yml"), configFile);
+        }
+        if(!ejsconfigFile.exists()){
+            ejsconfigFile.getParentFile().mkdirs();
+            copy(getResource("com/eva/multismarts/Ejemplos/ejsconfig.yml"), ejsconfigFile);
         }
     }
     //_____________________________________________________________
@@ -98,33 +110,27 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-        /*//CONFIGURACIÓN MODULOS_______________________________________________________________
-        File config = new File(getDataFolder()+File.separator+"config.yml");
-        if (!config.exists()) {
-            getConfig().options().copyDefaults(true);
-            saveConfig();
-        }
-        boolean Vconomy_estado = (boolean) getConfig().getBoolean("Multismarts.Módulos.Vconomy");
-        boolean Ejemplos_estado = (boolean) getConfig().getBoolean("Multismarts.Módulos.Ejemplos");
-        //____________________________________________________________________________________*/
+
         //CONFIGURACIÓN MODULOS_______________________________________________________________
-        configFile = new File(getDataFolder(), "config.yml");
-        
+        configFile = new File(getDataFolder(), "Config.yml");
+        ejsconfigFile = new File(getDataFolder(), "Examples/Ejs_config.yml");
+
         try {
             firstRun();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
         config = new YamlConfiguration();
-        
+        ejsconfig = new YamlConfiguration();
+
         loadYamls();
-        boolean Vconomy_estado = (boolean) config.getBoolean("Multismarts.Módulos.Vconomy");
-        boolean Ejemplos_estado = (boolean) config.getBoolean("Multismarts.Módulos.Ejemplos");
         //____________________________________________________________________________________       
         
         
         //MODULOS_____________________________________________________________________________
+        boolean Vconomy_estado = (boolean) config.getBoolean("Multismarts.Módulos.Vconomy");
+        boolean Ejemplos_estado = (boolean) config.getBoolean("Multismarts.Módulos.Ejemplos");
             //VCONOMY
             if (Vconomy_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
                 setupEconomy();
@@ -150,7 +156,7 @@ public class Main extends JavaPlugin {
     @Override
     public void onDisable(){
         //GUARDA LOS ARCHIVOS DE CONF________
-        saveYamls();
+        //saveYamls();
         //___________________________________
         //MENSAJE APAGADO CONSOLA____________
         this.getLogger().info("Desactivado");

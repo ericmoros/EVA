@@ -20,11 +20,14 @@ public class Ejemplo_hola implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender Emisor, Command Comando, String Etiqueta, String[] Argumentos) {
         //FileConfiguration config = plugin.getConfig();
-        //boolean Hola_Estado = config.getBoolean("Hola.State");
-        //String Hola_Mensaje = config.getString("Hola.Mensage");
+//        plugin.loadYamls();
+//        boolean Hola_Estado = (boolean) plugin.Ejsconfig.getBoolean("Hola.State");
+        //String Hola_Mensaje = plugin.config.getString("Multismarts.Módulos.Ejemplos");
+        String Hola_Mensaje = plugin.ejsconfig.getString("ejemplo.test");
+        
         
         boolean Hola_Estado = true;
-        String Hola_Mensaje = "&9Ey, bienvenido&9 Jugador_nombre";
+        //String Hola_Mensaje = "&9Ey, bienvenido&9 Jugador_nombre";
         
         if (Etiqueta.equalsIgnoreCase("hola") && Hola_Estado == true) {
             if (Emisor instanceof Player) {

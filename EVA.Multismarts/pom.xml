@@ -19,6 +19,7 @@
                 <directory>src</directory>
                 <includes>
                     <include>*.yml</include>
+                    <include>com/eva/multismarts/Ejemplos/*.yml</include>
                 </includes>
             </resource>
         </resources>
