@@ -36,14 +36,8 @@ public class Main extends JavaPlugin {
     
     
     //PARA LA CONFIGURACIÓN_________________________________________
-    File configFile;
-    File ejsconfigFile;
-    
-    public FileConfiguration config;
-    public FileConfiguration ejsconfig;
-    
-    //boolean Hola_Estado;
-    //String Hola_Mensaje;
+    File configFile, ejsconfigFile;
+    public FileConfiguration config, ejsconfig;
     
     private void copy(InputStream in, File file) {
         try {
