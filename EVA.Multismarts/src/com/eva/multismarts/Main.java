@@ -19,6 +19,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.economy.Economy;
@@ -42,8 +44,27 @@ public class Main extends JavaPlugin {
     
     
     //PARA LA CONFIGURACIÓN_________________________________________
-    File configFile, ejsconfigFile;
-    public FileConfiguration config, ejsconfig;
+    HashMap<FileConfiguration, HashMap<File, String>> Configs = new HashMap<FileConfiguration, HashMap<File, String>>();
+    public File configFile, ejsconfigFile, Ejsconfig2_file;
+    public FileConfiguration config, ejsconfig, Ejsconfig2;
+    
+    HashMap<File, String> Ejsconfig2_ext = new HashMap<File, String>();
+    
+    public void Precook_configs (){
+        Ejsconfig2_file = new File(getDataFolder(), "Examples/config2.yml");
+        Ejsconfig2_ext.put(Ejsconfig2_file, "com/eva/multismarts/Ejemplos/ejsconfig_2.yml");
+        Ejsconfig2 = new YamlConfiguration(); 
+        Configs.put(Ejsconfig2, Ejsconfig2_ext);
+    }
+    
+    /*/DO NOT WORKS__________________________________________________
+    public void Precook_configs2 (HashMap Keyword_config, File Keyword_file, String Plugin_file_destiny, String Default_source, FileConfiguration Operable_config){
+        Keyword_file = new File(getDataFolder(), Plugin_file_destiny);
+        Keyword_config.put(Keyword_file, Default_source);
+        Operable_config = new YamlConfiguration(); 
+        Configs.put(Operable_config, Keyword_config);
+    }
+    //______________________________________________________________/*/
     
     private void copy(InputStream in, File file) {
         try {
@@ -62,8 +83,13 @@ public class Main extends JavaPlugin {
     
     public void loadYamls() {
         try {
-            config.load(configFile);
-            ejsconfig.load(ejsconfigFile);//loads the contents of the File to its FileConfiguration
+            for (FileConfiguration Configurations: Configs.keySet()) {
+                for (File ConfigurationFiles: (Configs.get(Configurations)).keySet()) {
+                    config.load(configFile);
+                    ejsconfig.load(ejsconfigFile);//loads the contents of the File to its FileConfiguration
+                    Configurations.load(ConfigurationFiles);
+                }
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -79,13 +105,25 @@ public class Main extends JavaPlugin {
     }
     
     private void firstRun() throws Exception {
-        if(!configFile.exists()){
-            configFile.getParentFile().mkdirs();
-            copy(getResource("config.yml"), configFile);
-        }
-        if(!ejsconfigFile.exists()){
-            ejsconfigFile.getParentFile().mkdirs();
-            copy(getResource("com/eva/multismarts/Ejemplos/ejsconfig.yml"), ejsconfigFile);
+        for (FileConfiguration Configurations: Configs.keySet()) {
+            for (File ConfigurationFiles: (Configs.get(Configurations)).keySet()) {
+                if(!configFile.exists()){
+                    configFile.getParentFile().mkdirs();
+                    copy(getResource("config.yml"), configFile);
+                }
+                if(!ejsconfigFile.exists()){
+                    ejsconfigFile.getParentFile().mkdirs();
+                    copy(getResource("com/eva/multismarts/Ejemplos/ejsconfig.yml"), ejsconfigFile);
+                }
+                
+                String ConfigurationFilesRoute = Configs.get(Configurations).get(ConfigurationFiles);
+
+                if(!ConfigurationFiles.exists()){
+                    ConfigurationFiles.getParentFile().mkdirs();
+                    copy(getResource(ConfigurationFilesRoute), ConfigurationFiles);
+                }
+                
+            }
         }
     }
     //INSTALADOR DEL SCOREBOARD
@@ -129,27 +167,38 @@ public class Main extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
-
+        
         //CONFIGURACIÓN MODULOS_______________________________________________________________
+        
+        
         configFile = new File(getDataFolder(), "Config.yml");
         ejsconfigFile = new File(getDataFolder(), "Examples/Ejs_config.yml");
         
+<<<<<<< HEAD
+=======
+        
+        config = new YamlConfiguration();
+        ejsconfig = new YamlConfiguration();
+        //Configs_ext.add("Ejsconfig_ext");
+        
+        Precook_configs();
+        //DO NOT WORKS -> Precook_configs2(Ejsconfig2_ext, Ejsconfig2_file, "Examples/config2.yml", "com/eva/multismarts/Ejemplos/ejsconfig_2.yml", Ejsconfig2);
+        
+>>>>>>> b0c9deae88854b92388c67ef9f1d2941e27ebbb2
         try {
             firstRun();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        config = new YamlConfiguration();
-        ejsconfig = new YamlConfiguration();
-
+        
         loadYamls();
-        //____________________________________________________________________________________       
+        //____________________________________________________________________________________
         
         
         //MODULOS_____________________________________________________________________________
         boolean Vconomy_estado = (boolean) config.getBoolean("Multismarts.Módulos.Vconomy");
         boolean Ejemplos_estado = (boolean) config.getBoolean("Multismarts.Módulos.Ejemplos");
+        String Hola_Mensaje = Ejsconfig2.getString("ejemplo.test");
             //VCONOMY
             if (Vconomy_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
                 setupEconomy();
@@ -171,6 +220,7 @@ public class Main extends JavaPlugin {
         
         //MENSAJE ARRANQUE CONSOLA_________
         this.getLogger().info("Activado");
+        this.getLogger().info(Hola_Mensaje);
         //_________________________________
     }
 

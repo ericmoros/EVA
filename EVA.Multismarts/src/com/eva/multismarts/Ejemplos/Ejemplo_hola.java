@@ -23,7 +23,7 @@ public class Ejemplo_hola implements CommandExecutor {
 //        plugin.loadYamls();
 //        boolean Hola_Estado = (boolean) plugin.Ejsconfig.getBoolean("Hola.State");
         //String Hola_Mensaje = plugin.config.getString("Multismarts.Módulos.Ejemplos");
-        String Hola_Mensaje = plugin.ejsconfig.getString("ejemplo.test");
+        String Hola_Mensaje = plugin.Ejsconfig2.getString("ejemplo.test");
         
         
         boolean Hola_Estado = true;
