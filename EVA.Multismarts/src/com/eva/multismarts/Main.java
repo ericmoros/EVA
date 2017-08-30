@@ -174,9 +174,6 @@ public class Main extends JavaPlugin {
         configFile = new File(getDataFolder(), "Config.yml");
         ejsconfigFile = new File(getDataFolder(), "Examples/Ejs_config.yml");
         
-<<<<<<< HEAD
-=======
-        
         config = new YamlConfiguration();
         ejsconfig = new YamlConfiguration();
         //Configs_ext.add("Ejsconfig_ext");
@@ -184,7 +181,6 @@ public class Main extends JavaPlugin {
         Precook_configs();
         //DO NOT WORKS -> Precook_configs2(Ejsconfig2_ext, Ejsconfig2_file, "Examples/config2.yml", "com/eva/multismarts/Ejemplos/ejsconfig_2.yml", Ejsconfig2);
         
->>>>>>> b0c9deae88854b92388c67ef9f1d2941e27ebbb2
         try {
             firstRun();
         } catch (Exception e) {
