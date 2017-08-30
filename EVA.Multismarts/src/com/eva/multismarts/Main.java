@@ -10,6 +10,7 @@ import com.eva.multismarts.vconomy.commands.CmdVmoney;
 import com.eva.multismarts.vconomy.commands.CmdVpay;
 import com.eva.multismarts.vconomy.commands.CmdVreset;
 import com.eva.multismarts.vconomy.commands.CmdVtake;
+import com.eva.multismarts.vscoreboard.PlayerListener;
 //________________________________________________________
 
 //DEPENDECIAS_____________________________________________
@@ -21,9 +22,14 @@ import java.io.OutputStream;
 import java.util.logging.Logger;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.economy.Economy;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
+import org.bukkit.scoreboard.DisplaySlot;
+import org.bukkit.scoreboard.Objective;
+import org.bukkit.scoreboard.Scoreboard;
+import org.bukkit.scoreboard.ScoreboardManager;
 //________________________________________________________
 
 //MAIN___________________________________________________________________________________________________________________________
@@ -82,7 +88,26 @@ public class Main extends JavaPlugin {
             copy(getResource("com/eva/multismarts/Ejemplos/ejsconfig.yml"), ejsconfigFile);
         }
     }
-    //_____________________________________________________________
+    //INSTALADOR DEL SCOREBOARD
+    public static Scoreboard board;
+    public static Objective objetivo;
+    
+    public static Scoreboard getScoreboard() {
+        return board;
+    }
+    
+    public static Objective getObjetivo() {
+        return objetivo;
+    }
+    
+    public static void setupScoreboard() {
+        ScoreboardManager manager = Bukkit.getScoreboardManager();
+        board = manager.getNewScoreboard();
+        
+        objetivo = board.registerNewObjective("bloques", "dummy");
+        objetivo.setDisplayName("Bloques Rotos");
+        objetivo.setDisplaySlot(DisplaySlot.SIDEBAR);
+    }
     
     
     //INSTALADOR DEL ECONOMY_______________________________________
@@ -108,7 +133,7 @@ public class Main extends JavaPlugin {
         //CONFIGURACIÓN MODULOS_______________________________________________________________
         configFile = new File(getDataFolder(), "Config.yml");
         ejsconfigFile = new File(getDataFolder(), "Examples/Ejs_config.yml");
-
+        
         try {
             firstRun();
         } catch (Exception e) {
@@ -135,6 +160,9 @@ public class Main extends JavaPlugin {
                 this.getCommand("vgive").setExecutor(new CmdVgive (this));
                 this.getCommand("vpay").setExecutor(new CmdVpay (this));
             }
+            //VSCOREBOARD
+            setupScoreboard();
+            this.getServer().getPluginManager().registerEvents(new PlayerListener(instance), instance);
             //Ejemplos
             if (Ejemplos_estado == true) {
                 this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
