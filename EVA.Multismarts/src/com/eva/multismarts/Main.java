@@ -38,16 +38,28 @@ public class Main extends JavaPlugin {
     
     
     //PARA LA CONFIGURACIÓN_________________________________________
-    //ArrayList<File> configFiles = new ArrayList<File>();
-    //public ArrayList<FileConfiguration> configs = new ArrayList<FileConfiguration>();
     HashMap<FileConfiguration, HashMap<File, String>> Configs = new HashMap<FileConfiguration, HashMap<File, String>>();
-    HashMap<File, String> Configs_ext = new HashMap<File, String>();
-    //configFiles.add(configFile);
+    public File configFile, ejsconfigFile, Ejsconfig2_file;
+    public FileConfiguration config, ejsconfig, Ejsconfig2;
     
-//    ________
-    File configFile, ejsconfigFile, config2File;
-    public FileConfiguration config, ejsconfig, config2;
-//    ________
+    HashMap<File, String> Ejsconfig2_ext = new HashMap<File, String>();
+    
+    public void Precook_configs (){
+        Ejsconfig2_file = new File(getDataFolder(), "Examples/config2.yml");
+        Ejsconfig2_ext.put(Ejsconfig2_file, "com/eva/multismarts/Ejemplos/ejsconfig_2.yml");
+        Ejsconfig2 = new YamlConfiguration(); 
+        Configs.put(Ejsconfig2, Ejsconfig2_ext);
+    }
+    
+    /*/DO NOT WORKS__________________________________________________
+    public void Precook_configs2 (HashMap Keyword_config, File Keyword_file, String Plugin_file_destiny, String Default_source, FileConfiguration Operable_config){
+        Keyword_file = new File(getDataFolder(), Plugin_file_destiny);
+        Keyword_config.put(Keyword_file, Default_source);
+        Operable_config = new YamlConfiguration(); 
+        Configs.put(Operable_config, Keyword_config);
+    }
+    //______________________________________________________________/*/
+    
     private void copy(InputStream in, File file) {
         try {
             OutputStream out = new FileOutputStream(file);
@@ -98,11 +110,11 @@ public class Main extends JavaPlugin {
                     copy(getResource("com/eva/multismarts/Ejemplos/ejsconfig.yml"), ejsconfigFile);
                 }
                 
-                String ConfigurationFileRoute = Configs.get(Configurations).get(ConfigurationFiles);
+                String ConfigurationFilesRoute = Configs.get(Configurations).get(ConfigurationFiles);
 
                 if(!ConfigurationFiles.exists()){
                     ConfigurationFiles.getParentFile().mkdirs();
-                    copy(getResource(ConfigurationFileRoute), ConfigurationFiles);
+                    copy(getResource(ConfigurationFilesRoute), ConfigurationFiles);
                 }
                 
             }
@@ -136,15 +148,14 @@ public class Main extends JavaPlugin {
         
         configFile = new File(getDataFolder(), "Config.yml");
         ejsconfigFile = new File(getDataFolder(), "Examples/Ejs_config.yml");
-        config2File = new File(getDataFolder(), "Examples/config2.yml");
+        
         
         config = new YamlConfiguration();
         ejsconfig = new YamlConfiguration();
-        config2 = new YamlConfiguration();
+        //Configs_ext.add("Ejsconfig_ext");
         
-        
-        Configs_ext.put(config2File, "com/eva/multismarts/Ejemplos/ejsconfig_2.yml");
-        Configs.put(config2, Configs_ext);
+        Precook_configs();
+        //DO NOT WORKS -> Precook_configs2(Ejsconfig2_ext, Ejsconfig2_file, "Examples/config2.yml", "com/eva/multismarts/Ejemplos/ejsconfig_2.yml", Ejsconfig2);
         
         try {
             firstRun();
@@ -153,13 +164,13 @@ public class Main extends JavaPlugin {
         }
         
         loadYamls();
-        //____________________________________________________________________________________       
+        //____________________________________________________________________________________
         
         
         //MODULOS_____________________________________________________________________________
         boolean Vconomy_estado = (boolean) config.getBoolean("Multismarts.Módulos.Vconomy");
         boolean Ejemplos_estado = (boolean) config.getBoolean("Multismarts.Módulos.Ejemplos");
-        String Hola_Mensaje = config2.getString("ejemplo.test");
+        String Hola_Mensaje = Ejsconfig2.getString("ejemplo.test");
             //VCONOMY
             if (Vconomy_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
                 setupEconomy();
