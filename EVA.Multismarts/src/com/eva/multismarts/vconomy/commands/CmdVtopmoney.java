@@ -26,10 +26,11 @@ public class CmdVtopmoney implements CommandExecutor{
             sender.sendMessage(EVA.Text_formatter("&2Sintaxis correcta:&f /vtopmoney."));
         }
         
-        List<Account> accounts = AccountManager.getTopAccounts();
+        /////ArrayList<Account> accounts = AccountManager.getTopAccounts();
         if (commandlabel.equalsIgnoreCase("vtopmoney")) {
-            
+            sender.sendMessage(EVA.Text_formatter("&2Sintaxis correcta:&f /vtopmoney."));
         }
+        return true;
     }
     
     

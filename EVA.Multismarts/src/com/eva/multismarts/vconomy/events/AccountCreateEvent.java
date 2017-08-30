@@ -7,7 +7,7 @@ import org.bukkit.event.HandlerList;
 
 public class AccountCreateEvent extends Event{
     
-    private static final HandlerList handler = new HanderList();
+    //private static final HandlerList handler = new HanderList();
     
     private String AccountName;
     
@@ -28,4 +28,9 @@ public class AccountCreateEvent extends Event{
 		this.Balance = Balance;
 		
 	}
+
+    @Override
+    public HandlerList getHandlers() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
