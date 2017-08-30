@@ -127,24 +127,24 @@ public class Main extends JavaPlugin {
         }
     }
     //INSTALADOR DEL SCOREBOARD
-    public static Scoreboard board;
-    public static Objective objetivo;
+    public static Scoreboard boardv;
+    public static Objective objetivov;
     
     public static Scoreboard getScoreboard() {
-        return board;
+        return boardv;
     }
     
     public static Objective getObjetivo() {
-        return objetivo;
+        return objetivov;
     }
     
     public static void setupScoreboard() {
         ScoreboardManager manager = Bukkit.getScoreboardManager();
-        board = manager.getNewScoreboard();
+        boardv = manager.getNewScoreboard();
         
-        objetivo = board.registerNewObjective("bloques", "dummy");
-        objetivo.setDisplayName("Bloques Rotos");
-        objetivo.setDisplaySlot(DisplaySlot.SIDEBAR);
+        objetivov = boardv.registerNewObjective("bloques", "dummy");
+        objetivov.setDisplayName("Bloques Rotos");
+        objetivov.setDisplaySlot(DisplaySlot.SIDEBAR);
     }
     
     
