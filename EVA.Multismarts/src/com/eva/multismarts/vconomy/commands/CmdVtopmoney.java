@@ -1,4 +1,4 @@
-
+/*
 package com.eva.multismarts.vconomy.commands;
 
 import com.eva.multismarts.Main;
@@ -35,3 +35,4 @@ public class CmdVtopmoney implements CommandExecutor{
     
     
 }
+*/
