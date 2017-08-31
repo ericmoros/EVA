@@ -53,9 +53,9 @@ public class Main extends JavaPlugin {
         File Ejsconfig2_file;
         
         //NEW
-        HashMap<File, String> New_data = new HashMap<>();
-        public FileConfiguration New = new YamlConfiguration();
-        File New_file;
+        //HashMap<File, String> New_data = new HashMap<>();
+        //public FileConfiguration New = new YamlConfiguration();
+        //File New_file;
       //__________________________________________________________
     
     HashMap<FileConfiguration, HashMap<File, String>> Configs = new HashMap<>();
@@ -65,7 +65,6 @@ public class Main extends JavaPlugin {
         Keyword_config.put(Operable_config_file, Default_source);
         Configs.put(Operable_config, Keyword_config);
     }
-    //______________________________________________________________/*/
     
     private void copy(InputStream in, File file) {
         try {
@@ -117,6 +116,7 @@ public class Main extends JavaPlugin {
             }
         }
     }
+    //_____________________________________________________________
     
     //INSTALADOR DEL ECONOMY_______________________________________
     public static Economy econ = null;
