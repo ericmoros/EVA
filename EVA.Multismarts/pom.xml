@@ -48,6 +48,17 @@
             <version>1.6</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>EVACRAFTPLAYER</groupId>
+            <artifactId>EVACRAFTPLAYER</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
+            <groupId>craftbukkit</groupId>
+            <artifactId>craftbukkit</artifactId>
+            <version>1.0</version>
+            <type>jar</type>
+        </dependency>
     </dependencies>
     <name>Multismarts</name>
     <description>Plugin de múltiples utilidades para EVA.H-L_MC desarrollado por AdriGamerYT, ViC y Elferic</description>

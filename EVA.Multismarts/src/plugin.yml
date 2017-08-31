@@ -5,6 +5,9 @@ main: com.eva.multismarts.Main
 description: ${project.description}
 depends: Vault
 commands:
+    vscoreboard:
+        description: Cierra el scoreboard mostrado a la derecha de la pantalla
+        usage: /vscoreboard
     vreset:
         description: Resetea el dinero que tiene un usuario determinado.
         usage: /vreset
