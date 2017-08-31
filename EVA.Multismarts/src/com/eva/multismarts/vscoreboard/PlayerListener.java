@@ -12,7 +12,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
@@ -28,10 +28,11 @@ public class PlayerListener implements Listener {
         this.plugin = instance;
     }
  
+       
        public static void setBoard(Player p) {
            
         //Objetos para un uso cómodo del código
-        
+             
         Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
         
         Objective obj = board.registerNewObjective("aaa", "bbb");
@@ -44,7 +45,7 @@ public class PlayerListener implements Listener {
         
         String nameuser = p.getName();
 
-        String ts3 = ("ts3.serverhalfife.com");
+        String ts3 = ("eric.servehalflife.com");
             
         //Tipo de Scoreboard y su título.
         
@@ -110,19 +111,30 @@ public class PlayerListener implements Listener {
                 teamspeaksv.setScore(1);
         
        //Añadirle el scoreboard al jugador
-        
-        p.setScoreboard(board);  
-}
-       //Al conectarse el jugador se le adjudica el scoreboard
+       
+        p.setScoreboard(board);        
+}       
+       //Al conectarse un jugador se adjudica el scoreboard actualizado a todos los jugadores
        @EventHandler
        public void onJoin(PlayerJoinEvent e) {
-          setBoard(e.getPlayer());
+             for(Player all : Bukkit.getServer().getOnlinePlayers()) {
+       setBoard(all);
+             }
        }
        
-       //Al moverse el jugador se le adjudica el scoreboard, lo que permite que se actualice constantemente
+       //Al desconectarse un jugador se adjudica el scoreboard actualizado a todos los jugadores
        @EventHandler
-       public void onMove(PlayerMoveEvent e) {
-           setBoard(e.getPlayer());
-       }
+     public void onQuit(PlayerQuitEvent e){
+       //Se tuvo que implementar un delay, ya que sino no daba tiempo a que cambiase el valor del numero de jugadores al actualizarlo.
+        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
+       
+        @Override
+        public void run() {
+             for(Player all : Bukkit.getServer().getOnlinePlayers()) {
+       setBoard(all);
+             }
+           }
+     }, 1);       
+  }
 }
 
