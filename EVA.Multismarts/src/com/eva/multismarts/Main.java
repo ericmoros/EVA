@@ -27,6 +27,7 @@ import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
@@ -126,27 +127,6 @@ public class Main extends JavaPlugin {
             }
         }
     }
-    //INSTALADOR DEL SCOREBOARD
-    public static Scoreboard boardv;
-    public static Objective objetivov;
-    
-    public static Scoreboard getScoreboard() {
-        return boardv;
-    }
-    
-    public static Objective getObjetivo() {
-        return objetivov;
-    }
-    
-    public static void setupScoreboard() {
-        ScoreboardManager manager = Bukkit.getScoreboardManager();
-        boardv = manager.getNewScoreboard();
-        
-        objetivov = boardv.registerNewObjective("bloques", "dummy");
-        objetivov.setDisplayName("Bloques Rotos");
-        objetivov.setDisplaySlot(DisplaySlot.SIDEBAR);
-    }
-    
     
     //INSTALADOR DEL ECONOMY_______________________________________
     public static Economy econ = null;
@@ -206,8 +186,8 @@ public class Main extends JavaPlugin {
                 this.getCommand("vpay").setExecutor(new CmdVpay (this));
             }
             //VSCOREBOARD
-            setupScoreboard();
             this.getServer().getPluginManager().registerEvents(new PlayerListener(instance), instance);
+           // this.getCommand("vscoreboard").setExecutor(new CmdVScoreboard (this));
             //Ejemplos
             if (Ejemplos_estado == true) {
                 this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
@@ -237,4 +217,4 @@ public class Main extends JavaPlugin {
     
 }
 
-//_______________________________________________________________________________________________________________________________
+//____________________________________________________________________________________________________________________________
