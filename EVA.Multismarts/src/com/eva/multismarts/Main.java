@@ -53,9 +53,9 @@ public class Main extends JavaPlugin {
         File Ejsconfig2_file;
         
         //NEW
-        //HashMap<File, String> New_data = new HashMap<>();
-        //public FileConfiguration New = new YamlConfiguration();
-        //File New_file;
+        HashMap<File, String> ConfigVscoreboard_data = new HashMap<>();
+        public FileConfiguration ConfigVscoreboard = new YamlConfiguration();
+        File ConfigVscoreboard_file;
       //__________________________________________________________
     
     HashMap<FileConfiguration, HashMap<File, String>> Configs = new HashMap<>();
@@ -142,7 +142,7 @@ public class Main extends JavaPlugin {
         Precook_configs(Config_data, Config, "Config.yml", Config_file, "config.yml");
         Precook_configs(Ejsconfig_data, Ejsconfig, "Examples/Ejs_config.yml", Ejsconfig_file, "com/eva/multismarts/Ejemplos/ejsconfig.yml");
         Precook_configs(Ejsconfig2_data, Ejsconfig2, "Examples/Ejs_config_2.yml", Ejsconfig2_file, "com/eva/multismarts/Ejemplos/ejsconfig_2.yml");
-
+        Precook_configs(ConfigVscoreboard_data, ConfigVscoreboard, "VScoreboard/config.yml", ConfigVscoreboard_file, "com/eva/multismarts/vscoreboard/config.yml");
         try {
             firstRun();
         } catch (Exception e) {
