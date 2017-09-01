@@ -54,7 +54,7 @@ public class Main extends JavaPlugin {
         
         //NEW
         HashMap<File, String> ConfigVscoreboard_data = new HashMap<>();
-        public FileConfiguration ConfigVscoreboard = new YamlConfiguration();
+        public static FileConfiguration ConfigVscoreboard = new YamlConfiguration();
         File ConfigVscoreboard_file;
       //__________________________________________________________
     
