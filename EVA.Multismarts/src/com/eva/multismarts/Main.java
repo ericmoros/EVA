@@ -84,8 +84,8 @@ public class Main extends JavaPlugin {
     public void loadYamls() {
         try {
             for (FileConfiguration Configurations: Configs.keySet()) {
-                for (File ConfigurationFiles: (Configs.get(Configurations)).keySet()) {
-                    Configurations.load(ConfigurationFiles); //loads the contents of the File to its FileConfiguration
+                for (File Configuration_files: (Configs.get(Configurations)).keySet()) {
+                    Configurations.load(Configuration_files); //loads the contents of the File to its FileConfiguration
                 }
             }
         } catch (Exception e) {
@@ -96,8 +96,8 @@ public class Main extends JavaPlugin {
     public void saveYamls() {
         try {
             for (FileConfiguration Configurations: Configs.keySet()) {
-                for (File ConfigurationFiles: (Configs.get(Configurations)).keySet()) {
-                    Configurations.save(ConfigurationFiles); //loads the contents of the File to its FileConfiguration
+                for (File Configuration_files: (Configs.get(Configurations)).keySet()) {
+                    Configurations.save(Configuration_files); //saves the contents of the File to its FileConfiguration
                 }
             }
         } catch (IOException e) {
@@ -107,11 +107,11 @@ public class Main extends JavaPlugin {
     
     private void firstRun() throws Exception {
         for (FileConfiguration Configurations: Configs.keySet()) {
-            for (File ConfigurationFiles: (Configs.get(Configurations)).keySet()) {
-                String ConfigurationFilesRoute = Configs.get(Configurations).get(ConfigurationFiles);
-                if(!ConfigurationFiles.exists()){
-                    ConfigurationFiles.getParentFile().mkdirs();
-                    copy(getResource(ConfigurationFilesRoute), ConfigurationFiles);
+            for (File Configuration_files: (Configs.get(Configurations)).keySet()) {
+                String Configuration_files_route = Configs.get(Configurations).get(Configuration_files);
+                if(!Configuration_files.exists()){
+                    Configuration_files.getParentFile().mkdirs();
+                    copy(getResource(Configuration_files_route), Configuration_files);
                 }
             }
         }
