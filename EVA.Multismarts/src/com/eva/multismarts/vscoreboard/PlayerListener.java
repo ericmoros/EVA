@@ -45,7 +45,7 @@ public class PlayerListener implements Listener {
         
         Economy econ = Main.getEconomy();
         
-        double playermoney = econ.getBalance(p);
+        String playermoney = Useful_methods.Decimal_formatter.format(econ.getBalance(p));
       
         int numberplayers = getServer().getOnlinePlayers().size();
         
@@ -53,18 +53,17 @@ public class PlayerListener implements Listener {
         String nameuser = p.getName();
    
         //Scores traidos desde config.yml
-        
-             String titlesc = ConfigVscoreboard.getString("VScoreboard.Title");
-             String usersc = ConfigVscoreboard.getString("VScoreboard.User");
-             String usernamesc = ConfigVscoreboard.getString("VScoreboard.Username");
-             String playersc = ConfigVscoreboard.getString("VScoreboard.Players");
-             String numberplayersc = ConfigVscoreboard.getString("VScoreboard.Numberplayers");
-             String moneysc = ConfigVscoreboard.getString("VScoreboard.Money");
-             String amountmoneysc = ConfigVscoreboard.getString("VScoreboard.Amountmoney");
-             String teamspeaksc = ConfigVscoreboard.getString("VScoreboard.Teamspeak");
-             String teamspeakipsc = ConfigVscoreboard.getString("VScoreboard.Teamspeakip");
-             
-             
+             String titlesc = ConfigVscoreboard.getString("VScoreboard.Title").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
+             String barsc = ConfigVscoreboard.getString("VScoreboard.Spacer").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
+             String usersc = ConfigVscoreboard.getString("VScoreboard.Text1a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
+             String usernamesc =ConfigVscoreboard.getString("VScoreboard.Text1b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);     
+             String playersc = ConfigVscoreboard.getString("VScoreboard.Text2a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
+             String numberplayersc = ConfigVscoreboard.getString("VScoreboard.Text2b").replaceAll("<numberplayers>", Integer.toString(numberplayers));
+             String moneysc = ConfigVscoreboard.getString("VScoreboard.Text3a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
+             String amountmoneysc = ConfigVscoreboard.getString("VScoreboard.Text3b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
+             String teamspeaksc = ConfigVscoreboard.getString("VScoreboard.Text4a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
+             String teamspeakipsc = ConfigVscoreboard.getString("VScoreboard.Text4b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
+      
         //Tipo de Scoreboard y su título.
         
         obj.setDisplayName(Useful_methods.Text_formatter(titlesc));
@@ -73,7 +72,7 @@ public class PlayerListener implements Listener {
         //Resultados del marcador
                //Barra limitadora del título
         
-                Score bar = obj.getScore(Useful_methods.Text_formatter("&4-------------------"));
+                Score bar = obj.getScore(Useful_methods.Text_formatter(barsc));
         
                //Espacios
         
@@ -83,23 +82,23 @@ public class PlayerListener implements Listener {
                 
                //Nombre de usuario
          
-                 Score user = obj.getScore(Useful_methods.Text_formatter(symbolscore+usersc));
-                 Score username = obj.getScore(Useful_methods.Text_formatter(symbolscore+nameuser));
+                 Score user = obj.getScore(Useful_methods.Text_formatter(symbolscore + usersc));
+                 Score username = obj.getScore(Useful_methods.Text_formatter(symbolscore + usernamesc));
         
                //Número de jugadores conectados
          
-                 Score players = obj.getScore(Useful_methods.Text_formatter(symbolscore+playersc));
-                 Score playersscore = obj.getScore(Useful_methods.Text_formatter(symbolscore+numberplayers+numberplayersc));
+                 Score players = obj.getScore(Useful_methods.Text_formatter(symbolscore + playersc));
+                 Score playersscore = obj.getScore(Useful_methods.Text_formatter(symbolscore + numberplayersc));
                  
                //Dinero del jugador
                
-                 Score money = obj.getScore(Useful_methods.Text_formatter(symbolscore+moneysc));
-                 Score displaymoney = obj.getScore(Useful_methods.Text_formatter(symbolscore+Useful_methods.Decimal_formatter.format(playermoney)+" créditos."));
+                 Score money = obj.getScore(Useful_methods.Text_formatter(symbolscore + moneysc));
+                 Score displaymoney = obj.getScore(Useful_methods.Text_formatter(symbolscore + amountmoneysc));
                  
                //Dirección del servidor de TeamSpeak 3.
          
-                Score teamspeak = obj.getScore(Useful_methods.Text_formatter(symbolscore+teamspeaksc));
-                Score teamspeaksv = obj.getScore(Useful_methods.Text_formatter(symbolscore+teamspeakipsc));
+                Score teamspeak = obj.getScore(Useful_methods.Text_formatter(symbolscore + teamspeaksc));
+                Score teamspeaksv = obj.getScore(Useful_methods.Text_formatter(symbolscore + teamspeakipsc));
         
         
         //Orden de los marcadores

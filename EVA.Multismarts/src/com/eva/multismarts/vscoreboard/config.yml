@@ -20,21 +20,28 @@
 # If you need help about Color & Formatting codes check this page: https://minecraft.gamepedia.com/Formatting_codes
 # If you want to return to default, you must delete this config.yml and load the plugin in your server for generate a new config.yml
 
+# Variables that you can use anywhere:
+#  <player> = Name of the user.
+#  <numberplayers> = Number of online players.
+#  <balance> = User's balance.
+
 VScoreboard:
     
     Title: "&6&lTITLE"
 
-    User: "&4User:"
-    Username:
-        
-    Players: "&4Players:"
-    Numberplayers: " online."
-        
-    Money: "&4Money:"
-    Amountmoney:
+    Spacer: "&4----------"
     
-    Teamspeak: "&4Example:"
-    Teamspeakip: "Example"
+    Text1a: "&4User:"
+    Text1b: "<player>"
+        
+    Text2a: "&4Players:"
+    Text2b: "<numberplayers> online."
+        
+    Text3a: "&4Money:"
+    Text3b: "<balance> $"
+    
+    Text4a: "&4Example:"
+    Text4b: "Example"
 
         
         
