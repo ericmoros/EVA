@@ -1,9 +1,10 @@
 #_EVA.MULTISMARTS________________________________
   Multismarts:
-      Estado: true
-      Módulos:
+      Status: true
+      Modules:
           Vago: true
           Vconomy: true
+          VScoreboard: true
           Ejemplos: true
           
 #________________________________________________

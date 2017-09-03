@@ -155,6 +155,7 @@ public class Main extends JavaPlugin {
         
         //MODULOS_____________________________________________________________________________
         boolean Vconomy_estado = (boolean) Config.getBoolean("Multismarts.Módulos.Vconomy");
+        boolean VScoreboard_estado = (boolean) Config.getBoolean("Multismarts.Módulos.VScoreboard");
         boolean Ejemplos_estado = (boolean) Config.getBoolean("Multismarts.Módulos.Ejemplos");
         String Hola_Mensaje = Ejsconfig2.getString("ejemplo.test");
             //VCONOMY
@@ -168,8 +169,11 @@ public class Main extends JavaPlugin {
                 this.getCommand("vpay").setExecutor(new CmdVpay (this));
             }
             //VSCOREBOARD
-            this.getServer().getPluginManager().registerEvents(new PlayerListener(instance), instance);
-           // this.getCommand("vscoreboard").setExecutor(new CmdVScoreboard (this));
+             if (VScoreboard_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
+                 this.getServer().getPluginManager().registerEvents(new PlayerListener(instance), instance);
+               // this.getCommand("vscoreboard").setExecutor(new CmdVScoreboard (this));
+             }
+                       
             //Ejemplos
             if (Ejemplos_estado == true) {
                 this.getCommand("hola").setExecutor(new Ejemplo_hola (this));

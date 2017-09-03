@@ -31,17 +31,17 @@ VScoreboard:
 
     Spacer: "&4----------"
     
-    Text1a: "&4User:"
-    Text1b: "<player>"
+    Text1a: "» &4User:"
+    Text1b: "» <player>"
         
-    Text2a: "&4Players:"
-    Text2b: "<numberplayers> online."
+    Text2a: "» &4Players:"
+    Text2b: "» <numberplayers> online"
         
-    Text3a: "&4Money:"
-    Text3b: "<balance> $"
+    Text3a: "» &4Money:"
+    Text3b: "» <balance> $"
     
-    Text4a: "&4Example:"
-    Text4b: "Example"
+    Text4a: "» &4Example:"
+    Text4b: "» Example"
 
         
         
