@@ -21,13 +21,19 @@
 # If you want to return to default, you must delete this config.yml and load the plugin in your server for generate a new config.yml
 
 # Variables that you can use anywhere:
-#  <player> = Name of the user.
+#  <balance> = User's balance (Requires economy plugin).
 #  <numberplayers> = Number of online players.
-#  <balance> = User's balance.
+#  <maxplayers> = Max players that can be connected in the server.
+#  <player> = User's name.
+#  <servername> = Server's name described in file server.properties
+#  <worldname> = World's name.
+
+
+
 
 VScoreboard:
     
-    Title: "&6&lTITLE"
+    Title: "&6&l<servername>"
 
     Spacer: "&4----------"
     

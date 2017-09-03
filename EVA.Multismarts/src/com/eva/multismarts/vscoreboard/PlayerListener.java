@@ -1,9 +1,11 @@
 package com.eva.multismarts.vscoreboard;
 
 
+import static com.avaje.ebeaninternal.server.lib.sql.Prefix.e;
 import com.eva.multismarts.Main;
 import static com.eva.multismarts.Main.ConfigVscoreboard;
 import com.eva.multismarts.Useful_methods;
+import java.util.HashMap;
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.Bukkit;
@@ -11,6 +13,7 @@ import static org.bukkit.Bukkit.getServer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
@@ -33,42 +36,51 @@ public class PlayerListener implements Listener {
        public static void setBoard(Player p) {
            
         //Objetos y variables para un uso cómodo del código
-             
-        Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
         
-        Objective obj = board.registerNewObjective("aaa", "bbb");
+        
+        int numberplayers = getServer().getOnlinePlayers().size();
+        
+        int maxplayers = getServer().getMaxPlayers();
+        
+       
+        
+        String nameserver = getServer().getServerName();
+        
+        String nameuser = p.getName();
         
         Economy econ = Main.getEconomy();
         
         String playermoney = Useful_methods.Decimal_formatter.format(econ.getBalance(p));
-      
-        int numberplayers = getServer().getOnlinePlayers().size();
-
-        String nameuser = p.getName();
-   
+        
+        String worldname = getServer().getWorldType();    
+        
+        Scoreboard board = Bukkit.getScoreboardManager().getNewScoreboard();
+        
+        Objective obj = board.registerNewObjective("aaa", "bbb");
+            
          //Scores traidos desde config.yml y valores sustituidos en config por variables de la clase.
         
-          String titlesc = ConfigVscoreboard.getString("VScoreboard.Title").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
-          String barsc = ConfigVscoreboard.getString("VScoreboard.Spacer").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
-          String usersc = ConfigVscoreboard.getString("VScoreboard.Text1a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
-          String usernamesc =ConfigVscoreboard.getString("VScoreboard.Text1b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);     
-          String playersc = ConfigVscoreboard.getString("VScoreboard.Text2a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
-          String numberplayersc = ConfigVscoreboard.getString("VScoreboard.Text2b").replaceAll("<numberplayers>", Integer.toString(numberplayers));
-          String moneysc = ConfigVscoreboard.getString("VScoreboard.Text3a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
-          String amountmoneysc = ConfigVscoreboard.getString("VScoreboard.Text3b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
-          String teamspeaksc = ConfigVscoreboard.getString("VScoreboard.Text4a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
-          String teamspeakipsc = ConfigVscoreboard.getString("VScoreboard.Text4b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney);
+          String titlecfg = ConfigVscoreboard.getString("VScoreboard.Title").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String barcfg = ConfigVscoreboard.getString("VScoreboard.Spacer").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text1acfg = ConfigVscoreboard.getString("VScoreboard.Text1a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text1bcfg =ConfigVscoreboard.getString("VScoreboard.Text1b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text2acfg = ConfigVscoreboard.getString("VScoreboard.Text2a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text2bcfg = ConfigVscoreboard.getString("VScoreboard.Text2b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text3acfg = ConfigVscoreboard.getString("VScoreboard.Text3a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text3bcfg = ConfigVscoreboard.getString("VScoreboard.Text3b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text4acfg = ConfigVscoreboard.getString("VScoreboard.Text4a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text4bcfg = ConfigVscoreboard.getString("VScoreboard.Text4b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
       
         //Tipo de Scoreboard y su título.
         
-        obj.setDisplayName(Useful_methods.Text_formatter(titlesc));
+        obj.setDisplayName(Useful_methods.Text_formatter(titlecfg));
         obj.setDisplaySlot(DisplaySlot.SIDEBAR);
         
         //Resultados del marcador
         
                //Barra limitadora del título
         
-                Score bar = obj.getScore(Useful_methods.Text_formatter(barsc));
+                Score bar = obj.getScore(Useful_methods.Text_formatter(barcfg));
         
                //Espacios
         
@@ -78,23 +90,23 @@ public class PlayerListener implements Listener {
                 
                //Nombre de usuario
          
-                 Score text1a = obj.getScore(Useful_methods.Text_formatter(usersc));
-                 Score text1b = obj.getScore(Useful_methods.Text_formatter(usernamesc));
+                 Score text1a = obj.getScore(Useful_methods.Text_formatter(text1acfg));
+                 Score text1b = obj.getScore(Useful_methods.Text_formatter(text1bcfg));
         
                //Número de jugadores conectados
          
-                 Score text2a = obj.getScore(Useful_methods.Text_formatter(playersc));
-                 Score text2b = obj.getScore(Useful_methods.Text_formatter(numberplayersc));
+                 Score text2a = obj.getScore(Useful_methods.Text_formatter(text2acfg));
+                 Score text2b = obj.getScore(Useful_methods.Text_formatter(text2bcfg));
                  
                //Dinero del jugador
                
-                 Score text3a = obj.getScore(Useful_methods.Text_formatter(moneysc));
-                 Score text3b = obj.getScore(Useful_methods.Text_formatter(amountmoneysc));
+                 Score text3a = obj.getScore(Useful_methods.Text_formatter(text3acfg));
+                 Score text3b = obj.getScore(Useful_methods.Text_formatter(text3bcfg));
                  
                //Dirección del servidor de TeamSpeak 3.
          
-                 Score text4a = obj.getScore(Useful_methods.Text_formatter(teamspeaksc));
-                 Score text4b = obj.getScore(Useful_methods.Text_formatter(teamspeakipsc));
+                 Score text4a = obj.getScore(Useful_methods.Text_formatter(text4acfg));
+                 Score text4b = obj.getScore(Useful_methods.Text_formatter(text4bcfg));
         
         
         //Orden de los marcadores
@@ -153,5 +165,7 @@ public class PlayerListener implements Listener {
            }
      }, 1);       
   }
+        
+        
 }
 
