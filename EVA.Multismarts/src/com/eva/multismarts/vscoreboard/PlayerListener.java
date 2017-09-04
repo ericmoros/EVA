@@ -7,6 +7,7 @@ import static com.eva.multismarts.Main.ConfigVscoreboard;
 import static com.eva.multismarts.Main.ConfigVscoreboard_file;
 import static com.eva.multismarts.Main.ConfigVscoreboarddata;
 import static com.eva.multismarts.Main.ConfigVscoreboarddata_file;
+import static com.eva.multismarts.Main.loadConfig;
 import static com.eva.multismarts.Main.saveConfig;
 import com.eva.multismarts.Useful_methods;
 import java.io.IOException;
@@ -224,6 +225,8 @@ public class PlayerListener implements Listener {
              addDeath(dead , 1);
              
              addKill(killer , 1);   
+             
+             loadConfig(ConfigVscoreboarddata);
              
              addKDA(dead);
              addKDA(killer);
