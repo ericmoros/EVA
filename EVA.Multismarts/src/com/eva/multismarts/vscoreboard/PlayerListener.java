@@ -148,7 +148,7 @@ public class PlayerListener implements Listener {
        //Al conectarse un jugador se adjudica el scoreboard actualizado a todos los jugadores
     
        @EventHandler
-       public void onJoin(PlayerJoinEvent e) throws IOException {
+       public void onJoin(PlayerJoinEvent e) throws IOException  {
            
            Player p = e.getPlayer();
          
@@ -156,10 +156,11 @@ public class PlayerListener implements Listener {
                ConfigVscoreboarddata.createSection(p.getName() + "." + "kills");
                ConfigVscoreboarddata.save(ConfigVscoreboarddata_file);
                
-           } else {
-             return;
-           }
-          
+           } 
+           
+          for(Player all : Bukkit.getServer().getOnlinePlayers()) {
+            setBoard(all);
+             }
              
             }
       
@@ -177,7 +178,7 @@ public class PlayerListener implements Listener {
            }
      }, 1);       
   }
-        
+      /*  
         public void addKill(Player p, int kills) throws IOException {
             
             int i = ConfigVscoreboarddata.getInt(p.getName());
@@ -193,7 +194,7 @@ public class PlayerListener implements Listener {
              
              addKill(killer , 1);
              
-         }
+         } */
         
          
        
