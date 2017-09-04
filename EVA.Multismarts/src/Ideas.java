@@ -11,9 +11,11 @@ Adrián
         Errores:
 
 Eric
-    Módulos:
+    Módulos: ESpawn
 
         Ideas:
+            - Spawns por mundo
+            - Spawn aleatorio
 
         Mejoras:
 

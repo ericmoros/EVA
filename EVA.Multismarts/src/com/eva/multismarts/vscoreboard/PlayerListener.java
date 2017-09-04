@@ -4,12 +4,17 @@ package com.eva.multismarts.vscoreboard;
 import static com.avaje.ebeaninternal.server.lib.sql.Prefix.e;
 import com.eva.multismarts.Main;
 import static com.eva.multismarts.Main.ConfigVscoreboard;
+import static com.eva.multismarts.Main.ConfigVscoreboard_file;
+import static com.eva.multismarts.Main.ConfigVscoreboarddata;
+import static com.eva.multismarts.Main.ConfigVscoreboarddata_file;
 import com.eva.multismarts.Useful_methods;
+import java.io.IOException;
 import java.util.HashMap;
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.Bukkit;
 import static org.bukkit.Bukkit.getServer;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -26,12 +31,13 @@ import org.bukkit.scoreboard.Scoreboard;
 public class PlayerListener implements Listener {
    
     private final Main plugin;
-    
-
+  
     public PlayerListener(Main instance) {
         this.plugin = instance;
     }
  
+    
+       
        
        public static void setBoard(Player p) {
            
@@ -41,8 +47,6 @@ public class PlayerListener implements Listener {
         int numberplayers = getServer().getOnlinePlayers().size();
         
         int maxplayers = getServer().getMaxPlayers();
-        
-       
         
         String nameserver = getServer().getServerName();
         
@@ -144,11 +148,19 @@ public class PlayerListener implements Listener {
        //Al conectarse un jugador se adjudica el scoreboard actualizado a todos los jugadores
     
        @EventHandler
-       public void onJoin(PlayerJoinEvent e) {
- 
-             for(Player all : Bukkit.getServer().getOnlinePlayers()) {
-                setBoard(all);
-                 }
+       public void onJoin(PlayerJoinEvent e) throws IOException {
+           
+           Player p = e.getPlayer();
+         
+           if (!ConfigVscoreboarddata.contains(p.getName())) { 
+               ConfigVscoreboarddata.createSection(p.getName() + "." + "kills");
+               ConfigVscoreboarddata.save(ConfigVscoreboarddata_file);
+               
+           } else {
+             return;
+           }
+          
+             
             }
       
        //Al desconectarse un jugador se adjudica el scoreboard actualizado a todos los jugadores
@@ -166,6 +178,24 @@ public class PlayerListener implements Listener {
      }, 1);       
   }
         
+        public void addKill(Player p, int kills) throws IOException {
+            
+            int i = ConfigVscoreboarddata.getInt(p.getName());
+            int a = kills;
+            ConfigVscoreboarddata.createSection(p.getName() + "." + i+a);
+            ConfigVscoreboarddata.save(ConfigVscoreboarddata_file);  
+        }
         
+        @EventHandler
+         public void onDeath(PlayerDeathEvent e) throws IOException {
+             Player dead = e.getEntity();
+             Player killer = dead.getKiller();
+             
+             addKill(killer , 1);
+             
+         }
+        
+         
+       
 }
 

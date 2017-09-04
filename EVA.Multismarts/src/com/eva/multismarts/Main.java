@@ -50,12 +50,18 @@ public class Main extends JavaPlugin {
         File Ejsconfig_file;
         HashMap<File, String> Ejsconfig2_data = new HashMap<>();
         public FileConfiguration Ejsconfig2 = new YamlConfiguration();
-        File Ejsconfig2_file;
+        public File Ejsconfig2_file;
         
-        //NEW
+        //VSCOREBOARD
         HashMap<File, String> ConfigVscoreboard_data = new HashMap<>();
         public static FileConfiguration ConfigVscoreboard = new YamlConfiguration();
-        File ConfigVscoreboard_file;
+        public static File ConfigVscoreboard_file;
+        //VSCOREBOARD KILLS 
+        HashMap<File, String> ConfigVscoreboarddata_data = new HashMap<>();
+        public static FileConfiguration ConfigVscoreboarddata = new YamlConfiguration();
+        public static File ConfigVscoreboarddata_file;
+        
+        
       //__________________________________________________________
     
     HashMap<FileConfiguration, HashMap<File, String>> Configs = new HashMap<>();
@@ -97,7 +103,7 @@ public class Main extends JavaPlugin {
         try {
             for (FileConfiguration Configurations: Configs.keySet()) {
                 for (File Configuration_files: (Configs.get(Configurations)).keySet()) {
-                    Configurations.save(Configuration_files); //saves the contents of the File to its FileConfiguration
+                    Configurations.save(Configuration_files); //saves the FileConfiguration to its File
                 }
             }
         } catch (IOException e) {
@@ -143,6 +149,7 @@ public class Main extends JavaPlugin {
         Precook_configs(Ejsconfig_data, Ejsconfig, "Examples/Ejs_config.yml", Ejsconfig_file, "com/eva/multismarts/Ejemplos/ejsconfig.yml");
         Precook_configs(Ejsconfig2_data, Ejsconfig2, "Examples/Ejs_config_2.yml", Ejsconfig2_file, "com/eva/multismarts/Ejemplos/ejsconfig_2.yml");
         Precook_configs(ConfigVscoreboard_data, ConfigVscoreboard, "VScoreboard/config.yml", ConfigVscoreboard_file, "com/eva/multismarts/vscoreboard/config.yml");
+        Precook_configs(ConfigVscoreboarddata_data, ConfigVscoreboarddata, "VScoreboard/data.yml", ConfigVscoreboarddata_file, "com/eva/multismarts/vscoreboard/data.yml");
         try {
             firstRun();
         } catch (Exception e) {
@@ -175,9 +182,9 @@ public class Main extends JavaPlugin {
              }
                        
             //Ejemplos
-            if (Ejemplos_estado == true) {
+            //if (Ejemplos_estado == true) {
                 this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
-            }
+            //}
         //____________________________________________________________________________________
         
         //MENSAJE ARRANQUE CONSOLA_________

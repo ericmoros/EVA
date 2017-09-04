@@ -2,8 +2,9 @@ package com.eva.multismarts.Ejemplos;
 
 import com.eva.multismarts.Main;
 import com.eva.multismarts.Useful_methods;
-
+import java.io.File;
 import java.util.Arrays;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,7 +13,7 @@ import org.bukkit.entity.Player;
 
 public class Ejemplo_hola implements CommandExecutor {
     private final Main plugin;
-    Useful_methods EVA = new Useful_methods();
+    private File Ejsconfig2_file;
     public Ejemplo_hola(Main instance) {
         plugin = instance;
     }
@@ -21,7 +22,7 @@ public class Ejemplo_hola implements CommandExecutor {
     public boolean onCommand(CommandSender Emisor, Command Comando, String Etiqueta, String[] Argumentos) {
         //FileConfiguration config = plugin.getConfig();
 //        plugin.loadYamls();
-//        boolean Hola_Estado = (boolean) plugin.Ejsconfig.getBoolean("Hola.State");
+        //boolean Hola_Estado = (boolean) plugin.Ejsconfig.getBoolean("Hola.State");
         //String Hola_Mensaje = plugin.config.getString("Multismarts.Módulos.Ejemplos");
         String Hola_Mensaje = plugin.Ejsconfig2.getString("ejemplo.test");
         
@@ -32,7 +33,7 @@ public class Ejemplo_hola implements CommandExecutor {
         if (Etiqueta.equalsIgnoreCase("hola") && Hola_Estado == true) {
             if (Emisor instanceof Player) {
                 Player Jugador = (Player)Emisor;
-                Jugador.sendMessage(EVA.Text_formatter(Hola_Mensaje).replaceAll("Jugador_nombre", Jugador.getDisplayName()));
+                Jugador.sendMessage(Useful_methods.Text_formatter(Hola_Mensaje).replaceAll("Jugador_nombre", Jugador.getDisplayName()));
                 if (Argumentos.length >= 1) {
                     Jugador.sendMessage("No voy a procesar "+Arrays.toString(Argumentos)+"...");
                 }
@@ -42,6 +43,14 @@ public class Ejemplo_hola implements CommandExecutor {
                     Emisor.sendMessage("No voy a procesar "+Arrays.toString(Argumentos)+"...");
                 }
             }
+            //_______________
+            Emisor.sendMessage(Hola_Mensaje);
+            plugin.Ejsconfig2.set("ejemplo.test", "Iluminati en la configuración confirmed");
+            plugin.saveYamls();
+            plugin.loadYamls();
+            Hola_Mensaje = plugin.Ejsconfig2.getString("ejemplo.test");
+            Emisor.sendMessage(Hola_Mensaje);
+            //_______________
         } else {
             Emisor.sendMessage("Este comando está desactivado");
         }
