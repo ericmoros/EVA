@@ -50,7 +50,7 @@ public class Main extends JavaPlugin {
         File Ejsconfig_file;
         HashMap<File, String> Ejsconfig2_data = new HashMap<>();
         public FileConfiguration Ejsconfig2 = new YamlConfiguration();
-        File Ejsconfig2_file;
+        public File Ejsconfig2_file;
         
         //VSCOREBOARD
         HashMap<File, String> ConfigVscoreboard_data = new HashMap<>();
@@ -103,7 +103,7 @@ public class Main extends JavaPlugin {
         try {
             for (FileConfiguration Configurations: Configs.keySet()) {
                 for (File Configuration_files: (Configs.get(Configurations)).keySet()) {
-                    Configurations.save(Configuration_files); //saves the contents of the File to its FileConfiguration
+                    Configurations.save(Configuration_files); //saves the FileConfiguration to its File
                 }
             }
         } catch (IOException e) {
@@ -182,9 +182,9 @@ public class Main extends JavaPlugin {
              }
                        
             //Ejemplos
-            if (Ejemplos_estado == true) {
+            //if (Ejemplos_estado == true) {
                 this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
-            }
+            //}
         //____________________________________________________________________________________
         
         //MENSAJE ARRANQUE CONSOLA_________

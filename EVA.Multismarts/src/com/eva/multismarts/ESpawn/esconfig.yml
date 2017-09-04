@@ -1,0 +1,85 @@
+#           __________________________________________________________
+#             /¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\  
+#                                     ESpawn                           
+#             \____________________________________________________/  
+#           ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+
+                ESpawn:
+                    World1:
+                        Afterdie:
+                            Playlist: Static1, Random1, Static2
+                            #-1 = Static1 #0 =< bucles_for_Getout
+                            Blucle: 2
+                            Getout: World2
+                        Spawns:
+                        #Random vars <Rx>, <Ry>, <Rz>, <Rp>, <Ra>
+                            Statics:
+                                Static1:
+                                    fixed: true
+                                    x: 25
+                                    y: 64
+                                    z: 25
+                                    p: 145
+                                    a: 65
+
+                                Static2:
+                                    fixed: false
+                                    x: 125
+                                    y: 64
+                                    z: 37
+                                    p: 149
+                                    a: 12
+
+                            Randoms:
+                                Random1:
+                                    fixed: true
+                                    Rx_max&min: 45, 100
+                                    Ry_max&min: 64, 65
+                                    Rz_max&min: 45, 100
+                                    Rp_max&min: 45, 100
+                                    Ra_max&min: 45, 100
+                    World2:
+                        Afterdie:
+                            Playlist: Static1, Random1, Static2
+                            blucle: -1
+                            Getout: World2
+                        Spawns:
+                            Statics:
+                                Static1:
+                                    fixed: true
+                                    x: 25
+                                    y: 64
+                                    z: 25
+                                    p: 145
+                                    a: 65
+
+                                Static2:
+                                    fixed: false
+                                    x: 125
+                                    y: 64
+                                    z: 37
+                                    p: 149
+                                    a: 12
+
+                            Randoms:
+                                Random1:
+                                    fixed: true
+                                    Rx_max&min: 45, 100
+                                    Ry_max&min: 64, 65
+                                    Rz_max&min: 45, 100
+                                    Rp_max&min: 45, 100
+                                    Ra_max&min: 45, 100
+
+                                                                              
+# |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
+# | EXTRA USAGE INFORMATION...                                                                                                                             |
+# |________________________________________________________________________________________________________________________________________________________|
+# |  If you want to return to default, you must delete this config.yml and load the plugin in your server for generate a new config.yml                    |
+# |  If you receive an error when Multismarts loads, ensure that:                                                                                          |
+# |   - No tabs are present: YAML only allows spaces.                                                                                                      |
+# |   - Indents are correct: YAML hierarchy is based entirely on indentation.                                                                              |
+# |   - You have "escaped" all apostrophes in your text: If you want to write "don't", for example, write "don''t" instead (note the doubled apostrophe).  |
+# |   - Text with symbols is enclosed in single or double quotation marks.                                                                                 |
+# |  If you want to use special characters in this document, such as accented letters, you MUST save the file as UTF-8, not ANSI.                          |
+# |                                                                                                                                                        |
+# |________________________________________________________________________________________________________________________________________________________|
