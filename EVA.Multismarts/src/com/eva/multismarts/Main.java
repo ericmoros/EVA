@@ -48,9 +48,9 @@ public class Main extends JavaPlugin {
         HashMap<File, String> Ejsconfig_data = new HashMap<>();
         public FileConfiguration Ejsconfig = new YamlConfiguration();
         File Ejsconfig_file;
-        HashMap<File, String> Ejsconfig2_data = new HashMap<>();
-        public FileConfiguration Ejsconfig2 = new YamlConfiguration();
-        public File Ejsconfig2_file;
+        public static HashMap<File, String> Ejsconfig2_data = new HashMap<>();
+        public static FileConfiguration Ejsconfig2 = new YamlConfiguration();
+        public static File Ejsconfig2_file;
         
         //VSCOREBOARD
         HashMap<File, String> ConfigVscoreboard_data = new HashMap<>();
@@ -64,7 +64,7 @@ public class Main extends JavaPlugin {
         
       //__________________________________________________________
     
-    HashMap<FileConfiguration, HashMap<File, String>> Configs = new HashMap<>();
+    public static HashMap<FileConfiguration, HashMap<File, String>> Configs = new HashMap<>();
   
     public void Precook_configs (HashMap Keyword_config, FileConfiguration Operable_config, String Plugin_file_destiny, File Operable_config_file, String Default_source){
         Operable_config_file = new File(getDataFolder(), Plugin_file_destiny);
@@ -111,6 +111,16 @@ public class Main extends JavaPlugin {
         }
     }
     
+    public static void saveConfig (FileConfiguration Operable_config) {
+        try {
+            for (File Configuration_file: (Configs.get(Operable_config)).keySet()) {
+                Operable_config.save(Configuration_file);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
     private void firstRun() throws Exception {
         for (FileConfiguration Configurations: Configs.keySet()) {
             for (File Configuration_files: (Configs.get(Configurations)).keySet()) {
@@ -145,6 +155,7 @@ public class Main extends JavaPlugin {
         instance = this;
         
         //CONFIGURACIÓN MODULOS_______________________________________________________________
+                          //2         //1       //0            //3          //4
         Precook_configs(Config_data, Config, "Config.yml", Config_file, "config.yml");
         Precook_configs(Ejsconfig_data, Ejsconfig, "Examples/Ejs_config.yml", Ejsconfig_file, "com/eva/multismarts/Ejemplos/ejsconfig.yml");
         Precook_configs(Ejsconfig2_data, Ejsconfig2, "Examples/Ejs_config_2.yml", Ejsconfig2_file, "com/eva/multismarts/Ejemplos/ejsconfig_2.yml");

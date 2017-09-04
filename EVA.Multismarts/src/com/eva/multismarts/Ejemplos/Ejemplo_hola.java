@@ -1,13 +1,21 @@
 package com.eva.multismarts.Ejemplos;
 
 import com.eva.multismarts.Main;
+import static com.eva.multismarts.Main.Configs;
+import static com.eva.multismarts.Main.Ejsconfig2;
+import static com.eva.multismarts.Main.Ejsconfig2_data;
+import static com.eva.multismarts.Main.saveConfig;
 import com.eva.multismarts.Useful_methods;
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 //import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
@@ -45,8 +53,8 @@ public class Ejemplo_hola implements CommandExecutor {
             }
             //_______________
             Emisor.sendMessage(Hola_Mensaje);
-            plugin.Ejsconfig2.set("ejemplo.test", "Iluminati en la configuración confirmed");
-            plugin.saveYamls();
+            Ejsconfig2.set("ejemplo.test", "Iluminati en la configuración confirmed");
+            saveConfig(Ejsconfig2);
             plugin.loadYamls();
             Hola_Mensaje = plugin.Ejsconfig2.getString("ejemplo.test");
             Emisor.sendMessage(Hola_Mensaje);
