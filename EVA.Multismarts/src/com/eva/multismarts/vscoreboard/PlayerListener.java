@@ -4,12 +4,17 @@ package com.eva.multismarts.vscoreboard;
 import static com.avaje.ebeaninternal.server.lib.sql.Prefix.e;
 import com.eva.multismarts.Main;
 import static com.eva.multismarts.Main.ConfigVscoreboard;
+import static com.eva.multismarts.Main.ConfigVscoreboard_file;
+import static com.eva.multismarts.Main.ConfigVscoreboarddata;
+import static com.eva.multismarts.Main.ConfigVscoreboarddata_file;
 import com.eva.multismarts.Useful_methods;
+import java.io.IOException;
 import java.util.HashMap;
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.Bukkit;
 import static org.bukkit.Bukkit.getServer;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,11 +32,17 @@ public class PlayerListener implements Listener {
    
     private final Main plugin;
     
+    public static FileConfiguration cfg = ConfigVscoreboard;
+    
+    public static  FileConfiguration cfgdata = ConfigVscoreboarddata;
+    
 
     public PlayerListener(Main instance) {
         this.plugin = instance;
     }
  
+    
+       
        
        public static void setBoard(Player p) {
            
@@ -41,8 +52,6 @@ public class PlayerListener implements Listener {
         int numberplayers = getServer().getOnlinePlayers().size();
         
         int maxplayers = getServer().getMaxPlayers();
-        
-       
         
         String nameserver = getServer().getServerName();
         
@@ -60,16 +69,16 @@ public class PlayerListener implements Listener {
             
          //Scores traidos desde config.yml y valores sustituidos en config por variables de la clase.
         
-          String titlecfg = ConfigVscoreboard.getString("VScoreboard.Title").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String barcfg = ConfigVscoreboard.getString("VScoreboard.Spacer").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text1acfg = ConfigVscoreboard.getString("VScoreboard.Text1a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text1bcfg =ConfigVscoreboard.getString("VScoreboard.Text1b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text2acfg = ConfigVscoreboard.getString("VScoreboard.Text2a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text2bcfg = ConfigVscoreboard.getString("VScoreboard.Text2b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text3acfg = ConfigVscoreboard.getString("VScoreboard.Text3a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text3bcfg = ConfigVscoreboard.getString("VScoreboard.Text3b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text4acfg = ConfigVscoreboard.getString("VScoreboard.Text4a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text4bcfg = ConfigVscoreboard.getString("VScoreboard.Text4b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String titlecfg = cfg.getString("VScoreboard.Title").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String barcfg = cfg.getString("VScoreboard.Spacer").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text1acfg = cfg.getString("VScoreboard.Text1a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text1bcfg =cfg.getString("VScoreboard.Text1b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text2acfg = cfg.getString("VScoreboard.Text2a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text2bcfg = cfg.getString("VScoreboard.Text2b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text3acfg = cfg.getString("VScoreboard.Text3a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text3bcfg = cfg.getString("VScoreboard.Text3b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text4acfg = cfg.getString("VScoreboard.Text4a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String text4bcfg = cfg.getString("VScoreboard.Text4b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
       
         //Tipo de Scoreboard y su título.
         
@@ -144,11 +153,21 @@ public class PlayerListener implements Listener {
        //Al conectarse un jugador se adjudica el scoreboard actualizado a todos los jugadores
     
        @EventHandler
-       public void onJoin(PlayerJoinEvent e) {
- 
+       public void onJoin(PlayerJoinEvent e) throws IOException {
+           
+           Player p = e.getPlayer();
+         
+           if (!cfgdata.contains(p.getName())) { 
+               cfgdata.set(p.getName(), ":" + 0);
+               cfgdata.save(ConfigVscoreboarddata_file);
+               
+           } else {
+             return;
+           }
+          
              for(Player all : Bukkit.getServer().getOnlinePlayers()) {
                 setBoard(all);
-                 }
+                 }  
             }
       
        //Al desconectarse un jugador se adjudica el scoreboard actualizado a todos los jugadores
@@ -166,6 +185,24 @@ public class PlayerListener implements Listener {
      }, 1);       
   }
         
+        public void addKill(Player p, int kills) throws IOException {
+            
+            int i = cfgdata.getInt(p.getName());
+            int a = kills;
+            cfgdata.set(p.getName(), "." + i+a);
+            cfgdata.save(ConfigVscoreboarddata_file);  
+        }
         
+        @EventHandler
+         public void onDeath(PlayerDeathEvent e) throws IOException {
+             Player dead = e.getEntity();
+             Player killer = dead.getKiller();
+             
+             addKill(killer , 1);
+             
+         }
+        
+         
+       
 }
 
