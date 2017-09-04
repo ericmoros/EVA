@@ -7,6 +7,7 @@ import static com.eva.multismarts.Main.ConfigVscoreboard;
 import static com.eva.multismarts.Main.ConfigVscoreboard_file;
 import static com.eva.multismarts.Main.ConfigVscoreboarddata;
 import static com.eva.multismarts.Main.ConfigVscoreboarddata_file;
+import static com.eva.multismarts.Main.saveConfig;
 import com.eva.multismarts.Useful_methods;
 import java.io.IOException;
 import java.util.HashMap;
@@ -153,8 +154,16 @@ public class PlayerListener implements Listener {
            Player p = e.getPlayer();
          
            if (!ConfigVscoreboarddata.contains(p.getName())) { 
-               ConfigVscoreboarddata.createSection(p.getName() + "." + "kills");
-               ConfigVscoreboarddata.save(ConfigVscoreboarddata_file);
+               
+               ConfigVscoreboarddata.createSection(p.getName() + "." + "Kills");
+               ConfigVscoreboarddata.createSection(p.getName() + "." + "Deaths");
+               ConfigVscoreboarddata.createSection(p.getName() + "." + "KDA");
+               
+               ConfigVscoreboarddata.set(p.getName() + "." + "Kills", 0);
+               ConfigVscoreboarddata.set(p.getName() + "." + "Deaths", 0);
+               ConfigVscoreboarddata.set(p.getName() + "." + "KDA", 0);
+               
+               saveConfig(ConfigVscoreboarddata);
                
            } 
            
@@ -178,25 +187,46 @@ public class PlayerListener implements Listener {
            }
      }, 1);       
   }
-      /*  
-        public void addKill(Player p, int kills) throws IOException {
+      
+        public void addKill(Player p, int kills) {
             
-            int i = ConfigVscoreboarddata.getInt(p.getName());
-            int a = kills;
-            ConfigVscoreboarddata.createSection(p.getName() + "." + i+a);
-            ConfigVscoreboarddata.save(ConfigVscoreboarddata_file);  
+            int kill = ConfigVscoreboarddata.getInt(p.getName() + "." + "Kills");
+            int newkill = kills;
+            
+            ConfigVscoreboarddata.set(p.getName() + "." + "Kills", kill+newkill);
+            saveConfig(ConfigVscoreboarddata);
+        }
+        
+        public void addDeath(Player p, int deaths) {
+            
+            int death = ConfigVscoreboarddata.getInt(p.getName() + "." + "Deaths");
+            int newdeath = deaths;
+            
+            ConfigVscoreboarddata.set(p.getName() + "." + "Deaths", death + newdeath);
+            saveConfig(ConfigVscoreboarddata);
+        }
+        
+        public void addKDA(Player p) {
+            
+            double kills = ConfigVscoreboarddata.getInt(p.getName() + "." + "Kills");
+            double deaths = ConfigVscoreboarddata.getInt(p.getName() + "." + "Deaths");
+            
+            
+            ConfigVscoreboarddata.set(p.getName() + "." + "KDA", kills/deaths);
         }
         
         @EventHandler
-         public void onDeath(PlayerDeathEvent e) throws IOException {
+         public void onDeath(PlayerDeathEvent e)  {
+             
              Player dead = e.getEntity();
              Player killer = dead.getKiller();
              
-             addKill(killer , 1);
+             addDeath(dead , 1);
              
-         } */
-        
-         
-       
-}
+             addKill(killer , 1);   
+             
+             addKDA(dead);
+             addKDA(killer);
+   }          
+  }
 
