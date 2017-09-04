@@ -181,9 +181,9 @@ public class Main extends JavaPlugin {
         
         
         //MODULOS_____________________________________________________________________________
-        boolean Vconomy_estado = (boolean) Config.getBoolean("Multismarts.Módulos.Vconomy");
-        boolean VScoreboard_estado = (boolean) Config.getBoolean("Multismarts.Módulos.VScoreboard");
-        boolean Ejemplos_estado = (boolean) Config.getBoolean("Multismarts.Módulos.Ejemplos");
+        boolean Vconomy_estado = (boolean) Config.getBoolean("Multismarts.Modules.Vconomy");
+        boolean VScoreboard_estado = (boolean) Config.getBoolean("Multismarts.Modules.VScoreboard");
+        boolean Ejemplos_estado = (boolean) Config.getBoolean("Multismarts.Modules.Ejemplos");
         String Hola_Mensaje = Ejsconfig2.getString("ejemplo.test");
             //VCONOMY
             if (Vconomy_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
@@ -202,9 +202,9 @@ public class Main extends JavaPlugin {
              }
                        
             //Ejemplos
-            //if (Ejemplos_estado == true) {
+            if (Ejemplos_estado == true) {
                 this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
-            //}
+            }
         //____________________________________________________________________________________
         
         //MENSAJE ARRANQUE CONSOLA_________
