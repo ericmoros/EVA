@@ -4,6 +4,7 @@ import com.eva.multismarts.Main;
 import static com.eva.multismarts.Main.Configs;
 import static com.eva.multismarts.Main.Ejsconfig2;
 import static com.eva.multismarts.Main.Ejsconfig2_data;
+import static com.eva.multismarts.Main.loadConfig;
 import static com.eva.multismarts.Main.saveConfig;
 import com.eva.multismarts.Useful_methods;
 import java.io.File;
@@ -55,7 +56,7 @@ public class Ejemplo_hola implements CommandExecutor {
             Emisor.sendMessage(Hola_Mensaje);
             Ejsconfig2.set("ejemplo.test", "Iluminati en la configuración confirmed");
             saveConfig(Ejsconfig2);
-            plugin.loadYamls();
+            loadConfig(Ejsconfig2);
             Hola_Mensaje = plugin.Ejsconfig2.getString("ejemplo.test");
             Emisor.sendMessage(Hola_Mensaje);
             //_______________

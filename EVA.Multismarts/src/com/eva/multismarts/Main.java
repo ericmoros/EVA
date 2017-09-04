@@ -99,6 +99,16 @@ public class Main extends JavaPlugin {
         }
     }
     
+    public static void loadConfig(FileConfiguration Operable_config) {
+        try {
+            for (File Configuration_file: (Configs.get(Operable_config)).keySet()) {
+                Operable_config.load(Configuration_file); //loads the contents of the File to its FileConfiguration
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void saveYamls() {
         try {
             for (FileConfiguration Configurations: Configs.keySet()) {
@@ -110,7 +120,6 @@ public class Main extends JavaPlugin {
             e.printStackTrace();
         }
     }
-    
     public static void saveConfig (FileConfiguration Operable_config) {
         try {
             for (File Configuration_file: (Configs.get(Operable_config)).keySet()) {
