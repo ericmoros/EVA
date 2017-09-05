@@ -21,16 +21,23 @@
 # If you want to return to default, you must delete this config.yml and load the plugin in your server for generate a new config.yml
 
 # Variables that you can use anywhere:
-#  <balance> = User's balance (Requires economy plugin).
-#  <numberplayers> = Number of online players.
-#  <maxplayers> = Max players that can be connected in the server.
-#  <player> = User's name.
-#  <servername> = Server's name described in file server.properties
-#  <worldname> = World's name.
+ #  |Server variables|
+ 
+    # <numberplayers> = Number of online players.
+    # <player> = User's name.
+    # <servername> = Server's name described in file server.properties
+    # <worldname> = World's name.
+    
+ #  |PvP variables|
+ 
+    # <kills> = Player's amount of kills.
+    # <deaths> = Player's amount of deaths.
+    # <kdratio> = Player's kill / death ratio.
 
-
-
-
+ #  |Economy variables|
+ 
+    #  <balance> = User's balance (Requires economy plugin).
+    
 VScoreboard:
     
     Title: "&6&l<servername>"

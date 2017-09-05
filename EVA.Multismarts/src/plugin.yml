@@ -5,8 +5,11 @@ main: com.eva.multismarts.Main
 description: ${project.description}
 depends: Vault
 commands:
+    espawn:
+        description: Genera la configuración del módulo ESpawn.
+        usage: /espawn
     vscoreboard:
-        description: Cierra el scoreboard mostrado a la derecha de la pantalla
+        description: Cierra el scoreboard mostrado a la derecha de la pantalla.
         usage: /vscoreboard
     vreset:
         description: Resetea el dinero que tiene un usuario determinado.

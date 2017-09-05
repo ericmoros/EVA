@@ -1,19 +1,14 @@
 package com.eva.multismarts.vscoreboard;
 
-
-import static com.avaje.ebeaninternal.server.lib.sql.Prefix.e;
 import com.eva.multismarts.Main;
 import static com.eva.multismarts.Main.ConfigVscoreboard;
-import static com.eva.multismarts.Main.ConfigVscoreboard_file;
 import static com.eva.multismarts.Main.ConfigVscoreboarddata;
-import static com.eva.multismarts.Main.ConfigVscoreboarddata_file;
-import static com.eva.multismarts.Main.loadConfig;
 import static com.eva.multismarts.Main.saveConfig;
 import com.eva.multismarts.Useful_methods;
-import java.io.IOException;
-import java.util.HashMap;
-import net.milkbowl.vault.economy.Economy;
 
+import java.io.IOException;
+
+import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import static org.bukkit.Bukkit.getServer;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -21,7 +16,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
-
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scoreboard.DisplaySlot;
@@ -37,19 +31,24 @@ public class PlayerListener implements Listener {
     public PlayerListener(Main instance) {
         this.plugin = instance;
     }
+        static FileConfiguration cfg = ConfigVscoreboard;
+        
+        static FileConfiguration cfgdata = ConfigVscoreboarddata;
  
-    
-       
-       
        public static void setBoard(Player p) {
            
         //Objetos y variables para un uso cómodo del código
         
-        
         int numberplayers = getServer().getOnlinePlayers().size();
         
-        int maxplayers = getServer().getMaxPlayers();
+        int kills = ConfigVscoreboarddata.getInt(p.getName() + "." + "Kills");
         
+        int deaths = ConfigVscoreboarddata.getInt(p.getName() + "." + "Deaths");
+        
+        double kd = ConfigVscoreboarddata.getDouble(p.getName() + "." + "Ratio");
+        
+        int maxplayers = getServer().getMaxPlayers();
+          
         String nameserver = getServer().getServerName();
         
         String nameuser = p.getName();
@@ -66,16 +65,16 @@ public class PlayerListener implements Listener {
             
          //Scores traidos desde config.yml y valores sustituidos en config por variables de la clase.
         
-          String titlecfg = ConfigVscoreboard.getString("VScoreboard.Title").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String barcfg = ConfigVscoreboard.getString("VScoreboard.Spacer").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text1acfg = ConfigVscoreboard.getString("VScoreboard.Text1a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text1bcfg =ConfigVscoreboard.getString("VScoreboard.Text1b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text2acfg = ConfigVscoreboard.getString("VScoreboard.Text2a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text2bcfg = ConfigVscoreboard.getString("VScoreboard.Text2b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text3acfg = ConfigVscoreboard.getString("VScoreboard.Text3a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text3bcfg = ConfigVscoreboard.getString("VScoreboard.Text3b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text4acfg = ConfigVscoreboard.getString("VScoreboard.Text4a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
-          String text4bcfg = ConfigVscoreboard.getString("VScoreboard.Text4b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers));
+          String titlecfg = cfg.getString("VScoreboard.Title").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String barcfg = cfg.getString("VScoreboard.Spacer").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text1acfg = cfg.getString("VScoreboard.Text1a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text1bcfg =cfg.getString("VScoreboard.Text1b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text2acfg = cfg.getString("VScoreboard.Text2a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text2bcfg = cfg.getString("VScoreboard.Text2b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text3acfg = cfg.getString("VScoreboard.Text3a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text3bcfg = cfg.getString("VScoreboard.Text3b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text4acfg = cfg.getString("VScoreboard.Text4a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text4bcfg = cfg.getString("VScoreboard.Text4b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
       
         //Tipo de Scoreboard y su título.
         
@@ -154,17 +153,17 @@ public class PlayerListener implements Listener {
            
            Player p = e.getPlayer();
          
-           if (!ConfigVscoreboarddata.contains(p.getName())) { 
+           if (!cfgdata.contains(p.getName())) { 
                
-               ConfigVscoreboarddata.createSection(p.getName() + "." + "Kills");
-               ConfigVscoreboarddata.createSection(p.getName() + "." + "Deaths");
-               ConfigVscoreboarddata.createSection(p.getName() + "." + "KDA");
+               cfgdata.createSection(p.getName() + "." + "Kills");
+               cfgdata.createSection(p.getName() + "." + "Deaths");
+               cfgdata.createSection(p.getName() + "." + "Ratio");
                
-               ConfigVscoreboarddata.set(p.getName() + "." + "Kills", 0);
-               ConfigVscoreboarddata.set(p.getName() + "." + "Deaths", 0);
-               ConfigVscoreboarddata.set(p.getName() + "." + "KDA", 0);
+               cfgdata.set(p.getName() + "." + "Kills", 0);
+               cfgdata.set(p.getName() + "." + "Deaths", 0);
+               cfgdata.set(p.getName() + "." + "Ratio", 0);
                
-               saveConfig(ConfigVscoreboarddata);
+               saveConfig(cfgdata);
                
            } 
            
@@ -191,29 +190,35 @@ public class PlayerListener implements Listener {
       
         public void addKill(Player p, int kills) {
             
-            int kill = ConfigVscoreboarddata.getInt(p.getName() + "." + "Kills");
+            int kill = cfgdata.getInt(p.getName() + "." + "Kills");
             int newkill = kills;
             
-            ConfigVscoreboarddata.set(p.getName() + "." + "Kills", kill+newkill);
-            saveConfig(ConfigVscoreboarddata);
+            cfgdata.set(p.getName() + "." + "Kills", kill+newkill);
+            saveConfig(cfgdata);
         }
         
         public void addDeath(Player p, int deaths) {
             
-            int death = ConfigVscoreboarddata.getInt(p.getName() + "." + "Deaths");
+            int death = cfgdata.getInt(p.getName() + "." + "Deaths");
             int newdeath = deaths;
             
-            ConfigVscoreboarddata.set(p.getName() + "." + "Deaths", death + newdeath);
-            saveConfig(ConfigVscoreboarddata);
+            cfgdata.set(p.getName() + "." + "Deaths", death + newdeath);
+            saveConfig(cfgdata);
         }
         
-        public void addKDA(Player p) {
+        public void addKDratio(Player p) {
             
-            double kills = ConfigVscoreboarddata.getInt(p.getName() + "." + "Kills");
-            double deaths = ConfigVscoreboarddata.getInt(p.getName() + "." + "Deaths");
+            double kills = cfgdata.getInt(p.getName() + "." + "Kills");
+            double deaths = cfgdata.getInt(p.getName() + "." + "Deaths");
             
+            if (deaths == 0) {
+                cfgdata.set(p.getName() + "." + "Ratio", kills/1);
+                saveConfig(ConfigVscoreboarddata);
+            } else {
+                ConfigVscoreboarddata.set(p.getName() + "." + "Ratio", kills/deaths);
+                saveConfig(ConfigVscoreboarddata);
+            }
             
-            ConfigVscoreboarddata.set(p.getName() + "." + "KDA", kills/deaths);
         }
         
         @EventHandler
@@ -226,10 +231,12 @@ public class PlayerListener implements Listener {
              
              addKill(killer , 1);   
              
-             loadConfig(ConfigVscoreboarddata);
+             addKDratio(dead);
+             addKDratio(killer);
              
-             addKDA(dead);
-             addKDA(killer);
+             for (Player all : Bukkit.getServer().getOnlinePlayers()) {
+                 setBoard(all);
+             }
    }          
   }
 
