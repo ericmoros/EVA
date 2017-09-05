@@ -3,6 +3,7 @@ package com.eva.multismarts;
 //________________________________________________________
 
 //DEPENDECIAS MODULOS_____________________________________
+import com.eva.multismarts.ESpawn.CmdESpawn;
 import com.eva.multismarts.Ejemplos.Ejemplo_hola;
 import com.eva.multismarts.vconomy.commands.CmdVgive;
 import com.eva.multismarts.vconomy.commands.CmdVreceive;
@@ -184,7 +185,7 @@ public class Main extends JavaPlugin {
         boolean Vconomy_estado = (boolean) Config.getBoolean("Multismarts.Modules.Vconomy");
         boolean VScoreboard_estado = (boolean) Config.getBoolean("Multismarts.Modules.VScoreboard");
         boolean Ejemplos_estado = (boolean) Config.getBoolean("Multismarts.Modules.Ejemplos");
-        String Hola_Mensaje = Ejsconfig2.getString("ejemplo.test");
+        boolean Espawn_estado = (boolean) Config.getBoolean("Multismarts.Modules.Ejemplos");
             //VCONOMY
             if (Vconomy_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
                 setupEconomy();
@@ -200,7 +201,12 @@ public class Main extends JavaPlugin {
                  this.getServer().getPluginManager().registerEvents(new PlayerListener(instance), instance);
                // this.getCommand("vscoreboard").setExecutor(new CmdVScoreboard (this));
              }
-                       
+            
+            //ESPAWN
+             //if (Espawn_estado == true) {
+                this.getCommand("espawn").setExecutor(new CmdESpawn (this));
+             //}
+             
             //Ejemplos
             if (Ejemplos_estado == true) {
                 this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
@@ -209,7 +215,6 @@ public class Main extends JavaPlugin {
         
         //MENSAJE ARRANQUE CONSOLA_________
         this.getLogger().info("Activado");
-        this.getLogger().info(Hola_Mensaje);
         //_________________________________
     }
 

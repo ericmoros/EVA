@@ -56,7 +56,7 @@ public class Ejemplo_hola implements CommandExecutor {
             Emisor.sendMessage(Hola_Mensaje);
             Ejsconfig2.set("ejemplo.test", "Iluminati en la configuración confirmed");
             saveConfig(Ejsconfig2);
-            loadConfig(Ejsconfig2);
+            //loadConfig(Ejsconfig2);
             Hola_Mensaje = plugin.Ejsconfig2.getString("ejemplo.test");
             Emisor.sendMessage(Hola_Mensaje);
             //_______________
