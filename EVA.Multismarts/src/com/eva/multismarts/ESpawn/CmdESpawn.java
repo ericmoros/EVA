@@ -12,17 +12,23 @@ public class CmdESpawn implements CommandExecutor {
     public CmdESpawn(Main instance) {
         plugin = instance;
     }
-    
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
         if (commandLabel.equalsIgnoreCase("espawn")) {
             if (sender instanceof Player) {
                 Player player = (Player)sender;
                 player.sendMessage(Useful_methods.Text_formatter("Generating configuration <player>").replaceAll("<player>", player.getDisplayName()));
+                
             } else {
-                sender.sendMessage("Desde la terminal has de especificar el mundo para el que quieres ");
+                sender.sendMessage("Desde la terminal has de especificar el mundo para el que quieres generar la configuración");
             }
         }
         return true;
+    }
+    
+    
+    private genDataWorld() {
+        
     }
 }

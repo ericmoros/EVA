@@ -204,13 +204,14 @@ public class Main extends JavaPlugin {
             
             //ESPAWN
              //if (Espawn_estado == true) {
-                this.getCommand("espawn").setExecutor(new CmdESpawn (this));
+                 //this.getCommand("espawn").setExecutor(new CmdESpawn (this));
+                 this.getCommand("espawn").setExecutor(new CmdESpawn (this));
              //}
              
             //Ejemplos
-            if (Ejemplos_estado == true) {
-                this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
-            }
+             if (Ejemplos_estado == true) {
+                 this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
+             }
         //____________________________________________________________________________________
         
         //MENSAJE ARRANQUE CONSOLA_________
