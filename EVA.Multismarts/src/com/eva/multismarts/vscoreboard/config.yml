@@ -38,6 +38,15 @@
  
     #  <balance> = User's balance (Requires economy plugin).
     
+# Timer meanings (Value = seconds)
+    # Set_time: How many seconds for setting the scoreboard when a player connects.
+    # Refresh_time: How many seconds until next refresh.
+    
+Timer:
+    
+    Set_time: 1     
+    Refresh_time: 5 
+        
 VScoreboard:
     
     Title: "&6&l<servername>"
