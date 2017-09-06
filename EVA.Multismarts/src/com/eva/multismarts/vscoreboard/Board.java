@@ -3,41 +3,39 @@ package com.eva.multismarts.vscoreboard;
 import com.eva.multismarts.Main;
 import static com.eva.multismarts.Main.ConfigVscoreboard;
 import static com.eva.multismarts.Main.ConfigVscoreboarddata;
-import static com.eva.multismarts.Main.saveConfig;
 import com.eva.multismarts.Useful_methods;
 
-import java.io.IOException;
-
 import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.Bukkit;
 import static org.bukkit.Bukkit.getServer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scoreboard.DisplaySlot;
 import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
 
-public class PlayerListener implements Listener {
+
+public class Board {
    
     private final Main plugin;
   
-    public PlayerListener(Main instance) {
+    public Board(Main instance) {
         this.plugin = instance;
     }
         static FileConfiguration cfg = ConfigVscoreboard;
         
         static FileConfiguration cfgdata = ConfigVscoreboarddata;
  
+        
        public static void setBoard(Player p) {
            
         //Objetos y variables para un uso cómodo del código
+        Permission perm = Main.getPermissions();
+        
+      //  String rank = perm.getPrimaryGroup(p);
         
         int numberplayers = getServer().getOnlinePlayers().size();
         
@@ -112,8 +110,7 @@ public class PlayerListener implements Listener {
          
                  Score text4a = obj.getScore(Useful_methods.Text_formatter(text4acfg));
                  Score text4b = obj.getScore(Useful_methods.Text_formatter(text4bcfg));
-        
-        
+          
         //Orden de los marcadores
         
                 bar.setScore(12);
@@ -142,101 +139,8 @@ public class PlayerListener implements Listener {
         
        //Añadirle el scoreboard al jugador
        
+       
         p.setScoreboard(board);        
-}       
-     // EVENTOS
-      
-       //Al conectarse un jugador se adjudica el scoreboard actualizado a todos los jugadores
-    
-       @EventHandler
-       public void onJoin(PlayerJoinEvent e) throws IOException  {
-           
-           Player p = e.getPlayer();
-         
-           if (!cfgdata.contains(p.getName())) { 
-               
-               cfgdata.createSection(p.getName() + "." + "Kills");
-               cfgdata.createSection(p.getName() + "." + "Deaths");
-               cfgdata.createSection(p.getName() + "." + "Ratio");
-               
-               cfgdata.set(p.getName() + "." + "Kills", 0);
-               cfgdata.set(p.getName() + "." + "Deaths", 0);
-               cfgdata.set(p.getName() + "." + "Ratio", 0);
-               
-               saveConfig(cfgdata);
-               
-           } 
-           
-          for(Player all : Bukkit.getServer().getOnlinePlayers()) {
-            setBoard(all);
-             }
-             
-            }
-      
-       //Al desconectarse un jugador se adjudica el scoreboard actualizado a todos los jugadores
-      
-        @EventHandler
-        public void onQuit(PlayerQuitEvent e){
-        //Se tuvo que implementar un delay, ya que sino no daba tiempo a que cambiase el valor del numero de jugadores al actualizarlo.
-        Bukkit.getScheduler().runTaskLater(plugin, new Runnable() {
-        @Override
-        public void run() {
-             for(Player all : Bukkit.getServer().getOnlinePlayers()) {
-            setBoard(all);
-             }
-           }
-     }, 1);       
-  }
-      
-        public void addKill(Player p, int kills) {
-            
-            int kill = cfgdata.getInt(p.getName() + "." + "Kills");
-            int newkill = kills;
-            
-            cfgdata.set(p.getName() + "." + "Kills", kill+newkill);
-            saveConfig(cfgdata);
-        }
-        
-        public void addDeath(Player p, int deaths) {
-            
-            int death = cfgdata.getInt(p.getName() + "." + "Deaths");
-            int newdeath = deaths;
-            
-            cfgdata.set(p.getName() + "." + "Deaths", death + newdeath);
-            saveConfig(cfgdata);
-        }
-        
-        public void addKDratio(Player p) {
-            
-            double kills = cfgdata.getInt(p.getName() + "." + "Kills");
-            double deaths = cfgdata.getInt(p.getName() + "." + "Deaths");
-            
-            if (deaths == 0) {
-                cfgdata.set(p.getName() + "." + "Ratio", kills/1);
-                saveConfig(ConfigVscoreboarddata);
-            } else {
-                ConfigVscoreboarddata.set(p.getName() + "." + "Ratio", kills/deaths);
-                saveConfig(ConfigVscoreboarddata);
-            }
-            
-        }
-        
-        @EventHandler
-         public void onDeath(PlayerDeathEvent e)  {
-             
-             Player dead = e.getEntity();
-             Player killer = dead.getKiller();
-             
-             addDeath(dead , 1);
-             
-             addKill(killer , 1);   
-             
-             addKDratio(dead);
-             addKDratio(killer);
-             
-             for (Player all : Bukkit.getServer().getOnlinePlayers()) {
-                 setBoard(all);
-             }
-   }          
-  }
+     }       
+}
 

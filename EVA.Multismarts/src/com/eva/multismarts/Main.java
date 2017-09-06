@@ -11,6 +11,7 @@ import com.eva.multismarts.vconomy.commands.CmdVmoney;
 import com.eva.multismarts.vconomy.commands.CmdVpay;
 import com.eva.multismarts.vconomy.commands.CmdVreset;
 import com.eva.multismarts.vconomy.commands.CmdVtake;
+import com.eva.multismarts.vscoreboard.Board;
 import com.eva.multismarts.vscoreboard.PlayerListener;
 //________________________________________________________
 
@@ -22,8 +23,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.logging.Logger;
+import net.milkbowl.vault.chat.Chat;
 import org.bukkit.plugin.java.JavaPlugin;
 import net.milkbowl.vault.economy.Economy;
+import net.milkbowl.vault.permission.Permission;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.RegisteredServiceProvider;
@@ -146,9 +149,10 @@ public class Main extends JavaPlugin {
     
     //INSTALADOR DEL ECONOMY_______________________________________
     public static Economy econ = null;
-    public static Economy getEconomy() {
-        return econ;
-    }
+    private static Permission perms = null;
+    private static Chat chat = null;
+    
+    
     private boolean setupEconomy() {
         RegisteredServiceProvider<Economy> rsp = getServer().getServicesManager().getRegistration(Economy.class);
         if (rsp == null) {
@@ -158,7 +162,26 @@ public class Main extends JavaPlugin {
             return econ != null;
     }
     //_____________________________________________________________
+     private boolean setupChat() {
+        RegisteredServiceProvider<Chat> rsp = getServer().getServicesManager().getRegistration(Chat.class);
+        chat = rsp.getProvider();
+        return chat != null;
+    }
     
+    private boolean setupPermissions() {
+        RegisteredServiceProvider<Permission> rsp = getServer().getServicesManager().getRegistration(Permission.class);
+        perms = rsp.getProvider();
+        return perms != null;
+    }
+    public static Economy getEconomy() {
+        return econ;
+    } 
+    public static Permission getPermissions() {
+        return perms;
+    } 
+    public static Chat getChat() {
+        return chat;
+    } 
     
     @Override
     public void onEnable() {
