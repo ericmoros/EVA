@@ -4,6 +4,7 @@ package com.eva.multismarts.vscoreboard;
 
 import com.eva.multismarts.Main;
 import static com.eva.multismarts.Main.saveConfig;
+import static com.eva.multismarts.vscoreboard.Board.cfg;
 import static com.eva.multismarts.vscoreboard.Board.cfgdata;
 import static com.eva.multismarts.vscoreboard.Board.setBoard;
 import static com.eva.multismarts.vscoreboard.Events.addDeath;
@@ -27,6 +28,7 @@ private final Main plugin;
         this.plugin = instance;
     }
    
+    
     // EVENTOS
       
        //Al conectarse un jugador, si no había entrado antes, se le crea en la el archivo configdata su nombre y los datos de sus kills, deaths y kd.
@@ -50,8 +52,11 @@ private final Main plugin;
                } 
            
            //Task, inicia a partir de 1 segundo después de que el jugador se conecte, y se actualiza cada 2 segundos.
+           long set = cfg.getLong("Timer.Set_time");
+           long update = cfg.getLong("Timer.Refresh_time");
+           
            Task task = new Task(plugin, e.getPlayer());
-           task.runTaskTimer(plugin, 20L, 40L);
+           task.runTaskTimer(plugin, set*20, update*20);
 
      }
 
