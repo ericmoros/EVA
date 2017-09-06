@@ -21,6 +21,7 @@
                     <include>*.yml</include>
                     <include>com/eva/multismarts/Ejemplos/*.yml</include>
                     <include>com/eva/multismarts/vscoreboard/*.yml</include>
+                    <include>com/eva/multismarts/ESpawn/*.yml</include>
                 </includes>
             </resource>
         </resources>

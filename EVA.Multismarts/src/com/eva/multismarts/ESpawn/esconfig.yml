@@ -1,76 +1,89 @@
-#           __________________________________________________________
+#           ________________________________________________________
 #             /¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\  
 #                                     ESpawn                           
 #             \____________________________________________________/  
-#           ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
-
-                ESpawn:
-                    World1:
-                        Afterdie:
-                            Playlist: Static1, Random1, Static2
-                            #-1 = Static1 #0 =< bucles_for_Getout
-                            Blucle: 2
-                            Getout: World2
-                        Spawns:
-                        #Random vars <Rx>, <Ry>, <Rz>, <Rp>, <Ra>
-                            Statics:
-                                Static1:
-                                    fixed: true
-                                    x: 25
-                                    y: 64
-                                    z: 25
-                                    p: 145
-                                    a: 65
-
-                                Static2:
-                                    fixed: false
-                                    x: 125
-                                    y: 64
-                                    z: 37
-                                    p: 149
-                                    a: 12
-
-                            Randoms:
-                                Random1:
-                                    fixed: true
-                                    Rx_max&min: 45, 100
-                                    Ry_max&min: 64, 65
-                                    Rz_max&min: 45, 100
-                                    Rp_max&min: 45, 100
-                                    Ra_max&min: 45, 100
-                    World2:
-                        Afterdie:
-                            Playlist: Static1, Random1, Static2
-                            blucle: -1
-                            Getout: World2
-                        Spawns:
-                            Statics:
-                                Static1:
-                                    fixed: true
-                                    x: 25
-                                    y: 64
-                                    z: 25
-                                    p: 145
-                                    a: 65
-
-                                Static2:
-                                    fixed: false
-                                    x: 125
-                                    y: 64
-                                    z: 37
-                                    p: 149
-                                    a: 12
-
-                            Randoms:
-                                Random1:
-                                    fixed: true
-                                    Rx_max&min: 45, 100
-                                    Ry_max&min: 64, 65
-                                    Rz_max&min: 45, 100
-                                    Rp_max&min: 45, 100
-                                    Ra_max&min: 45, 100
-
-                                                                              
+#             ¯¯¯¯|¯¯¯¯|¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+# ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\
+#
+#                      |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|¯¯¯¯¯¯¯¯
+#                      | This is an example of how should |
+#                      | appear your config, but for gen- |
+#                      | erate it you must run  "/espawn" |
+#                      |                                  |
+#              ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯
+#    /¯¯¯¯¯                                            ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯\
+#
+#                ESpawn:
+#                    World1:
+#                        Afterdie:
+#                            Playlist: Static1, Random1, Static2
+#                            #-1 = Static1 #0 =< bucles_for_Getout
+#                            Blucle: 2
+#                            Getout: World2
+#                        Spawns:
+#                        #Random vars <Rx>, <Ry>, <Rz>, <Rp>, <Ra>
+#                            Statics:
+#                                Static1:
+#                                    fixed: true
+#                                    x: 25
+#                                    y: 64
+#                                    z: 25
+#                                    p: 145
+#                                    a: 65
+#
+#                                Static2:
+#                                    fixed: false
+#                                    x: 125
+#                                    y: 64
+#                                    z: 37
+#                                    p: 149
+#                                    a: 12
+#
+#                            Randoms:
+#                                Random1:
+#                                    fixed: true
+#                                    Rx_max&min: 45, 100
+#                                    Ry_max&min: 64, 65
+#                                    Rz_max&min: 45, 100
+#                                    Rp_max&min: 45, 100
+#                                    Ra_max&min: 45, 100
+#                    World2:
+#                        Afterdie:
+#                            Playlist: Static1, Random1, Static2
+#                            blucle: -1
+#                            Getout: World2
+#                        Spawns:
+#                            Statics:
+#                                Static1:
+#                                    fixed: true
+#                                    x: 25
+#                                    y: 64
+#                                    z: 25
+#                                    p: 145
+#                                    a: 65
+#
+#                                Static2:
+#                                    fixed: false
+#                                    x: 125
+#                                    y: 64
+#                                    z: 37
+#                                    p: 149
+#                                    a: 12
+#
+#                            Randoms:
+#                                Random1:
+#                                    fixed: true
+#                                    Rx_max&min: 45, 100
+#                                    Ry_max&min: 64, 65
+#                                    Rz_max&min: 45, 100
+#                                    Rp_max&min: 45, 100
+#                                    Ra_max&min: 45, 100
+#
+#
+#    \________________________                                            ____/
+#
+#
+#
 # |¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯|
 # | EXTRA USAGE INFORMATION...                                                                                                                             |
 # |________________________________________________________________________________________________________________________________________________________|
