@@ -6,12 +6,12 @@ import static com.eva.multismarts.vscoreboard.Board.setBoard;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-public class Task1 extends BukkitRunnable {
+public class Task2 extends BukkitRunnable {
  
     private final Main plugin;
     private final Player p;
     
-    public Task1(Main instance, Player player) {
+    public Task2(Main instance, Player player) {
         plugin = instance;
         p = player;
     }
@@ -20,8 +20,6 @@ public class Task1 extends BukkitRunnable {
     public void run() {
         //Si el jugador no esta conectado, se cancela el task (Importante para no producir lag innecesario.
         if (!p.isOnline()) cancel();
-  
         setBoard(p);
-        
     }
 }

@@ -55,8 +55,10 @@ private final Main plugin;
            long set = cfg.getLong("Timer.Set_time");
            long update = cfg.getLong("Timer.Refresh_time");
            
-           Task task = new Task(plugin, e.getPlayer());
-           task.runTaskTimer(plugin, set*20, update*20);
+           Task1 task = new Task1(plugin, e.getPlayer());
+        task.runTaskTimer(plugin, set*20, update*20).getTaskId();
+          
+       
 
      }
 

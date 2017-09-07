@@ -62,18 +62,19 @@ public class Board {
         Objective obj = board.registerNewObjective("aaa", "bbb");
             
          //Scores traidos desde config.yml y valores sustituidos en config por variables de la clase.
-        
-          String titlecfg = cfg.getString("VScoreboard.Title").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
-          String barcfg = cfg.getString("VScoreboard.Spacer").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
-          String text1acfg = cfg.getString("VScoreboard.Text1a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
-          String text1bcfg =cfg.getString("VScoreboard.Text1b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
-          String text2acfg = cfg.getString("VScoreboard.Text2a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
-          String text2bcfg = cfg.getString("VScoreboard.Text2b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
-          String text3acfg = cfg.getString("VScoreboard.Text3a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
-          String text3bcfg = cfg.getString("VScoreboard.Text3b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
-          String text4acfg = cfg.getString("VScoreboard.Text4a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
-          String text4bcfg = cfg.getString("VScoreboard.Text4b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
-      
+          int scoreboardstructure = cfg.getInt("Scoreboard_structure.Structure");
+          String titlecfg = cfg.getString("Scoreboard_texts.Title").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String barcfg = cfg.getString("Scoreboard_texts.Spacer").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text1acfg = cfg.getString("Scoreboard_texts.Text1a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text1bcfg =cfg.getString("Scoreboard_texts.Text1b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text2acfg = cfg.getString("Scoreboard_texts.Text2a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text2bcfg = cfg.getString("Scoreboard_texts.Text2b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text3acfg = cfg.getString("Scoreboard_texts.Text3a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text3bcfg = cfg.getString("Scoreboard_texts.Text3b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text4acfg = cfg.getString("Scoreboard_texts.Text4a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text4bcfg = cfg.getString("Scoreboard_texts.Text4b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text5acfg = cfg.getString("Scoreboard_texts.Text5a").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
+          String text5bcfg = cfg.getString("Scoreboard_texts.Text5b").replaceAll("<player>", p.getName()).replaceAll("<numberplayers>", Integer.toString(numberplayers)).replaceAll("<balance>", playermoney).replaceAll("<servername>", nameserver).replaceAll("<worldname>", worldname).replaceAll("<maxplayers>", Integer.toString(maxplayers)).replaceAll("<kills>", Integer.toString(kills)).replaceAll("<deaths>", Integer.toString(deaths)).replaceAll("<kdratio>", Useful_methods.Decimal_formatter.format(kd));
         //Tipo de Scoreboard y su título.
         
         obj.setDisplayName(Useful_methods.Text_formatter(titlecfg));
@@ -90,6 +91,7 @@ public class Board {
                 Score space1 = obj.getScore(Useful_methods.Text_formatter("&4"));
                 Score space2 = obj.getScore(Useful_methods.Text_formatter("&5"));
                 Score space3 = obj.getScore(Useful_methods.Text_formatter("&6"));
+                Score space4 = obj.getScore(Useful_methods.Text_formatter("&7"));
                 
                //Nombre de usuario
          
@@ -110,32 +112,122 @@ public class Board {
          
                  Score text4a = obj.getScore(Useful_methods.Text_formatter(text4acfg));
                  Score text4b = obj.getScore(Useful_methods.Text_formatter(text4bcfg));
+               //Text5
+               
+                 Score text5a = obj.getScore(Useful_methods.Text_formatter(text5acfg));
+                 Score text5b = obj.getScore(Useful_methods.Text_formatter(text5bcfg));
+                 
+                 
           
         //Orden de los marcadores
+        if (scoreboardstructure == 1)
+        {
+                bar.setScore(15);
+                
+                text1a.setScore(14);
+                
+                text1b.setScore(13);
+              
+                space1.setScore(12);
+                
+                text2a.setScore(11);
+                
+                text2b.setScore(10);
+                
+                space2.setScore(9);
+                
+                text3a.setScore(8);
+                
+                text3b.setScore(7);
+                
+                space3.setScore(6);
+                
+                text4a.setScore(5);
+                
+                text4b.setScore(4);
+                
+                space4.setScore(3);
+                
+                text5a.setScore(2);
+                
+                text5b.setScore(1);              
+         }
         
-                bar.setScore(12);
+        if (scoreboardstructure == 2)
+            
+        {
+            bar.setScore(12);
                 
-                text1a.setScore(11);
+            text1a.setScore(11);
                 
-                text1b.setScore(10);
+            text1b.setScore(10);
+              
+            space1.setScore(9);
                 
-                space1.setScore(9);
+            text2a.setScore(8);
                 
-                text2a.setScore(8);
+            text2b.setScore(7);
                 
-                text2b.setScore(7);
+            space2.setScore(6);
                 
-                space2.setScore(6);
+            text3a.setScore(5);
                 
-                text3a.setScore(5);
+            text3b.setScore(4);
                 
-                text3b.setScore(4);
+            space3.setScore(3);
                 
-                space3.setScore(3);
+            text4a.setScore(2);
                 
-                text4a.setScore(2);
+            text4b.setScore(1);
+        }
+        
+        if (scoreboardstructure == 3 || scoreboardstructure <= 0 || scoreboardstructure >=6)
+            
+        {
+            bar.setScore(9);
                 
-                text4b.setScore(1);
+            text1a.setScore(8);
+                
+            text1b.setScore(7);
+              
+            space1.setScore(6);
+                
+            text2a.setScore(5);
+                
+            text2b.setScore(4);
+                
+            space2.setScore(3);
+                
+            text3a.setScore(2);
+                
+            text3b.setScore(1);
+        }
+        
+        if (scoreboardstructure == 4)
+            
+        {
+            bar.setScore(6);
+                
+            text1a.setScore(5);
+                
+            text1b.setScore(4);
+              
+            space1.setScore(3);
+                
+            text2a.setScore(2);
+                
+            text2b.setScore(1);
+        }
+        
+        if (scoreboardstructure == 5)
+            
+        {
+            bar.setScore(3);
+              
+            text1a.setScore(2);
+                
+            text1b.setScore(1);
+        }
         
        //Añadirle el scoreboard al jugador
        

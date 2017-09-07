@@ -20,35 +20,47 @@
 # If you need help about Color & Formatting codes check this page: https://minecraft.gamepedia.com/Formatting_codes
 # If you want to return to default, you must delete this config.yml and load the plugin in your server for generate a new config.yml
 
-# Variables that you can use anywhere:
- #  |Server variables|
- 
-    # <numberplayers> = Number of online players.
-    # <player> = User's name.
-    # <servername> = Server's name described in file server.properties
-    # <worldname> = World's name.
-    
- #  |PvP variables|
- 
-    # <kills> = Player's amount of kills.
-    # <deaths> = Player's amount of deaths.
-    # <kdratio> = Player's kill / death ratio.
-
- #  |Economy variables|
- 
-    #  <balance> = User's balance (Requires economy plugin).
-    
-# Timer meanings (Value = seconds)
-    # Set_time: How many seconds for setting the scoreboard when a player connects.
-    # Refresh_time: How many seconds until next refresh.
+#+-----------------------------------------------------------+
+    # Timer meanings (Value = seconds)
+      # Set_time: How many seconds for setting the scoreboard when a player connects.
+      # Refresh_time: How many seconds until next refresh (Very fast refresh can generate problems).
     
 Timer:
-    
     Set_time: 1     
     Refresh_time: 5 
-        
-VScoreboard:
+#+-----------------------------------------------------------+
+   # Scoreboard_structure meanings (Value = type of structure)
+    # Only integer values between 1 and 5.
+      # 1 = 2x2x2x2x2
+      # 2 = 2x2x2x2
+      # 3 = 2x2x2
+      # 4 = 2x2
+      # 5 = 2  
+      
+Scoreboard_structure:
+
+    Structure: 1
+#+-----------------------------------------------------------+
+# Variables that you can use anywhere:
+        #   |Server variables|
+ 
+            # <numberplayers> = Number of online players.
+            # <player> = User's name.
+            # <servername> = Server's name described in file server.properties
+            # <worldname> = World's name.
     
+        #   |PvP variables|
+ 
+            # <kills> = Player's amount of kills.
+            # <deaths> = Player's amount of deaths.
+            # <kdratio> = Player's kill / death ratio.
+
+        #   |Economy variables|
+ 
+            #  <balance> = User's balance (Requires economy plugin).
+             
+Scoreboard_texts:
+    #Don't use the same text in various Texts. Bad -> Text1a: "Hello" Text2a: "Hello" | Good -> Text1a: "Hello" Text2a : "Hello&f"
     Title: "&6&l<servername>"
 
     Spacer: "&4----------"
@@ -62,8 +74,12 @@ VScoreboard:
     Text3a: "» &4Money:"
     Text3b: "» <balance> $"
     
-    Text4a: "» &4Example:"
-    Text4b: "» Example"
+    Text4a: "» &4Kills:"
+    Text4b: "» <kills>&5"
+    
+    Text5a: "» &4Deaths:"
+    Text5b: "» <deaths>"
+ 
     
 
   

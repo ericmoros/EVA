@@ -38,8 +38,8 @@ Víctor
        Ideas:
 
             -Implementar soporte multimundo (Distintos scoreboards dependiendo del mundo en el que este el jugador)
-            -Aumentar las posibilidades de mostrar datos a los usuarios; más variables (Nombre de servidor, rangos, asesinatos, muertes...)
-            -Aumentar las posibilidades de elección de estructura a los usuarios (2+2+2+2 actual -> 2+2+2 -> 2+2)
+            
+            
 
        Errores:
         
