@@ -29,9 +29,10 @@ commands:
     vreceive:
         description: Proporciona la cantidad de dinero que solicites.
         usage: /vreceive
-    Vago:
-        description: No hace nada...
-        usage: /vago
+        
+    espawn:
+        description: genera la configuración del módulo ESpawn
+        usage: /espawn
     #Ejemplo registrar comando
     Hola:
         description: Este comando dará los buenos días.

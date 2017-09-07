@@ -65,6 +65,11 @@ public class Main extends JavaPlugin {
         public static FileConfiguration ConfigVscoreboarddata = new YamlConfiguration();
         public static File ConfigVscoreboarddata_file;
         
+        //ESPAWN
+        HashMap<File, String> ESpawn_data = new HashMap<>();
+        public static FileConfiguration ESpawn = new YamlConfiguration();
+        public static File ESpawn_file;
+        
         
       //__________________________________________________________
     
@@ -194,6 +199,8 @@ public class Main extends JavaPlugin {
         Precook_configs(Ejsconfig2_data, Ejsconfig2, "Examples/Ejs_config_2.yml", Ejsconfig2_file, "com/eva/multismarts/Ejemplos/ejsconfig_2.yml");
         Precook_configs(ConfigVscoreboard_data, ConfigVscoreboard, "VScoreboard/config.yml", ConfigVscoreboard_file, "com/eva/multismarts/vscoreboard/config.yml");
         Precook_configs(ConfigVscoreboarddata_data, ConfigVscoreboarddata, "VScoreboard/data.yml", ConfigVscoreboarddata_file, "com/eva/multismarts/vscoreboard/data.yml");
+        Precook_configs(ESpawn_data, ESpawn, "ESpawn/Esconfig.yml", ESpawn_file, "com/eva/multismarts/ESpawn/esconfig.yml");
+        
         try {
             firstRun();
         } catch (Exception e) {
@@ -227,13 +234,14 @@ public class Main extends JavaPlugin {
             
             //ESPAWN
              //if (Espawn_estado == true) {
-                this.getCommand("espawn").setExecutor(new CmdESpawn (this));
+                 //this.getCommand("espawn").setExecutor(new CmdESpawn (this));
+                 this.getCommand("espawn").setExecutor(new CmdESpawn (this));
              //}
              
             //Ejemplos
-            if (Ejemplos_estado == true) {
-                this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
-            }
+             if (Ejemplos_estado == true) {
+                 this.getCommand("hola").setExecutor(new Ejemplo_hola (this));
+             }
         //____________________________________________________________________________________
         
         //MENSAJE ARRANQUE CONSOLA_________
