@@ -8,9 +8,9 @@ commands:
     espawn:
         description: Genera la configuración del módulo ESpawn.
         usage: /espawn
-    vscoreboard:
-        description: Cierra el scoreboard mostrado a la derecha de la pantalla.
-        usage: /vscoreboard
+    setscoreboard:
+        description: Abre o cierra el scoreboard mostrado a la derecha.
+        usage: /scoreboard
     vreset:
         description: Resetea el dinero que tiene un usuario determinado.
         usage: /vreset

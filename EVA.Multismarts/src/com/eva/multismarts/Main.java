@@ -12,6 +12,7 @@ import com.eva.multismarts.vconomy.commands.CmdVpay;
 import com.eva.multismarts.vconomy.commands.CmdVreset;
 import com.eva.multismarts.vconomy.commands.CmdVtake;
 import com.eva.multismarts.vscoreboard.Board;
+import com.eva.multismarts.vscoreboard.CmdVScoreboard;
 import com.eva.multismarts.vscoreboard.PlayerListener;
 //________________________________________________________
 
@@ -229,7 +230,7 @@ public class Main extends JavaPlugin {
             //VSCOREBOARD
              if (VScoreboard_estado == true && getServer().getPluginManager().getPlugin("Vault") != null) {
                  this.getServer().getPluginManager().registerEvents(new PlayerListener(instance), instance);
-               // this.getCommand("vscoreboard").setExecutor(new CmdVScoreboard (this));
+                 this.getCommand("setscoreboard").setExecutor(new CmdVScoreboard (this));
              }
             
             //ESPAWN
