@@ -38,7 +38,7 @@ Víctor
        Ideas:
 
             -Implementar soporte multimundo (Distintos scoreboards dependiendo del mundo en el que este el jugador)
-            
+            -Añadir más variables.
             
 
        Errores:

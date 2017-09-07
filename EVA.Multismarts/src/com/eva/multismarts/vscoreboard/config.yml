@@ -31,15 +31,17 @@ Timer:
 #+-----------------------------------------------------------+
    # Scoreboard_structure meanings (Value = type of structure)
     # Only integer values between 1 and 5.
-      # 1 = 2x2x2x2x2
-      # 2 = 2x2x2x2
-      # 3 = 2x2x2
-      # 4 = 2x2
-      # 5 = 2  
+    # You'll understand what is a section if you see "Scoreboard_sections" below.
+      # 1 = 1 section in board.  -> (Section1)
+      # 2 = 2 sections in board. -> (Section1)+(Section2)
+      # 3 = 3 sections in board. -> (Section1)+(Section2)+(Section3)
+      # 4 = 4 sections in board. -> (Section1)+(Section2)+(Section3)+(Section4)
+      # 5 = 5 sections in board. -> (Section1)+(Section2)+(Section3)+(Section4)+(Section5)
+      
       
 Scoreboard_structure:
 
-    Structure: 1
+    Structure: 3
 #+-----------------------------------------------------------+
 # Variables that you can use anywhere:
         #   |Server variables|
@@ -59,26 +61,34 @@ Scoreboard_structure:
  
             #  <balance> = User's balance (Requires economy plugin).
              
-Scoreboard_texts:
+Scoreboard_sections:
     #Don't use the same text in various Texts. Bad -> Text1a: "Hello" Text2a: "Hello" | Good -> Text1a: "Hello" Text2a : "Hello&f"
     Title: "&6&l<servername>"
-
-    Spacer: "&4----------"
-    
-    Text1a: "» &4User:"
-    Text1b: "» <player>"
-        
-    Text2a: "» &4Players:"
-    Text2b: "» <numberplayers> online"
-        
-    Text3a: "» &4Money:"
-    Text3b: "» <balance> $"
-    
-    Text4a: "» &4Kills:"
-    Text4b: "» <kills>&5"
-    
-    Text5a: "» &4Deaths:"
-    Text5b: "» <deaths>"
+#+-------------------------------------------------+
+#                    |SECTION 1|
+    Sectionspacer1: "&1" 
+    Section1a: "» &4User:"
+    Section1b: "» <player>"
+#+-------------------------------------------------+   
+#                    |SECTION 2|
+    Sectionspacer2: "&2"
+    Section2a: "» &4Players:"
+    Section2b: "» <numberplayers> online"
+#+-------------------------------------------------+  
+#                    |SECTION 3|
+    Sectionspacer3: "&3"     
+    Section3a: "» &4Money:"
+    Section3b: "» <balance> $"
+#+-------------------------------------------------+   
+#                    |SECTION 4|
+    Sectionspacer4: "&4"  
+    Section4a: "» &4Kills:"
+    Section4b: "» <kills>&5"
+#+-------------------------------------------------+
+#                    |SECTION 5|
+    Sectionspacer5: "&5"
+    Section5a: "» &4Deaths:"
+    Section5b: "» <deaths>"
  
     
 
