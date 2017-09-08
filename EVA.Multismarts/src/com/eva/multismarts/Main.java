@@ -57,15 +57,18 @@ public class Main extends JavaPlugin {
         public static FileConfiguration Ejsconfig2 = new YamlConfiguration();
         public static File Ejsconfig2_file;
         
-        //VSCOREBOARD
+        //SCOREBOARD
         HashMap<File, String> ConfigVscoreboard_data = new HashMap<>();
         public static FileConfiguration ConfigVscoreboard = new YamlConfiguration();
         public static File ConfigVscoreboard_file;
-        //VSCOREBOARD KILLS 
+        //SCOREBOARD PVP DATA 
         HashMap<File, String> ConfigVscoreboarddata_data = new HashMap<>();
         public static FileConfiguration ConfigVscoreboarddata = new YamlConfiguration();
         public static File ConfigVscoreboarddata_file;
-        
+        ////SCOREBOARD MULTIWORLD DATA 
+        HashMap<File, String> ConfigVscoreboardmultiworld_data = new HashMap<>();
+        public static FileConfiguration ConfigVscoreboardmultiworld = new YamlConfiguration();
+        public static File ConfigVscoreboardmultiworld_file;
         //ESPAWN
         HashMap<File, String> ESpawn_data = new HashMap<>();
         public static FileConfiguration ESpawn = new YamlConfiguration();
@@ -201,6 +204,7 @@ public class Main extends JavaPlugin {
         Precook_configs(ConfigVscoreboard_data, ConfigVscoreboard, "VScoreboard/config.yml", ConfigVscoreboard_file, "com/eva/multismarts/vscoreboard/config.yml");
         Precook_configs(ConfigVscoreboarddata_data, ConfigVscoreboarddata, "VScoreboard/data.yml", ConfigVscoreboarddata_file, "com/eva/multismarts/vscoreboard/data.yml");
         Precook_configs(ESpawn_data, ESpawn, "ESpawn/Esconfig.yml", ESpawn_file, "com/eva/multismarts/ESpawn/esconfig.yml");
+        Precook_configs(ConfigVscoreboardmultiworld_data, ConfigVscoreboardmultiworld, "VScoreboard/multiworld.yml", ConfigVscoreboardmultiworld_file, "com/eva/multismarts/vscoreboard/multiworld.yml");
         
         try {
             firstRun();

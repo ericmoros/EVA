@@ -1,0 +1,151 @@
+Multiworld_status: false
+    
+    
+Worlds:
+    
+       World1: 
+           
+           Worldname: "Worldname"
+               
+           Structure: 3
+           
+           Sections:
+            
+             Sectionspacer1: "&1" 
+             Section1a: "» &4User:"
+             Section1b: "» <player>"
+             
+             Sectionspacer2: "&2" 
+             Section2a: "» &4Players:"
+             Section2b: "» <numberplayers> online"
+             
+             Sectionspacer3: "&3" 
+             Section3a: "» &4Money:"
+             Section3b: "» <balance> $"
+             
+             Sectionspacer4: "&4" 
+             Section4a: "» &4Kills:"
+             Section4b: "» <kills>&5"
+             
+             Sectionspacer5: "&5" 
+             Section5a: "» &4Deaths:"
+             Section5b: "» <deaths>"
+
+       World2:  
+           
+           Worldname: "Worldname"
+         
+           Structure: 3
+           
+           Sections:
+               
+             Sectionspacer1: "&1" 
+             Section1a: "» &4User:"
+             Section1b: "» <player>"
+             
+             Sectionspacer2: "&2" 
+             Section2a: "» &4Players:"
+             Section2b: "» <numberplayers> online"
+             
+             Sectionspacer3: "&3" 
+             Section3a: "» &4Money:"
+             Section3b: "» <balance> $"
+             
+             Sectionspacer4: "&4" 
+             Section4a: "» &4Kills:"
+             Section4b: "» <kills>&5"
+             
+             Sectionspacer5: "&5" 
+             Section5a: "» &4Deaths:"
+             Section5b: "» <deaths>"
+           
+               
+       World3:
+           
+           Worldname: "Worldname"
+               
+           Structure: 3
+           
+           Sections:
+               
+             Sectionspacer1: "&1" 
+             Section1a: "» &4User:"
+             Section1b: "» <player>"
+             
+             Sectionspacer2: "&2" 
+             Section2a: "» &4Players:"
+             Section2b: "» <numberplayers> online"
+             
+             Sectionspacer3: "&3" 
+             Section3a: "» &4Money:"
+             Section3b: "» <balance> $"
+             
+             Sectionspacer4: "&4" 
+             Section4a: "» &4Kills:"
+             Section4b: "» <kills>&5"
+             
+             Sectionspacer5: "&5" 
+             Section5a: "» &4Deaths:"
+             Section5b: "» <deaths>"
+               
+       World4:
+           
+           Worldname: "Worldname"
+               
+           Structure: 3
+           
+           Sections:
+               
+             Sectionspacer1: "&1" 
+             Section1a: "» &4User:"
+             Section1b: "» <player>"
+             
+             Sectionspacer2: "&2" 
+             Section2a: "» &4Players:"
+             Section2b: "» <numberplayers> online"
+             
+             Sectionspacer3: "&3" 
+             Section3a: "» &4Money:"
+             Section3b: "» <balance> $"
+             
+             Sectionspacer4: "&4" 
+             Section4a: "» &4Kills:"
+             Section4b: "» <kills>&5"
+             
+             Sectionspacer5: "&5" 
+             Section5a: "» &4Deaths:"
+             Section5b: "» <deaths>"
+               
+       World5:
+           
+           Worldname: "Worldname"
+               
+           Structure: 3
+           
+           Sections:
+               
+             Sectionspacer1: "&1" 
+             Section1a: "» &4User:"
+             Section1b: "» <player>"
+             
+             Sectionspacer2: "&2" 
+             Section2a: "» &4Players:"
+             Section2b: "» <numberplayers> online"
+             
+             Sectionspacer3: "&3" 
+             Section3a: "» &4Money:"
+             Section3b: "» <balance> $"
+             
+             Sectionspacer4: "&4" 
+             Section4a: "» &4Kills:"
+             Section4b: "» <kills>&5"
+             
+             Sectionspacer5: "&5" 
+             Section5a: "» &4Deaths:"
+             Section5b: "» <deaths>"
+               
+
+               
+       
+               
+      
