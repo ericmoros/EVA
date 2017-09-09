@@ -10,7 +10,9 @@ Worlds:
            Structure: 3
            
            Sections:
-            
+               
+             Title: "&6&l<servername>"
+             
              Sectionspacer1: "&1" 
              Section1a: "» &4User:"
              Section1b: "» <player>"
@@ -39,6 +41,8 @@ Worlds:
            
            Sections:
                
+             Title: "&6&l<servername>"
+             
              Sectionspacer1: "&1" 
              Section1a: "» &4User:"
              Section1b: "» <player>"
@@ -68,6 +72,8 @@ Worlds:
            
            Sections:
                
+             Title: "&6&l<servername>"
+             
              Sectionspacer1: "&1" 
              Section1a: "» &4User:"
              Section1b: "» <player>"
@@ -96,6 +102,8 @@ Worlds:
            
            Sections:
                
+             Title: "&6&l<servername>"
+             
              Sectionspacer1: "&1" 
              Section1a: "» &4User:"
              Section1b: "» <player>"
@@ -124,6 +132,8 @@ Worlds:
            
            Sections:
                
+             Title: "&6&l<servername>"  
+             
              Sectionspacer1: "&1" 
              Section1a: "» &4User:"
              Section1b: "» <player>"
