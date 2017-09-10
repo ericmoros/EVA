@@ -33,7 +33,10 @@ public class Ejemplo_hola implements CommandExecutor {
 //        plugin.loadYamls();
         //boolean Hola_Estado = (boolean) plugin.Ejsconfig.getBoolean("Hola.State");
         //String Hola_Mensaje = plugin.config.getString("Multismarts.Módulos.Ejemplos");
-        String Hola_Mensaje = plugin.Ejsconfig2.getString("ejemplo.test");
+        String msg = "Por tutatis que esto funciona! LOOOOOOOL!!!!";
+        
+        String Hola_Mensaje = null;
+  
         
         
         boolean Hola_Estado = true;
@@ -42,7 +45,7 @@ public class Ejemplo_hola implements CommandExecutor {
         if (Etiqueta.equalsIgnoreCase("hola") && Hola_Estado == true) {
             if (Emisor instanceof Player) {
                 Player Jugador = (Player)Emisor;
-                Jugador.sendMessage(Useful_methods.Text_formatter(Hola_Mensaje).replaceAll("Jugador_nombre", Jugador.getDisplayName()));
+                Jugador.sendMessage(Useful_methods.Text_formatter(Useful_methods.Cfg_replacer(Ejsconfig2, Hola_Mensaje, "ejemplo.test", "<msg>", msg)));
                 if (Argumentos.length >= 1) {
                     Jugador.sendMessage("No voy a procesar "+Arrays.toString(Argumentos)+"...");
                 }
