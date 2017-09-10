@@ -2,6 +2,7 @@ package com.eva.multismarts.ESpawn;
 
 import com.eva.multismarts.Main;
 import static com.eva.multismarts.Main.ESpawn;
+import static com.eva.multismarts.Main.loadConfig;
 import static com.eva.multismarts.Main.saveConfig;
 import java.util.ArrayList;
 import org.bukkit.command.Command;
@@ -19,12 +20,14 @@ public class CmdESpawn implements CommandExecutor {
     private static String espawn_dot                           = "ESpawn"     ;    // <- espawn_dot        |
     private static String     world_dot                        = "world_name" ;    // <- world_dot         |
     private static String         afterdie_dot                 = "Afterdie"   ;    // <- afterdie_dot      |
+    private static String             lock_key                 = "Lock"       ;    // <- lock_key          |
     private static String             playlist_key             = "Playlist"   ;    // <- playlist_key      |
     private static String             bucle_key                = "Bucle"      ;    // <- bucle_key         |
     private static String             getout_key               = "Getout"     ;    // <- getout_key        |
     private static String         spawns_dot                   = "Spawns"     ;    // <- spawns_dot        |
     private static String             normals_dot              = "Normals"    ;    // <- normals_dot       |
     private static String                 normal_dot           = "Normal"     ;    // <- normal_dot        |
+    //ivate static String                     lock_key         = "Lock"       ;    // <- lock_key          |
     private static String                     fixed_key        = "fixed"      ;    // <- fixed_key         |
     private static String                     x_key            = "x"          ;    // <- x_key             |
     private static String                     y_key            = "y"          ;    // <- y_key             |
@@ -33,6 +36,7 @@ public class CmdESpawn implements CommandExecutor {
     private static String                     a_key            = "a"          ;    // <- a_key             |
     private static String             randoms_dot              = "Randoms"    ;    // <- randoms_dot       |
     private static String                 random_dot           = "random"     ;    // <- random_dot        |
+    //ivate static String                     lock_key         = "Lock"       ;    // <- lock_key          |
     //ivate static String                     fixed_key        = "fixed"      ;    // <- fixed_key         |
     private static String                     Rx_maxandmin_key = "Rx_max&min" ;    // <- Rx_maxandmin_key  |
     private static String                     Ry_maxandmin_key = "Ry_max&min" ;    // <- Ry_maxandmin_key  |
@@ -42,57 +46,40 @@ public class CmdESpawn implements CommandExecutor {
     
     private static String generated_config                     = "Generada"   ;
     
-//    private static class make {
-//        private static void index(){
-//                String espawn_sec                   = (espawn_dot                 + ".") ; // <- espawn_sec        |
-//                String     world_sec                = (espawn_sec  + world_dot    + ".") ; // <- world_sec         |
-//                String          afterdie_sec        = (world_sec   + afterdie_dot + ".") ; // <- afterdie_sec      |
-//                String          spawns_sec          = (world_sec   + spawns_dot   + ".") ; // <- spawns_sec        |
-//                String              statics_sec     = (spawns_sec  + normals_dot  + ".") ; // <- statics_sec       |
-//                String                  static1_sec = (statics_sec + normal_dot   + ".") ; // <- static1_sec       |
-//                String              randoms_sec     = (spawns_sec  + randoms_dot  + ".") ; // <- randoms_sec       |
-//                String                  random1_sec = (randoms_sec + random_dot   + ".") ; // <- random1_sec       |
-//        }
-//    }
-    private static class genSec {
-        private static void afterdie(String world_name){
+    private static class index {
+        private static String section(ArrayList<String> dots){
             String section = "";
-            ArrayList<String> sectionkey = new ArrayList<>();
             
+            for (String dot: dots) {
+                section = section + (dot + ".");
+            }
+                
+           return  section;
+        }
+        
+        private static ArrayList<String> key(String section, ArrayList<String> keys){
+            ArrayList<String> sectionkey = new ArrayList<>();
+
+            keys.forEach((key) -> {
+                sectionkey.add(section + key  );
+            });
+            
+            return sectionkey;
+        }
+        
+    }
+    
+    private static class indexSec {
+        private static String afterdie(String world_name){
             ArrayList<String> dots = new ArrayList<>();
                 dots.add(espawn_dot                                          );
                 dots.add(    world_dot                         = world_name  );
                 dots.add(        afterdie_dot                                );
                 
-            ArrayList<String> keys = new ArrayList<>();
-                keys.add(            playlist_key                            );
-                keys.add(            bucle_key                               );
-                keys.add(            getout_key                              );
-               
-                
-            for (String dot: dots) {
-                section = section + (dot + ".");
-            }
-            
-            for (String key: keys) {
-                sectionkey.add(section + key  );
-            }
-            
-            
-            sectionkey.forEach((sec) -> {
-                ESpawn.createSection((String) sec);
-            });
-            
-            ESpawn.set(section + playlist_key, "Test");
-            
-            saveConfig(ESpawn);
+            return index.section(dots);
         }
         
-        private static void spawn_normal(String world_name, String spawn_name){
-            String section = "";
-            ArrayList<String> sectionkey = new ArrayList<>();
-            
-            
+        private static String spawn_normal(String world_name, String spawn_name){
             ArrayList<String> dots = new ArrayList<>();
                 dots.add(espawn_dot                                          );
                 dots.add(    world_dot                         = world_name  );
@@ -100,36 +87,10 @@ public class CmdESpawn implements CommandExecutor {
                 dots.add(            normals_dot                             );
                 dots.add(                normal_dot            = spawn_name  );
                 
-            ArrayList<String> keys = new ArrayList<>();
-                keys.add(                    fixed_key                       );
-                keys.add(                    x_key                           );
-                keys.add(                    y_key                           );
-                keys.add(                    z_key                           );
-                keys.add(                    p_key                           );
-                keys.add(                    a_key                           );
-               
-                
-            for (String dot: dots) {
-                section = section + (dot + ".");
-            }
-            
-            for (String key: keys) {
-                sectionkey.add(section + key  );
-            }
-            
-            
-            sectionkey.forEach((sec) -> {
-                ESpawn.createSection((String) sec);
-            });
-            
-            
-            saveConfig(ESpawn);
+            return index.section(dots);
         }
         
-        private static void spawn_random(String world_name, String spawn_name){
-            String section = "";
-            ArrayList<String> sectionkey = new ArrayList<>();
-            
+        private static String spawn_random(String world_name, String spawn_name){
             ArrayList<String> dots = new ArrayList<>();
                 dots.add(espawn_dot                                          );
                 dots.add(    world_dot                         = world_name  );
@@ -137,118 +98,94 @@ public class CmdESpawn implements CommandExecutor {
                 dots.add(            randoms_dot                             );
                 dots.add(                random_dot            = spawn_name  );
                 
+            return index.section(dots);
+        }
+    }
+    
+    private static class indexKeys {
+        private static ArrayList<String> afterdie(String world_name){
+            String section = indexSec.afterdie(world_name);
+            
             ArrayList<String> keys = new ArrayList<>();
+                keys.add(            lock_key                                );
+                keys.add(            playlist_key                            );
+                keys.add(            bucle_key                               );
+                keys.add(            getout_key                              );
+                
+            return index.key(section, keys);
+        }
+        
+        private static ArrayList<String> spawn_normal(String world_name, String spawn_name){
+            String section = indexSec.spawn_normal(world_name, spawn_name);
+            
+            ArrayList<String> keys = new ArrayList<>();
+                keys.add(                    lock_key                        );
+                keys.add(                    fixed_key                       );
+                keys.add(                    x_key                           );
+                keys.add(                    y_key                           );
+                keys.add(                    z_key                           );
+                keys.add(                    p_key                           );
+                keys.add(                    a_key                           );
+                
+            return index.key(section, keys);
+        }
+        
+        private static ArrayList<String> spawn_random(String world_name, String spawn_name){
+            String section = indexSec.spawn_random(world_name, spawn_name);
+            
+            ArrayList<String> keys = new ArrayList<>();
+                keys.add(                    lock_key                        );
                 keys.add(                    fixed_key                       );
                 keys.add(                    Rx_maxandmin_key                );
                 keys.add(                    Ry_maxandmin_key                );
                 keys.add(                    Rz_maxandmin_key                );
                 keys.add(                    Rp_maxandmin_key                );
                 keys.add(                    Ra_maxandmin_key                );
-               
                 
-            for (String dot: dots) {
-                section = section + (dot + ".");
-            }
-            
-            for (String key: keys) {
-                sectionkey.add(section + key  );
-            }
-            
-            
-            sectionkey.forEach((sec) -> {
-                ESpawn.createSection((String) sec);
-            });
-            
-            
-            saveConfig(ESpawn);
+            return index.key(section, keys);
         }
     }
     
-//    private static class Generate {
-//        private static String basic_esconfig(String world_name){
-//            String index = null;
-//            
-//            ArrayList<String> secs = new ArrayList<>();
-//                secs.add(espawn_dot                                          );
-//                secs.add(    world_dot                         = world_name  );
-//                secs.add(        afterdie_dot                                );
-//                secs.add(            playlist_key                            );
-//                secs.add(            bucle_key                               );
-//                secs.add(            getout_key                              );
-//                secs.add(        spawns_dot                                  );
-//                secs.add(            normals_dot                             );
-//                secs.add(            randoms_dot                             );
-//            
-//            for (String sec: secs) {
-//                index = index + (sec + ".");
-//            }
-//            
-//            return index;
-//                        
-//        }
-//        private static String spawnStatic(String world_name, String normal) {
-//            String index = null;
-//            secs.add(espawn_dot                                              );
-//            secs.add(    world_dot                             = world_name  );
-//            secs.add(        spawns_dot                                      );
-//            secs.add(            normals_dot                                 );
-//            secs.add(                normal_dot                              );
-//            secs.add(                    fixed_key                           );
-//            secs.add(                    x_key                               );
-//            secs.add(                    y_key                               );
-//            secs.add(                    z_key                               );
-//            secs.add(                    p_key                               );
-//            secs.add(                    a_key                               );
-//                                    
-//            return index;
-//        }
-//        private static void spawnRandom(String world_name, String random) {
-//                espawn_dot                                     = "ESpawn"     ;
-//                    world_dot                                  = world_name   ;
-//                        spawns_dot                             = "Spawns"     ;
-//                            randoms_dot                        = "Randoms"    ;
-//                                random_dot                     = random       ;
-//                                    fixed_key                  = "fixed"      ;
-//                                    Rx_maxandmin_key           = "Rx_max&min" ;
-//                                    Ry_maxandmin_key           = "Ry_max&min" ;
-//                                    Rz_maxandmin_key           = "Rz_max&min" ;
-//                                    Rp_maxandmin_key           = "Rp_max&min" ;
-//                                    Ra_maxandmin_key           = "Ra_max&min" ;
-//        }
-//        private static String index() {
-//            String index = null;
-//            ArrayList<String> secs = new ArrayList<>();
-//                secs.add(espawn_dot      );
-//                secs.add(world_dot       );
-//                secs.add(afterdie_dot    );
-//                secs.add(playlist_key    );
-//                secs.add(bucle_key       );
-//                secs.add(getout_key      );
-//                secs.add(spawns_dot      );
-//                secs.add(normals_dot     );
-//                secs.add(normal_dot      );
-//                secs.add(fixed_key       );
-//                secs.add(x_key           );
-//                secs.add(y_key           );
-//                secs.add(z_key           );
-//                secs.add(p_key           );
-//                secs.add(a_key           );
-//                secs.add(randoms_dot     );
-//                secs.add(random_dot      );
-//                //secs.add(fixed_key     );
-//                secs.add(Rx_maxandmin_key);
-//                secs.add(Ry_maxandmin_key);
-//                secs.add(Rz_maxandmin_key);
-//                secs.add(Rp_maxandmin_key);
-//                secs.add(Ra_maxandmin_key);
-//            
-//            secs.forEach((Configuration_inc) -> {
-//                            ESpawn.createSection(Configuration_inc);
-//                        });
-//            
-//            return index;
-//        }
-//    }
+    private static class genSec {
+        private static void generator(String lock, ArrayList<String> keys) {
+            if (ESpawn.getBoolean(lock) == false){
+                keys.forEach((sec) -> {
+                    ESpawn.createSection((String) sec);
+                });
+
+                ESpawn.set(lock, true);
+
+                saveConfig(ESpawn);
+            }
+        }
+        
+        private static void afterdie(String world_name){
+            loadConfig(ESpawn);
+
+                String lock = indexSec.afterdie(world_name) + lock_key;
+                ArrayList<String> keys = indexKeys.afterdie(world_name);
+
+                    generator(lock, keys);
+        }
+        
+        private static void spawn_normal(String world_name, String spawn_name){
+            loadConfig(ESpawn);
+
+                String lock = indexSec.spawn_normal(world_name, spawn_name) + lock_key;
+                ArrayList<String> keys = indexKeys.spawn_normal(world_name, spawn_name);
+
+                    generator(lock, keys);
+        }
+        
+        private static void spawn_random(String world_name, String spawn_name){
+            loadConfig(ESpawn);
+
+                String lock = indexSec.spawn_random(world_name, spawn_name) + lock_key;
+                ArrayList<String> keys = indexKeys.spawn_random(world_name, spawn_name);
+
+                    generator(lock, keys);
+        }
+    }
     
     @Override
     public boolean onCommand(CommandSender sender, Command command, String commandLabel, String[] args) {
@@ -264,7 +201,6 @@ public class CmdESpawn implements CommandExecutor {
                 switch (n_args) {
                     case 0:
                         genSec.afterdie(world_name);
-                        ESpawn.set((espawn_dot + ".") + (world_name + "." ) + (afterdie_dot + ".") + bucle_key, "Test2");
                         generated_config = "\nGenerado afterdie de " + world_name + "\n [AVISO] Genera spawns con la siguiente estructura \n  /espawn <normal/random> <spawn_name>";
 			break;
                     case 1:
@@ -290,107 +226,7 @@ public class CmdESpawn implements CommandExecutor {
 			generated_config = "\n[ERROR] No se admiten tantos argumentos\n ¿Seguro que sabes lo que estás haciendo?";
 		}
                 
-//                if (n_args >= 1 ) {
-//                    arg1 = args[0];
-//                }
-//                if (n_args >= 2 ) {
-//                    arg2 = args[1];
-//                }
-//                Generate.data();
-//                player.sendMessage("Hasta aquí va");
-//                if (arg1.equalsIgnoreCase("Static")) {
-//                    static1_dot = arg2;
-//                    arg1_check = "Static";
-//                } else if (arg1.equalsIgnoreCase("Random")){
-//                    random1_dot = arg2;
-//                    arg1_check = "Random";
-//                } else {
-//                    arg1_check = null;
-//                }
-//                
-//                
-//                String espawn_sec                   = (espawn_dot                 + ".") ; // <- espawn_sec        |
-//                String     world_sec                = (espawn_sec  + world_dot    + ".") ; // <- world_sec         |
-//                String          afterdie_sec        = (world_sec   + afterdie_dot + ".") ; // <- afterdie_sec      |
-//                String          spawns_sec          = (world_sec   + spawns_dot   + ".") ; // <- spawns_sec        |
-//                String              statics_sec     = (spawns_sec  + normals_dot  + ".") ; // <- statics_sec       |
-//                String                  static1_sec = (statics_sec + normal_dot   + ".") ; // <- static1_sec       |
-//                String              randoms_sec     = (spawns_sec  + randoms_dot  + ".") ; // <- randoms_sec       |
-//                String                  random1_sec = (randoms_sec + random_dot   + ".") ; // <- random1_sec       |
-//                
-//                
-//                ArrayList<String> Incomplete_gen = new ArrayList<>();
-//                String afterdie_inc = world_sec + afterdie_dot;
-//                String statics_inc = spawns_sec + statics_dot;
-//                String randoms_inc = spawns_sec + randoms_dot;
-//                Incomplete_gen.add(afterdie_inc);
-//                Incomplete_gen.add(statics_inc);
-//                Incomplete_gen.add(randoms_inc);
-//                
-//                ArrayList<String> Semicomplete_gen = new ArrayList<>();
-//                Semicomplete_gen.add(afterdie_inc);
-//                if ("String".equals(arg1_check)) {
-//                    String static1_inc = statics_sec + static1_dot;
-//                    Semicomplete_gen.add(static1_inc);
-//                    Semicomplete_gen.add(randoms_inc);
-//                } else if ("Random".equals(arg1_check)){
-//                    String random1_inc = randoms_sec + random1_dot;
-//                    Semicomplete_gen.add(random1_inc);
-//                    Semicomplete_gen.add(statics_inc);
-//                }
-//
-//
-//                
-//                
-//                switch (n_args) {
-//                    case 0:
-//                        Incomplete_gen.forEach((Configuration_inc) -> {
-//                            ESpawn.createSection(Configuration_inc);
-//                        });
-//                        generated_config = "Generada configuración incompleta de " + world_name + "\n [AVISO] Para generar la configuración al completo deberás usar la siguiente estructura \n /espawn <static/random> <spawn_name>";
-//			break;
-//                    case 1:
-//                        Incomplete_gen.forEach((Configuration_inc) -> {
-//                            ESpawn.createSection(Configuration_inc);
-//                        });
-//                        generated_config = "Generada configuración incompleta de " + world_name + "\n [AVISO] Para generar la configuración al completo deberás usar la siguiente estructura:\n /espawn <static/random> <spawn_name>";
-//			break;
-//                    case 2:
-//                        if ("Static".equals(arg1_check) | "Random".equals(arg1_check)){
-//                            Semicomplete_gen.forEach((Configuration_sic) -> {
-//                                ESpawn.createSection(Configuration_sic);
-//                            });
-//                            generated_config = "Por ahora no se puede generar esta configuración";
-//                        } else {
-//                            generated_config = "[ERROR] el argumento " + arg1 + "No está contemplado, debes usar\n <Static/Random>";
-//                        }
-//			break;
-//                    default:
-//			generated_config = "[ERROR] No se admiten tantos argumentos\n ¿Seguro que sabes lo que estás haciendo?";
-//		}
-//                ESpawn.createSection(afterdie_sec + playlist_key);
-//                ESpawn.createSection(afterdie_sec + bucle_key);
-//                ESpawn.createSection(afterdie_sec + getout_key);
-//                
-//                ESpawn.createSection(static1_sec + fixed_key);
-//                ESpawn.createSection(static1_sec + x_key);
-//                ESpawn.createSection(static1_sec + y_key);
-//                ESpawn.createSection(static1_sec + z_key);
-//                ESpawn.createSection(static1_sec + p_key);
-//                ESpawn.createSection(static1_sec + a_key);
-//                
-//                ESpawn.createSection(random1_sec + fixed_key);
-//                ESpawn.createSection(random1_sec + Rx_maxandmin_key);
-//                ESpawn.createSection(random1_sec + Ry_maxandmin_key);
-//                ESpawn.createSection(random1_sec + Rz_maxandmin_key);
-//                ESpawn.createSection(random1_sec + Rp_maxandmin_key);
-//                ESpawn.createSection(random1_sec + Ra_maxandmin_key);
-                
-                
-//                saveConfig(ESpawn);
-                
                 player.sendMessage(generated_config);
-                
             } else {
                 sender.sendMessage("Desde la terminal has de especificar el mundo para el que quieres generar la configuración");
             }
