@@ -5,6 +5,8 @@ import static com.eva.multismarts.Main.ESpawn;
 import static com.eva.multismarts.Main.loadConfig;
 import static com.eva.multismarts.Main.saveConfig;
 import java.util.ArrayList;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -44,7 +46,7 @@ public class CmdESpawn implements CommandExecutor {
     private static String                     Rp_maxandmin_key = "Rp_max&min" ;    // <- Rp_maxandmin_key  |
     private static String                     Ra_maxandmin_key = "Ra_max&min" ;    // <- Ra_maxandmin_key  |
     
-    private static String generated_config                     = "Generada"   ;
+    private static String generated_config                     = "Listo"   ;
     
     private static class index {
         private static String section(ArrayList<String> dots){
@@ -146,53 +148,75 @@ public class CmdESpawn implements CommandExecutor {
     }
     
     private static class genSec {
-        private static void generator(String lock, ArrayList<String> keys) {
-            if (ESpawn.getBoolean(lock) == false){
-                keys.forEach((sec) -> {
-                    ESpawn.createSection((String) sec);
-                });
+        private static void generator(ArrayList<String> keys) {
+            keys.forEach((sec) -> {
+                ESpawn.createSection((String) sec);
+            });
 
-                ESpawn.set(lock, true);
-
-                saveConfig(ESpawn);
-            }
+            saveConfig(ESpawn);
         }
         
         private static void afterdie(String world_name){
             loadConfig(ESpawn);
 
-                String lock = indexSec.afterdie(world_name) + lock_key                      ;
-                ArrayList<String> keys = indexKeys.afterdie(world_name)                     ;
-
-                    generator(lock, keys);
+                String lock = indexSec.afterdie(world_name) + lock_key  ;
+                ArrayList<String> keys = indexKeys.afterdie(world_name) ;
+                
+                if (ESpawn.getBoolean(lock) == false){
+                    generator(keys);
                     
                         generated_config = "\n Generado afterdie de " + world_name
                                          + "\n [AVISO] Genera spawns con la siguiente estructura:"
-                                         + "\n  /espawn <normal/random> <spawn_name>"       ;
+                                         + "\n  /espawn <normal/random> <spawn_name>";
+                        
+                        ESpawn.set(lock, true);
+                            
+                        saveConfig(ESpawn);
+                }
         }
         
-        private static void spawn_normal(String world_name, String spawn_name){
+        private static void spawn_normal(Player player, String world_name, String spawn_name){
             loadConfig(ESpawn);
 
-                String lock = indexSec.spawn_normal(world_name, spawn_name) + lock_key      ;
-                ArrayList<String> keys = indexKeys.spawn_normal(world_name, spawn_name)     ;
+                String lock = indexSec.spawn_normal(world_name, spawn_name) + lock_key  ;
+                ArrayList<String> keys = indexKeys.spawn_normal(world_name, spawn_name) ;
 
-                    generator(lock, keys);
+                if (ESpawn.getBoolean(lock) == false){
+                    generator(keys);
                         
-                        generated_config = "\n Generado afterdie de " + world_name
-                                         + "\n  y spawn normal con el nombre " + spawn_name ;
+                    String section = indexSec.spawn_normal(world_name, spawn_name); 
+                    
+                        ESpawn.set(section + x_key, player.getLocation().getX())     ;
+                        ESpawn.set(section + y_key, player.getLocation().getY())     ;
+                        ESpawn.set(section + z_key, player.getLocation().getZ())     ;
+                        ESpawn.set(section + p_key, player.getLocation().getPitch()) ;
+                        ESpawn.set(section + a_key, player.getLocation().getYaw())   ;
+                        
+                            generated_config = "\n Generado afterdie de " + world_name
+                                         + "\n  y spawn normal con el nombre " + spawn_name;
+                            
+                            ESpawn.set(lock, true);
+                            
+                            saveConfig(ESpawn);
+                }
         }
         
         private static void spawn_random(String world_name, String spawn_name){
             loadConfig(ESpawn);
 
-                String lock = indexSec.spawn_random(world_name, spawn_name) + lock_key      ;
-                ArrayList<String> keys = indexKeys.spawn_random(world_name, spawn_name)     ;
-
-                    generator(lock, keys);
+                String lock = indexSec.spawn_random(world_name, spawn_name) + lock_key  ;
+                ArrayList<String> keys = indexKeys.spawn_random(world_name, spawn_name) ;
+                
+                if (ESpawn.getBoolean(lock) == false){
+                    generator(keys);
                     
                         generated_config = "\n Generado afterdie de " + world_name
                                          + "\n  y spawn random con el nombre " + spawn_name ;
+                        
+                        ESpawn.set(lock, true);
+                            
+                        saveConfig(ESpawn);
+                }
         }
     }
     
@@ -201,10 +225,12 @@ public class CmdESpawn implements CommandExecutor {
         if (commandLabel.equalsIgnoreCase("espawn")) {
             if (sender instanceof Player) {
                 Player player = (Player)sender;
-                String world_name = player.getLocation().getWorld().getName();
+                World world = player.getLocation().getWorld();
+                String world_name = world.getName();
                 Integer n_args = args.length;
                 String arg1;
                 String arg2;
+                String original_generated_config = generated_config;
                 
                 
                 switch (n_args) {
@@ -212,7 +238,23 @@ public class CmdESpawn implements CommandExecutor {
                         genSec.afterdie(world_name);
 			break;
                     case 1:
-                        genSec.afterdie(world_name);
+                        arg1 = args[0];
+                        String section = indexSec.spawn_normal(world_name, arg1);
+                            double x = ESpawn.getDouble(section + x_key)         ;
+                            double y = ESpawn.getDouble(section + y_key)         ;
+                            double z = ESpawn.getDouble(section + z_key)         ;
+                            float  p = (float) ESpawn.getDouble(section + p_key) ;
+                            float  a = (float) ESpawn.getDouble(section + a_key) ;
+                            
+                            
+                                Location spawn = new Location(world, x, y, z);
+                                
+                                    spawn.setPitch(p);
+                                    spawn.setYaw(a)  ;
+                                    
+                                        player.teleport(spawn);
+                                    
+                        //genSec.afterdie(world_name);
 			break;
                     case 2:
                         genSec.afterdie(world_name);
@@ -221,7 +263,7 @@ public class CmdESpawn implements CommandExecutor {
                         arg2 = args[1];
                         
                             if (arg1.equalsIgnoreCase("normal")){
-                                genSec.spawn_normal(world_name, arg2);
+                                genSec.spawn_normal(player, world_name, arg2);
                             } else if (arg1.equalsIgnoreCase("random")){
                                 genSec.spawn_random(world_name, arg2);
                             } else {
@@ -236,6 +278,8 @@ public class CmdESpawn implements CommandExecutor {
 		}
                 
                 player.sendMessage(generated_config);
+                generated_config = original_generated_config;
+                
             } else {
                 sender.sendMessage("Desde la terminal has de especificar el mundo para el que quieres generar la configuración");
                 sender.sendMessage("[En desarrollo] No tengas en cuenta el anterior mensaje");
