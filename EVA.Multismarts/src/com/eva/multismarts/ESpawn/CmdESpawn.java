@@ -66,7 +66,6 @@ public class CmdESpawn implements CommandExecutor {
             
             return sectionkey;
         }
-        
     }
     
     private static class indexSec {
@@ -162,28 +161,38 @@ public class CmdESpawn implements CommandExecutor {
         private static void afterdie(String world_name){
             loadConfig(ESpawn);
 
-                String lock = indexSec.afterdie(world_name) + lock_key;
-                ArrayList<String> keys = indexKeys.afterdie(world_name);
+                String lock = indexSec.afterdie(world_name) + lock_key                      ;
+                ArrayList<String> keys = indexKeys.afterdie(world_name)                     ;
 
                     generator(lock, keys);
+                    
+                        generated_config = "\n Generado afterdie de " + world_name
+                                         + "\n [AVISO] Genera spawns con la siguiente estructura:"
+                                         + "\n  /espawn <normal/random> <spawn_name>"       ;
         }
         
         private static void spawn_normal(String world_name, String spawn_name){
             loadConfig(ESpawn);
 
-                String lock = indexSec.spawn_normal(world_name, spawn_name) + lock_key;
-                ArrayList<String> keys = indexKeys.spawn_normal(world_name, spawn_name);
+                String lock = indexSec.spawn_normal(world_name, spawn_name) + lock_key      ;
+                ArrayList<String> keys = indexKeys.spawn_normal(world_name, spawn_name)     ;
 
                     generator(lock, keys);
+                        
+                        generated_config = "\n Generado afterdie de " + world_name
+                                         + "\n  y spawn normal con el nombre " + spawn_name ;
         }
         
         private static void spawn_random(String world_name, String spawn_name){
             loadConfig(ESpawn);
 
-                String lock = indexSec.spawn_random(world_name, spawn_name) + lock_key;
-                ArrayList<String> keys = indexKeys.spawn_random(world_name, spawn_name);
+                String lock = indexSec.spawn_random(world_name, spawn_name) + lock_key      ;
+                ArrayList<String> keys = indexKeys.spawn_random(world_name, spawn_name)     ;
 
                     generator(lock, keys);
+                    
+                        generated_config = "\n Generado afterdie de " + world_name
+                                         + "\n  y spawn random con el nombre " + spawn_name ;
         }
     }
     
@@ -201,34 +210,35 @@ public class CmdESpawn implements CommandExecutor {
                 switch (n_args) {
                     case 0:
                         genSec.afterdie(world_name);
-                        generated_config = "\nGenerado afterdie de " + world_name + "\n [AVISO] Genera spawns con la siguiente estructura \n  /espawn <normal/random> <spawn_name>";
 			break;
                     case 1:
                         genSec.afterdie(world_name);
-                        generated_config = "\nGenerado afterdie de " + world_name + "\n [AVISO] Genera spawns con la siguiente estructura \n  /espawn <normal/random> <spawn_name>";
 			break;
                     case 2:
                         genSec.afterdie(world_name);
                         
                         arg1 = args[0];
                         arg2 = args[1];
+                        
                             if (arg1.equalsIgnoreCase("normal")){
                                 genSec.spawn_normal(world_name, arg2);
-                                generated_config = "\nGenerado afterdie de " + world_name + " y spawn " + arg1 + " con el nombre " + arg2;
                             } else if (arg1.equalsIgnoreCase("random")){
                                 genSec.spawn_random(world_name, arg2);
-                                generated_config = "\nGenerado afterdie de " + world_name + " y spawn " + arg1 + " con el nombre " + arg2;
                             } else {
-                                generated_config = "\nGenerado afterdie de " + world_name + "\n [ERROR] El argumento " + arg1 + " no está contemplado" + "\n  Debes usar: <normal/random>";
+                                generated_config = "\n Generado afterdie de " + world_name
+                                                 + "\n [ERROR] El argumento " + arg1 + " no está contemplado"
+                                                 + "\n  Debes usar: <normal/random>"    ;
                             }
 			break;
                     default:
-			generated_config = "\n[ERROR] No se admiten tantos argumentos\n ¿Seguro que sabes lo que estás haciendo?";
+			generated_config = "\n[ERROR] No se admiten tantos argumentos"
+                                         + "\n ¿Seguro que sabes lo que estás haciendo?";
 		}
                 
                 player.sendMessage(generated_config);
             } else {
                 sender.sendMessage("Desde la terminal has de especificar el mundo para el que quieres generar la configuración");
+                sender.sendMessage("[En desarrollo] No tengas en cuenta el anterior mensaje");
             }
         }
         return true;
