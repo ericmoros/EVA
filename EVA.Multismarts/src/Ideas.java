@@ -14,12 +14,16 @@ Eric
     Módulos: ESpawn
 
         Ideas:
-            - Spawns por mundo
-            - Spawn aleatorio
+            - Spawns por mundo                                                  [ ✔ ]
+            - Spawn aleatorio                                                   [ ► ]
+            - Afterdie                                                          [ ❚❚ ]
 
         Mejoras:
+            - Sustituir lock por get                                            [ ❚❚ ]
+            - Pasada de escoba al generar spawn nomal                           [ ❚❚ ]
 
         Errores:
+            - Si no existe spawn normal teletranporta a la localización 0       [ ❚❚ ]
 Víctor
 
     Módulos: Vconomy y VScoreboard
