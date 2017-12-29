@@ -5,7 +5,7 @@ import static com.eva.multismarts.Main.ESpawn;
 import static com.eva.multismarts.Main.loadConfig;
 import static com.eva.multismarts.Main.saveConfig;
 import java.util.ArrayList;
-import java.util.function.Consumer;
+import java.util.Arrays;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -78,6 +78,8 @@ public class CmdESpawn implements CommandExecutor {
                                                 + "\n             guración."
                                                 + "\n  Random:  Genera una ubicación en la configuración."
                                                 + "\n  <Spawn>: Te posiciona en la ubicación almacenada."
+                                                + "\n  Delete:   Borra de la configuración el spawn especi-"
+                                                + "\n             ficado."
                                                 + "\n ¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯"
                                                 + "\n" ;
     
@@ -297,7 +299,11 @@ public class CmdESpawn implements CommandExecutor {
     
   //________________________________________________________________________________________________________
     private static class modSec {
-        
+        private static void delete(String section, String spawnName) {
+            loadConfig(ESpawn);
+                ESpawn.set(section + spawnName, null);
+                    saveConfig(ESpawn);
+        }
     }
   //________________________________________________________________________________________________________
     
@@ -314,25 +320,27 @@ public class CmdESpawn implements CommandExecutor {
         }
         
         private static ArrayList spawnsNormalList (String worldName) {
-            ArrayList<String> spawns = new ArrayList<>();
-            String section = indexSec.spawn_normal_list(worldName);
-            
-            if (ESpawn.contains(section)) {
-                ESpawn.getConfigurationSection(section).getKeys(false).forEach(spawns::add);
-            }
-            
-                return spawns;
+            loadConfig(ESpawn);
+                ArrayList<String> spawns = new ArrayList<>();
+                String section = indexSec.spawn_normal_list(worldName);
+
+                if (ESpawn.contains(section)) {
+                    ESpawn.getConfigurationSection(section).getKeys(false).forEach(spawns::add);
+                }
+
+                    return spawns;
         }
         
         private static ArrayList spawnsRandomList (String worldName) {
-            ArrayList<String> spawns = new ArrayList<>();
-            String section = indexSec.spawn_random_list(worldName);
-            
-            if (ESpawn.contains(section)) {
-                ESpawn.getConfigurationSection(section).getKeys(false).forEach(spawns::add);
-            }
-            
-                return spawns;
+            loadConfig(ESpawn);
+                ArrayList<String> spawns = new ArrayList<>();
+                String section = indexSec.spawn_random_list(worldName);
+
+                if (ESpawn.contains(section)) {
+                    ESpawn.getConfigurationSection(section).getKeys(false).forEach(spawns::add);
+                }
+
+                    return spawns;
         }
         
         
@@ -393,8 +401,40 @@ public class CmdESpawn implements CommandExecutor {
                         useSec.spawnsList(worldName).forEach((spawn) -> {
                             generated_config += " - " + spawn + "\n";
                         });
+                    ///
+                    } else if (argOne.equalsIgnoreCase("Delete")) {
+                        if (args.length >= 2) {
+                            ArrayList<String> spawns = new ArrayList<>();
+                            spawns.addAll(Arrays.asList(args));
+                            spawns.remove(0);
+                            
+                            generated_config = "";
+                            spawns.stream().map((spawnName) -> {
+                                return spawnName;
+                            }).forEachOrdered((spawnName) -> {
+                                if (useSec.spawnsNormalList(worldName).contains(spawnName)) {
+                                    String section = indexSec.spawn_normal_list(worldName);
+                                    modSec.delete(section, spawnName);
+                                    generated_config += "\n " + spawnName + " de " + worldName + " borrado";
+                                } else if (useSec.spawnsRandomList(worldName).contains(spawnName)) {
+                                    String section = indexSec.spawn_random_list(worldName);
+                                    modSec.delete(section, spawnName);
+                                    generated_config += "\n " + spawnName + " de " + worldName + " borrado";
+                                } else {
+                                    generated_config += "\n [ERROR] El Spawn \"" + spawnName + "\" no existe"
+                                            + "\n  (Info) Comprueba los spawns almacenados con este comando:"
+                                            + "\n      /Espawn List";
+                                }
+                            });
+                        } else {
+                            generated_config = "\n [ERROR] El formato del comando es incorrecto"
+                                             + "\n  (Info) Para usar \"Delete\" correctamente:"
+                                             + "\n      /Espawn Delete <Spawn_name> (Spawn_name2)"  ;
+                        }
+                    ///
                     } else {
                         String spawnName = argOne;
+                        generated_config = spawnName;
                         loadConfig(ESpawn);
                         if (useSec.spawnsNormalList(worldName).contains(spawnName)) {
                             String section = indexSec.spawn_normal(worldName, spawnName);
